@@ -1,13 +1,5 @@
 package ca.team2994.frc.robot;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-
-import com.google.common.base.Charsets;
-import com.google.common.base.Throwables;
-import com.google.common.io.Files;
-
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -31,7 +23,7 @@ public class Robot extends IterativeRobot {
      */
     @Override
 	public void robotInit() {
-    	readInFile("/home/lvuser/test.txt");
+    	readInFile("/home/lvuser/test.properties");
     	myRobot = new RobotDrive(0,1);
     	stick = new Joystick(0);
     }
@@ -82,15 +74,8 @@ public class Robot extends IterativeRobot {
     }
     
     public void readInFile(String filename) {
-		String fileText = null;
-		try {
-			/* read in the while file into one string */
-			fileText = Files.toString(new File(filename), Charsets.UTF_8);
-			/* read the file into a list of strings */
-			List<String> logLines = Files.readLines(new File(filename), Charsets.UTF_8);
-		} catch (IOException e) {
-			Throwables.propagate(e);
-		}
-		System.out.println(fileText);
+    	Constants.readConstantPropertiesFromFile(filename);
+    	System.out.println("ROBOT_TYPE:" + Constants.getConstant(Constants.ROBOT_TYPE));
+    	System.out.println("LEFT_FRONT_DRIVE_PWM:" + Constants.getConstant(Constants.LEFT_FRONT_DRIVE_PWM));
     }
 }
