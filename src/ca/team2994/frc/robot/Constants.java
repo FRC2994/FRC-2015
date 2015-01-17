@@ -20,6 +20,10 @@ public class Constants {
 	public static String getConstant(String name) {
 		return constants.getProperty(name);
 	}
+	
+	public static double getConstantAsDouble(String name) {
+		return Double.parseDouble(constants.getProperty(name));
+	}
 
 	public static void readConstantPropertiesFromFile(String filename) {
 		Properties defaultsFromFile = new Properties();
