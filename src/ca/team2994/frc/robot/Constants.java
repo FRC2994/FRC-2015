@@ -3,6 +3,8 @@ package ca.team2994.frc.robot;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.lang.Integer;
+import java.lang.Double;
 
 public class Constants {
 	private static Properties defaults = new Properties();
@@ -16,12 +18,28 @@ public class Constants {
 		defaults.put(ROBOT_TYPE, 0);
 		defaults.put(LEFT_FRONT_DRIVE_PWM, 0);
 	}
-	
+	/**Returns String of constant
+	 * 
+	 * @param name
+	 * @return
+	 */
 	public static String getConstant(String name) {
 		return constants.getProperty(name);
 	}
-	
-	public static double getConstantAsDouble(String name) {
+	/**Returns constant string as int
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public static int getConstantasInt(String name) {
+		return Integer.parseInt(constants.getProperty(name));
+	}
+	/**Returns constant string as double
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public static double getConstantDouble(String name) {
 		return Double.parseDouble(constants.getProperty(name));
 	}
 
