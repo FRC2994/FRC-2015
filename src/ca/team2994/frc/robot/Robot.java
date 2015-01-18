@@ -23,7 +23,7 @@ public class Robot extends IterativeRobot {
      */
     @Override
 	public void robotInit() {
-    	readInFile("/home/lvuser/test.properties");
+    	Constants.readConstantPropertiesFromFile();
     	myRobot = new RobotDrive(0,1);
     	stick = new Joystick(0);
     }
@@ -71,11 +71,5 @@ public class Robot extends IterativeRobot {
     @Override
 	public void testPeriodic() {
     	LiveWindow.run();
-    }
-    
-    public void readInFile(String filename) {
-    	Constants.readConstantPropertiesFromFile(filename);
-    	System.out.println("ROBOT_TYPE:" + Constants.getConstant(Constants.ROBOT_TYPE));
-    	System.out.println("LEFT_FRONT_DRIVE_PWM:" + Constants.getConstant(Constants.LEFT_FRONT_DRIVE_PWM));
     }
 }
