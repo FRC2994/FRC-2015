@@ -1,8 +1,6 @@
 package ca.team2994.frc.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
@@ -12,9 +10,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
-public class Robot extends IterativeRobot {
-	RobotDrive myRobot;
-	Joystick stick;
+public class AstechzRobot extends IterativeRobot {
 	int autoLoopCounter;
 	
     /**
@@ -24,8 +20,7 @@ public class Robot extends IterativeRobot {
     @Override
 	public void robotInit() {
     	Constants.readConstantPropertiesFromFile();
-    	myRobot = new RobotDrive(0,1);
-    	stick = new Joystick(0);
+    	Subsystems.initialize();
     }
     
     /**
@@ -41,12 +36,11 @@ public class Robot extends IterativeRobot {
      */
     @Override
 	public void autonomousPeriodic() {
-    	if(autoLoopCounter < 100) //Check if we've completed 100 loops (approximately 2 seconds)
-		{
-			myRobot.drive(-0.5, 0.0); 	// drive forwards half speed
+    	if(autoLoopCounter < 100) { //Check if we've completed 100 loops (approximately 2 seconds)
+			Subsystems.robotDrive.drive(-0.5, 0.0); 	// drive forwards half speed
 			autoLoopCounter++;
-			} else {
-			myRobot.drive(0.0, 0.0); 	// stop robot
+		} else {
+			Subsystems.robotDrive.drive(0.0, 0.0); 	// stop robot
 		}
     }
     
@@ -62,7 +56,7 @@ public class Robot extends IterativeRobot {
      */
     @Override
 	public void teleopPeriodic() {
-        myRobot.arcadeDrive(stick);
+    	Subsystems.robotDrive.arcadeDrive(Subsystems.rightDriveJoystick);
     }
     
     /**
