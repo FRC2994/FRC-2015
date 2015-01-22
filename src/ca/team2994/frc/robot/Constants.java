@@ -125,14 +125,16 @@ public class Constants {
 		Properties defaultsFromFile = new Properties();
 		FileInputStream in = null;
 		try {
-			in = new FileInputStream(CONSTANTS_FILE_NAME);
+			in = new FileInputStream(CONSTANTS_FILE_NAME);			
 			defaultsFromFile.load(in);
 		} catch (IOException e) {
 			System.out.println("Error: Unable to load properties file " + CONSTANTS_FILE_NAME);
 			e.printStackTrace();
 		} finally {
 			try {
-				in.close();
+				if (in != null) {
+					in.close();	
+				}
 			} catch (IOException e) {
 				System.out.println("Error: Unable to close properties file " + CONSTANTS_FILE_NAME);
 				e.printStackTrace();
