@@ -12,8 +12,10 @@ public class Constants {
 	
 	/* Property names */
 	// Robot
-	public static final String ROBOT_TYPE = "ROBOT_TYPE";
 	public static final String ROBOT_NAME = "ROBOT_NAME";
+	
+	public static final String ROBOT_TYPE = "ROBOT_TYPE";
+	public static final String MOTOR_TYPE = "MOTOR_TYPE";
 	
 	public static final String PID_TARGET = "PID_TARGET";
 	
@@ -66,8 +68,11 @@ public class Constants {
 	
 	static {
 		// define a default for each of the properties
-		defaults.put(ROBOT_TYPE,			"0");
 		defaults.put(ROBOT_NAME,			"Nameless!");
+		
+		defaults.put(ROBOT_TYPE,			"0");
+		defaults.put(MOTOR_TYPE,            "0");
+		
 //		defaults.put(LEFT_FRONT_DRIVE_PWM,	"4");
 //		defaults.put(LEFT_REAR_DRIVE_PWM,	"3");
 //		defaults.put(RIGHT_FRONT_DRIVE_PWM,	"2");
