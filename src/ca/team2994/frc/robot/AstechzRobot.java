@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class AstechzRobot extends IterativeRobot {
 	int autoLoopCounter;
+	SimPID encoderPID;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -21,6 +22,7 @@ public class AstechzRobot extends IterativeRobot {
 	public void robotInit() {
     	Constants.readConstantPropertiesFromFile();
     	Subsystems.initialize();
+    	encoderPID = new SimPID(0.006, 0.000, 0.000);
     }
     
     /**
@@ -29,6 +31,8 @@ public class AstechzRobot extends IterativeRobot {
     @Override
 	public void autonomousInit() {
     	autoLoopCounter = 0;
+    	Subsystems.leftDriveEncoder.reset();
+    	Subsystems.rightDriveEncoder.reset();
     }
 
     /**
@@ -65,5 +69,22 @@ public class AstechzRobot extends IterativeRobot {
     @Override
 	public void testPeriodic() {
     	LiveWindow.run();
+    }
+    
+    private void testPID() {
+    	if(autoLoopCounter == 0) {
+    		encoderPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET));
+    		Subsystems.leftDriveEncoder.reset();
+        	Subsystems.rightDriveEncoder.reset();
+    	}
+    	
+    	double driveVal = encoderPID.calcPID((-Subsystems.leftDriveEncoder.get() - Subsystems.rightDriveEncoder.get()) / 2.0);
+    	double limitVal = SimLib.limitValue(driveVal, 0.25);
+    	
+    	Subsystems.leftDrive.set(limitVal + 0.038);
+    	Subsystems.rightDrive.set(-limitVal);
+    	autoLoopCounter++;
+    	
+    	System.out.println("driveVal: " + driveVal + " limitVal: " + limitVal + " leftEncoder: " + Subsystems.leftDriveEncoder.get() + " rightEncoder: " + Subsystems.rightDriveEncoder.get());
     }
 }

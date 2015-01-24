@@ -14,6 +14,9 @@ public class Constants {
 	// Robot
 	public static final String ROBOT_TYPE = "ROBOT_TYPE";
 	public static final String ROBOT_NAME = "ROBOT_NAME";
+	
+	public static final String PID_TARGET = "PID_TARGET";
+	
 	// PWMs
 //	public static final String LEFT_FRONT_DRIVE_PWM   ="LEFT_FRONT_DRIVE_PWM";
 //	public static final String LEFT_REAR_DRIVE_PWM    ="LEFT_REAR_DRIVE_PWM";
@@ -34,10 +37,10 @@ public class Constants {
 //	public static final String EJECT_B = "EJECT_B";
 
 	// Digital I/O
-//	public static final String LEFT_ENCODER_A = "LEFT_ENCODER_A";
-//	public static final String LEFT_ENCODER_B = "LEFT_ENCODER_B";
-//	public static final String RIGHT_ENCODER_A = "RIGHT_ENCODER_A";
-//	public static final String RIGHT_ENCODER_B = "RIGHT_ENCODER_B";
+	public static final String LEFT_ENCODER_A = "LEFT_ENCODER_A";
+	public static final String LEFT_ENCODER_B = "LEFT_ENCODER_B";
+	public static final String RIGHT_ENCODER_A = "RIGHT_ENCODER_A";
+	public static final String RIGHT_ENCODER_B = "RIGHT_ENCODER_B";
 //	public static final String COMPRESSOR_PRESSURE_SW = "COMPRESSOR_PRESSURE_SW";
 
 	// Relays
@@ -80,10 +83,10 @@ public class Constants {
 //		defaults.put(ARM_B,					"4");
 //		defaults.put(EJECT_A,				"5");
 //		defaults.put(EJECT_B,				"6");
-//		defaults.put(LEFT_ENCODER_A,		"2");
-//		defaults.put(LEFT_ENCODER_B,		"3");
-//		defaults.put(RIGHT_ENCODER_A,		"4");
-//		defaults.put(RIGHT_ENCODER_B,		"5");
+		defaults.put(LEFT_ENCODER_A,		"0");
+		defaults.put(LEFT_ENCODER_B,		"1");
+		defaults.put(RIGHT_ENCODER_A,		"2");
+		defaults.put(RIGHT_ENCODER_B,		"3");
 //		defaults.put(COMPRESSOR_PRESSURE_SW,"8");
 //		defaults.put(COMPRESSOR_SPIKE,		"2");
 		defaults.put(RIGHT_DRIVE_STICK,		"0");
