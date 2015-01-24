@@ -6,9 +6,12 @@ import edu.wpi.first.wpilibj.Talon;
 
 
 public class Subsystems {
-	// Motors
+	// Drive Motors
 	public static Talon leftDrive;
 	public static Talon rightDrive;
+	
+	// Mechanism Motors
+	// TBD
 	
 	// Drive
 	public static RobotDrive robotDrive;
