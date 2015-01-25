@@ -2,6 +2,7 @@ package ca.team2994.frc.robot;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Talon;
 
@@ -11,7 +12,7 @@ public class Subsystems {
 	public static Talon leftDrive;
 	public static Talon rightDrive;
 	
-	// Drive
+	// Drive 
 	public static RobotDrive robotDrive;
 
 	// Encoders
@@ -20,7 +21,9 @@ public class Subsystems {
 	
 	// USB devices
 	public static Joystick rightDriveJoystick;
-
+	public static PowerDistributionPanel powerPanel;
+	
+	
 	/**
 	 * Initialize all of the subsystems, assumes that the constants file has been read already
 	 */
@@ -31,5 +34,6 @@ public class Subsystems {
 		rightDriveJoystick = new Joystick(Constants.getConstantAsInt(Constants.RIGHT_DRIVE_STICK));
 		leftDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.LEFT_ENCODER_A), Constants.getConstantAsInt(Constants.LEFT_ENCODER_B));
 		rightDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.RIGHT_ENCODER_A), Constants.getConstantAsInt(Constants.RIGHT_ENCODER_B));
+		powerPanel = new PowerDistributionPanel();
 	}
 }

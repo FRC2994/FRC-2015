@@ -61,6 +61,7 @@ public class AstechzRobot extends IterativeRobot {
     @Override
 	public void teleopPeriodic() {
     	Subsystems.robotDrive.arcadeDrive(Subsystems.rightDriveJoystick);
+    	System.out.println("Temp=" + Subsystems.powerPanel.getTemperature());
     }
     
     /**
