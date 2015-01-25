@@ -60,6 +60,8 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void teleopPeriodic() {
+//    	TEST_EControlers.testEGamepad();
+//    	TEST_EControlers.testEJoystick();
     	Subsystems.robotDrive.arcadeDrive(Subsystems.rightDriveJoystick);
     }
     
@@ -68,6 +70,8 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void testPeriodic() {
+//    	TEST_EControlers.testEGamepad();
+//    	TEST_EControlers.testEJoystick();
     	LiveWindow.run();
     }
     
