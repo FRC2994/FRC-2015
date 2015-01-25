@@ -146,29 +146,29 @@ public class Gamepad extends Joystick {
     }
     
     public int getDPad() {
-    int	iPad = getPOV();
-    	if(iPad == 0) {
+    int	dPad = getPOV();
+    	if(dPad == 0) {
     		return DPAD_DIRECTION_UP;
     	}
-    	if(iPad == 45) {
+    	if(dPad == 45) {
     		return DPAD_DIRECTION_UP_RIGHT;
     	}
-    	if(iPad == 90) {
+    	if(dPad == 90) {
     		return DPAD_DIRECTION_RIGHT;
     	}
-    	if(iPad == 135) {
+    	if(dPad == 135) {
     		return DPAD_DIRECTION_DOWN_RIGHT;
     	}
-    	if(iPad == 180) {
+    	if(dPad == 180) {
     		return DPAD_DIRECTION_DOWN;
     	}
-    	if(iPad == 225) {
+    	if(dPad == 225) {
     		return DPAD_DIRECTION_DOWN_LEFT;
     	}
-    	if(iPad == 270) {
+    	if(dPad == 270) {
     		return DPAD_DIRECTION_LEFT;
     	}
-    	if(iPad == 315) {
+    	if(dPad == 315) {
     		return DPAD_DIRECTION_UP_LEFT;
     	}
     	else {
