@@ -43,6 +43,7 @@ public class Constants {
 	public static final String LEFT_ENCODER_B = "LEFT_ENCODER_B";
 	public static final String RIGHT_ENCODER_A = "RIGHT_ENCODER_A";
 	public static final String RIGHT_ENCODER_B = "RIGHT_ENCODER_B";
+	public static final String TOTE_SENSOR = "TOTE_SENSOR";
 //	public static final String COMPRESSOR_PRESSURE_SW = "COMPRESSOR_PRESSURE_SW";
 
 	// Relays
@@ -92,6 +93,7 @@ public class Constants {
 		defaults.put(LEFT_ENCODER_B,		"1");
 		defaults.put(RIGHT_ENCODER_A,		"2");
 		defaults.put(RIGHT_ENCODER_B,		"3");
+		defaults.put(TOTE_SENSOR, 			"4");
 //		defaults.put(COMPRESSOR_PRESSURE_SW,"8");
 //		defaults.put(COMPRESSOR_SPIKE,		"2");
 		defaults.put(RIGHT_DRIVE_STICK,		"0");
