@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.Talon;
 
 
@@ -26,6 +28,8 @@ public class Subsystems {
 	
 	public static DigitalInput totesensor;
 	
+	public static SerialPort blingPort;
+	
 	
 	/**
 	 * Initialize all of the subsystems, assumes that the constants file has been read already
@@ -38,8 +42,7 @@ public class Subsystems {
 		leftDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.LEFT_ENCODER_A), Constants.getConstantAsInt(Constants.LEFT_ENCODER_B));
 		rightDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.RIGHT_ENCODER_A), Constants.getConstantAsInt(Constants.RIGHT_ENCODER_B));
 		powerPanel = new PowerDistributionPanel();
-		totesensor = new DigitalInput (Constants.getConstantAsInt(Constants.TOTE_SENSOR));
-		
-		
+		totesensor = new DigitalInput(Constants.getConstantAsInt(Constants.TOTE_SENSOR));
+		blingPort = new SerialPort(9600, Port.kMXP);
 	}
 }

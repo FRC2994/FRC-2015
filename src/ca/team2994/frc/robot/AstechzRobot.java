@@ -1,5 +1,7 @@
 package ca.team2994.frc.robot;
 
+import com.google.common.base.Strings;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -13,6 +15,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class AstechzRobot extends IterativeRobot {
 	int autoLoopCounter;
 	SimPID encoderPID;
+	boolean blingReady = false;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -22,7 +25,7 @@ public class AstechzRobot extends IterativeRobot {
 	public void robotInit() {
     	Constants.readConstantPropertiesFromFile();
     	Subsystems.initialize();
-    	encoderPID = new SimPID(0.006, 0.000, 0.000);
+    	encoderPID = new SimPID(0.006, 0.000, 0.000); 
     }
     
     /**
@@ -53,6 +56,7 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void teleopInit(){
+    	Subsystems.blingPort.writeString("X");
     }
 
     /**
@@ -63,6 +67,14 @@ public class AstechzRobot extends IterativeRobot {
 //    	Subsystems.robotDrive.arcadeDrive(Subsystems.rightDriveJoystick);
     	System.out.println("Temp=" + Subsystems.powerPanel.getTemperature());
     	System.out.println("Tote_Sensor=" + Subsystems.totesensor.get());
+    	if (blingReady == false) {
+    		String readyString = Subsystems.blingPort.readString();
+    		if (!Strings.isNullOrEmpty(readyString) && (readyString.equalsIgnoreCase("S"))) {
+    			blingReady = true;
+    			Subsystems.blingPort.writeString("E1Z");
+    		}
+    	}
+    	System.out.println("BlingReady=" + blingReady);
     }
     
     /**
