@@ -46,6 +46,7 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void autonomousPeriodic() {
+<<<<<<< HEAD
     	if(autoLoopCounter < 100) { //Check if we've completed 100 loops (approximately 2 seconds)
 			Subsystems.robotDrive.drive(-0.5, 0.0); 	// drive forwards half speed
 			autoLoopCounter++;
@@ -54,6 +55,14 @@ public class AstechzRobot extends IterativeRobot {
 		}
     	
     	autoLoopCounter++;
+=======
+//    	if(autoLoopCounter < 100) { //Check if we've completed 100 loops (approximately 2 seconds)
+//			Subsystems.robotDrive.drive(-0.5, 0.0); 	// drive forwards half speed
+//			autoLoopCounter++;
+//		} else {
+//			Subsystems.robotDrive.drive(0.0, 0.0); 	// stop robot
+//		}
+>>>>>>> 0c68a658333b27ecf338a728c13796dee6125d3a
     }
     
     /**
@@ -83,7 +92,7 @@ public class AstechzRobot extends IterativeRobot {
     	System.out.println("Tote_Sensor=" + Subsystems.totesensor.get());
     	if (blingReady == false) {
     		String readyString = Subsystems.blingPort.readString();
-    		if (!Strings.isNullOrEmpty(readyString) && (readyString.equalsIgnoreCase("S"))) {
+    		if (!Strings.isNullOrEmpty(readyString) && (readyString.endsWith("Send a command"))) {
     			blingReady = true;
     			Subsystems.blingPort.writeString("E1Z");
     		}
