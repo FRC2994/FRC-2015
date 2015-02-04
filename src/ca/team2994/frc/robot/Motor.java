@@ -1,5 +1,7 @@
 package ca.team2994.frc.robot;
 
+import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.SafePWM;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -10,15 +12,28 @@ public class Motor implements SpeedController
 {
 	
 	SafePWM realMotor;
+	CANJaguar canJaguar;
+	CANTalon canTalon;
+	
+	/**
+	 * 0 = PWM Talon
+	 * 1 = PWM Victor
+	 * 2 = CAN Talon
+	 * 3 = CAN Jaguar
+	 * default = PWM Jaguar
+	 */
+	int motorType;
 	
     /**
      * Factory to return one of the different motor controllers: Talon, Jaguar and Victor.
      * The exact type of motor controller is chosen based on the Constants.ROBOT_TYPE
      *
-     * @param channel The PWM channel that the motor is attached to
+     * @param channel The PWM or CAN channel that the motor is attached to
      */
 	public Motor(int channel, int motorType)
 	{
+		this.motorType = motorType;
+		
 		if (motorType == 0) 
 		{
 			realMotor =  new Talon(channel);
@@ -27,7 +42,15 @@ public class Motor implements SpeedController
 		{
 			realMotor = new Victor(channel);
 		} 
-		else 
+		else if(motorType == 2)
+		{
+			canTalon = new CANTalon(channel);
+		}
+		else if (motorType == 3)
+		{
+			canJaguar = new CANJaguar(channel);
+		}
+		else
 		{
 			realMotor = new Jaguar(channel);
 		}
@@ -40,15 +63,23 @@ public class Motor implements SpeedController
      */
 	public void pidWrite(double result) 
 	{
-		if (realMotor instanceof Talon) 
+		if(motorType == 0)
 		{
 			((Talon)realMotor).pidWrite(result);
 		}
-		else if (realMotor instanceof Victor) 
+		else if(motorType == 1)
 		{
 			((Victor)realMotor).pidWrite(result);
-		} 
-		else 
+		}
+		else if(motorType == 2)
+		{
+			canTalon.pidWrite(result);
+		}
+		else if(motorType == 3)
+		{
+			canJaguar.pidWrite(result);
+		}
+		else
 		{
 			((Jaguar)realMotor).pidWrite(result);
 		}
@@ -56,15 +87,23 @@ public class Motor implements SpeedController
 
 	public double get() 
 	{
-		if (realMotor instanceof Talon) 
+		if(motorType == 0)
 		{
 			return ((Talon)realMotor).get();
-		} 
-		else if (realMotor instanceof Victor) 
+		}
+		else if(motorType == 1)
 		{
 			return ((Victor)realMotor).get();
 		}
-		else 
+		else if(motorType == 2)
+		{
+			return canTalon.get();
+		}
+		else if(motorType == 3)
+		{
+			return canJaguar.get();
+		}
+		else
 		{
 			return ((Jaguar)realMotor).get();
 		}
@@ -72,15 +111,23 @@ public class Motor implements SpeedController
 
 	public void set(double speed, byte syncGroup) 
 	{
-		if (realMotor instanceof Talon)
+		if(motorType == 0)
 		{
 			((Talon)realMotor).set(speed);
 		}
-		else if (realMotor instanceof Victor)
+		else if(motorType == 1)
 		{
 			((Victor)realMotor).set(speed);
-		} 
-		else 
+		}
+		else if(motorType == 2)
+		{
+			canTalon.set(speed);
+		}
+		else if(motorType == 3)
+		{
+			canJaguar.set(speed);
+		}
+		else
 		{
 			((Jaguar)realMotor).set(speed);
 		}
@@ -88,38 +135,65 @@ public class Motor implements SpeedController
 
 	public void set(double speed) 
 	{
-		if (realMotor instanceof Talon) 
+		if(motorType == 0)
 		{
 			((Talon)realMotor).set(speed);
 		}
-		else if (realMotor instanceof Victor) 
+		else if(motorType == 1)
 		{
 			((Victor)realMotor).set(speed);
-		} 
-		else 
+		}
+		else if(motorType == 2)
+		{
+			canTalon.set(speed);
+		}
+		else if(motorType == 3)
+		{
+			canJaguar.set(speed);
+		}
+		else
 		{
 			((Jaguar)realMotor).set(speed);
-		}	
+		}
 	}
 
 	public void disable() 
 	{
-		if (realMotor instanceof Talon) 
+		if(motorType == 0)
 		{
 			((Talon)realMotor).disable();
-		} 
-		else if (realMotor instanceof Victor) 
+		}
+		else if(motorType == 1)
 		{
 			((Victor)realMotor).disable();
-		} 
-		else 
+		}
+		else if(motorType == 2)
+		{
+			canTalon.disable();
+		}
+		else if(motorType == 3)
+		{
+			canJaguar.disableControl(); // Why not default disabled?
+		}
+		else
 		{
 			((Jaguar)realMotor).disable();
-		}	
+		}
 	}
 	
 	public void setExpiration(double timeout) 
 	{
-		realMotor.setExpiration(timeout);
+		if(motorType != 2 && motorType != 3)
+		{
+			realMotor.setExpiration(timeout);
+		}
+		else if(motorType == 2)
+		{
+			canTalon.setExpiration(timeout);
+		}
+		else
+		{
+			canJaguar.setExpiration(timeout);
+		}
 	}
 }
