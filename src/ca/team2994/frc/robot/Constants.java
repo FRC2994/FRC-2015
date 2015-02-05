@@ -17,7 +17,10 @@ public class Constants {
 	public static final String ROBOT_TYPE = "ROBOT_TYPE";
 	public static final String MOTOR_TYPE = "MOTOR_TYPE";
 	
-	public static final String PID_TARGET = "PID_TARGET";
+	public static final String PID_TARGET_1 = "PID_TARGET_1";
+	public static final String PID_TARGET_2 = "PID_TARGET_2";
+	public static final String PID_TARGET_3 = "PID_TARGET_3";
+	public static final String PID_TARGET_4 = "PID_TARGET_4";
 	
 	// PWMs
 //	public static final String LEFT_FRONT_DRIVE_PWM   ="LEFT_FRONT_DRIVE_PWM";
@@ -73,6 +76,10 @@ public class Constants {
 		
 		defaults.put(ROBOT_TYPE,			"0");
 		defaults.put(MOTOR_TYPE,            "0");
+		defaults.put(PID_TARGET_1, 			"300");
+		defaults.put(PID_TARGET_2, 			"600");
+		defaults.put(PID_TARGET_3, 			"900");
+		defaults.put(PID_TARGET_4, 			"1200");
 		
 //		defaults.put(LEFT_FRONT_DRIVE_PWM,	"4");
 //		defaults.put(LEFT_REAR_DRIVE_PWM,	"3");

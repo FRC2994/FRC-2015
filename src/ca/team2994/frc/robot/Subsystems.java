@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.Talon;
 
 public class Subsystems {
 	// Motors
-	public static Talon leftDrive;
-	public static Talon rightDrive;
+	public static Motor leftDrive;
+	public static Motor rightDrive;
 	
 	// Drive 
 	public static ERobotDrive robotDrive;
@@ -22,7 +22,7 @@ public class Subsystems {
 	public static Encoder rightDriveEncoder;
 	
 	// USB devices
-	public static Joystick rightDriveJoystick;
+	public static EJoystick rightDriveJoystick;
 	public static PowerDistributionPanel powerPanel;
 	
 	public static DigitalInput totesensor;
@@ -34,10 +34,10 @@ public class Subsystems {
 	 * Initialize all of the subsystems, assumes that the constants file has been read already
 	 */
 	public static void initialize() {
-		leftDrive = new Talon(Constants.getConstantAsInt(Constants.CENTER_LEFT_DRIVE_PWM));
-		rightDrive = new Talon(Constants.getConstantAsInt(Constants.CENTER_RIGHT_DRIVE_PWM));
+		leftDrive = new Motor(10, 2);
+		rightDrive = new Motor(11, 2);
 //		robotDrive = new ERobotDrive(leftDrive, rightDrive);
-		rightDriveJoystick = new Joystick(Constants.getConstantAsInt(Constants.RIGHT_DRIVE_STICK));
+		rightDriveJoystick = new EJoystick(Constants.getConstantAsInt(Constants.RIGHT_DRIVE_STICK));
 		leftDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.LEFT_ENCODER_A), Constants.getConstantAsInt(Constants.LEFT_ENCODER_B));
 		rightDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.RIGHT_ENCODER_A), Constants.getConstantAsInt(Constants.RIGHT_ENCODER_B));
 		powerPanel = new PowerDistributionPanel();
