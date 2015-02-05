@@ -76,7 +76,7 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void teleopPeriodic() {
-//    	Subsystems.robotDrive.arcadeDrive(Subsystems.rightDriveJoystick);
+    	Subsystems.robotDrive.arcadeDrive(Subsystems.rightDriveJoystick, true);
     	System.out.println("Temp=" + Subsystems.powerPanel.getTemperature());
     	System.out.println("Tote_Sensor=" + Subsystems.totesensor.get());
     	if (blingReady == false) {
@@ -97,7 +97,28 @@ public class AstechzRobot extends IterativeRobot {
     	LiveWindow.run();
     }
     
-    private void testPID() {
+    /**
+     * This function is called by default when the robot is disabled
+     */
+    @Override
+    public void disabledInit()
+	{
+		Subsystems.blingPort.writeString("I");
+		
+		Timer.delay(0.05);
+		
+		String readString = Subsystems.blingPort.readString();
+		
+		while(!readString.contains("R"))
+		{
+			System.out.println(readString);
+			readString = Subsystems.blingPort.readString();
+		}
+    	
+    	Subsystems.blingPort.writeString("F6C0E6Z");
+	}
+    
+    public void testPID() {
     	if(autoLoopCounter == 0) {
     		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
     		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
@@ -116,117 +137,60 @@ public class AstechzRobot extends IterativeRobot {
     	autoLoopCounter++;
     }
     
-    private void testPlyboyPIDLevels()
+    public void testPlyboyPIDLevels()
     {
     	Subsystems.rightDriveJoystick.update();
+    	
+    	int brightness = (int)((Subsystems.rightDriveJoystick.getZ() + 1.0) * 128.0) - 1;
+    	
+    	if(brightness < 0)
+    	{
+    		brightness = 0;
+    	}
+    	
+    	Subsystems.blingPort.writeString("I");
+		
+		Timer.delay(0.05);
+		
+		String readString = Subsystems.blingPort.readString();
+		
+		while(!readString.contains("R"))
+		{
+			System.out.println(readString);
+			readString = Subsystems.blingPort.readString();
+		}
+    	
+    	Subsystems.blingPort.writeString("F6");
     	
     	if(Subsystems.rightDriveJoystick.getEvent(1) == ButtonEntry.EVENT_CLOSED)
     	{
     		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
     		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
-    		Subsystems.blingPort.writeString("I");
-    		
-    		Timer.delay(0.05);
-    		
-    		String readString = Subsystems.blingPort.readString();
-    		
-    		while(readString.startsWith("R"))
-    		{
-    			if(Strings.isNullOrEmpty(readString))
-    			{
-    				continue;
-    			}
-    			else
-    			{
-    				System.out.println(readString);
-    			}
-    			
-    			readString = Subsystems.blingPort.readString();
-    		}
-    		
-    		Subsystems.blingPort.writeString("F6C255E6Z");						// TODO: Change colour to red
+    		Subsystems.blingPort.writeString("C16711680");
     	}
     	
     	if(Subsystems.rightDriveJoystick.getEvent(2) == ButtonEntry.EVENT_CLOSED)
     	{
     		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_2));
     		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_2));
-    		Subsystems.blingPort.writeString("I");
-    		
-    		Timer.delay(0.05);
-    		
-    		String readString = Subsystems.blingPort.readString();
-    		
-    		while(readString.startsWith("R"))
-    		{
-    			if(Strings.isNullOrEmpty(readString))
-    			{
-    				continue;
-    			}
-    			else
-    			{
-    				System.out.println(readString);
-    			}
-    			
-    			readString = Subsystems.blingPort.readString();
-    		}
-    		
-    		Subsystems.blingPort.writeString("F6C255E6Z");						// TODO: Change colour to green
+    		Subsystems.blingPort.writeString("C65280");
     	}
     	
     	if(Subsystems.rightDriveJoystick.getEvent(3) == ButtonEntry.EVENT_CLOSED)
     	{
     		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_3));
     		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_3));
-    		Subsystems.blingPort.writeString("I");
-    		
-    		Timer.delay(0.05);
-    		
-    		String readString = Subsystems.blingPort.readString();
-    		
-    		while(readString.startsWith("R"))
-    		{
-    			if(Strings.isNullOrEmpty(readString))
-    			{
-    				continue;
-    			}
-    			else
-    			{
-    				System.out.println(readString);
-    			}
-    			
-    			readString = Subsystems.blingPort.readString();
-    		}
-    		
-    		Subsystems.blingPort.writeString("F6C255E6Z");			// TODO: Change colour to blue
+    		Subsystems.blingPort.writeString("C255");
     	}
     	
     	if(Subsystems.rightDriveJoystick.getEvent(4) == ButtonEntry.EVENT_CLOSED)
     	{
     		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_4));
     		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_4));
-    		Subsystems.blingPort.writeString("I");
-    		
-    		Timer.delay(0.05);
-    		
-    		String readString = Subsystems.blingPort.readString();
-    		
-    		while(readString.startsWith("R"))
-    		{
-    			if(Strings.isNullOrEmpty(readString))
-    			{
-    				continue;
-    			}
-    			else
-    			{
-    				System.out.println(readString);
-    			}
-    			
-    			readString = Subsystems.blingPort.readString();
-    		}
-    		
-    		Subsystems.blingPort.writeString("F6C255E6Z");			// TODO: Change colour to white
+    		Subsystems.blingPort.writeString("C16777215");
     	}
+    	
+    	Subsystems.blingPort.writeString("B" + brightness + "E6Z");
     	
     	double lDriveVal = leftPID.calcPID(-Subsystems.leftDriveEncoder.get());
     	double lLimitVal = SimLib.limitValue(lDriveVal, 0.25);
