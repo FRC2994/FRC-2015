@@ -168,4 +168,8 @@ public class SimPID {
     public void resetPreviousVal() {
         this.firstCycle = true;
     } 
+    
+    public double getMaxOutput() {
+    	return this.maxOutput;
+    }
 }
