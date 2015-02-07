@@ -35,7 +35,6 @@ public class ERobotDrive implements MotorSafety {
 	private int m_invertedMotors[];
 	private double m_sensitivity;
 	private double m_maxOutput;
-	private boolean m_deleteSpeedControllers;
 	private SpeedController m_frontLeftMotor;
 	private SpeedController m_centerLeftMotor;
 	private SpeedController m_frontRightMotor;
@@ -45,7 +44,6 @@ public class ERobotDrive implements MotorSafety {
 	private MotorSafetyHelper m_safetyHelper;
 	
 	private static boolean driveReported = false;
-	private static boolean arcadeReported = false;
 		
 	/*
 	 * Driving functions
@@ -75,7 +73,6 @@ public class ERobotDrive implements MotorSafety {
 		for (int i=0; i < SIX_MOTORS; i++) {
 			m_invertedMotors[i] = 1;
 		}
-		m_deleteSpeedControllers = false;
 	}
 
 	/**
@@ -96,7 +93,6 @@ public class ERobotDrive implements MotorSafety {
 		for (int i=0; i < FOUR_MOTORS; i++) {
 			m_invertedMotors[i] = 1;
 		}
-		m_deleteSpeedControllers = false;
 	}
 
 	/**
@@ -112,7 +108,6 @@ public class ERobotDrive implements MotorSafety {
 		for (int i=0; i < TWO_MOTORS; i++) {
 			m_invertedMotors[i] = 1;
 		}
-		m_deleteSpeedControllers = false;
 	}
 	
 	/**
@@ -300,8 +295,10 @@ public class ERobotDrive implements MotorSafety {
 	 * @throws CANTimeoutException 
 	 */
 	private void setLeftRightMotorOutputs(double leftOutput, double rightOutput) {
-//		Assert.always(m_rearLeftMotor != null && m_rearRightMotor != null);
-
+        if (m_rearLeftMotor == null || m_rearRightMotor == null) {
+            throw new NullPointerException("Null motor provided");
+        }
+        
 		byte syncGroup = (byte) 0x80;
 
 		if (m_frontLeftMotor != null) {
@@ -342,6 +339,7 @@ public class ERobotDrive implements MotorSafety {
 	/**
 	 * Normalize all wheel speeds if the magnitude of any wheel is greater than 1.0.
 	 */
+	@SuppressWarnings("unused")
 	private void normalize(double wheelSpeeds[]) {
 		double maxMagnitude = Math.abs(wheelSpeeds[0]);
 		int i;
@@ -362,6 +360,7 @@ public class ERobotDrive implements MotorSafety {
 	/**
 	 * Rotate a vector in Cartesian space.
 	 */
+	@SuppressWarnings("unused")
 	private void rotateVector(double x, double y, double angle) {
 		double cosA = Math.cos(angle * (3.14159 / 180.0));
 		double sinA = Math.sin(angle * (3.14159 / 180.0));
