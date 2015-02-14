@@ -1,7 +1,6 @@
 package ca.team2994.frc.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
@@ -12,10 +11,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * directory.
  */
 public class AstechzRobot extends IterativeRobot {
-	int autoLoopCounter;
-	SimPID leftPID;
-	SimPID rightPID;
-	boolean blingReady = false;
+//	int autoLoopCounter;
+//	SimPID leftPID;
+//	SimPID rightPID;
+//	boolean blingReady = false;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -25,8 +24,8 @@ public class AstechzRobot extends IterativeRobot {
 	public void robotInit() {
     	Constants.readConstantPropertiesFromFile();
     	Subsystems.initialize();
-    	leftPID = new SimPID(0.006, 0.0001, 0.0001); 
-    	rightPID = new SimPID(0.006, 0.0001, 0.0001); 
+//    	leftPID = new SimPID(0.006, 0.0001, 0.0001); 
+//    	rightPID = new SimPID(0.006, 0.0001, 0.0001); 
     }
     
     /**
@@ -34,9 +33,9 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void autonomousInit() {
-    	autoLoopCounter = 0;
-    	Subsystems.leftDriveEncoder.reset();
-    	Subsystems.rightDriveEncoder.reset();
+//    	autoLoopCounter = 0;
+//    	Subsystems.leftDriveEncoder.reset();
+//    	Subsystems.rightDriveEncoder.reset();
     }
 
     /**
@@ -59,14 +58,14 @@ public class AstechzRobot extends IterativeRobot {
 	public void teleopInit(){
 //    	Subsystems.blingPort.writeString("X");
     	
-    	Subsystems.leftDriveEncoder.reset();
-    	Subsystems.rightDriveEncoder.reset();
+//    	Subsystems.leftDriveEncoder.reset();
+//    	Subsystems.rightDriveEncoder.reset();
 //    	leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
 //		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
-		Subsystems.rightDriveJoystick.enableButton(1);
-		Subsystems.rightDriveJoystick.enableButton(2);
-		Subsystems.rightDriveJoystick.enableButton(3);
-		Subsystems.rightDriveJoystick.enableButton(4);
+//		Subsystems.rightDriveJoystick.enableButton(1);
+//		Subsystems.rightDriveJoystick.enableButton(2);
+//		Subsystems.rightDriveJoystick.enableButton(3);
+//		Subsystems.rightDriveJoystick.enableButton(4);
     }
 
     /**
@@ -74,7 +73,7 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void teleopPeriodic() {
-    	Subsystems.robotDrive.arcadeDrive(Subsystems.rightDriveJoystick, true);
+//    	Subsystems.robotDrive.arcadeDrive(Subsystems.rightDriveJoystick, true);
 //    	System.out.println("Temp=" + Subsystems.powerPanel.getTemperature());
 //    	System.out.println("Tote_Sensor=" + Subsystems.totesensor.get());
 //    	if (blingReady == false) {
@@ -117,38 +116,38 @@ public class AstechzRobot extends IterativeRobot {
 	}
     
     public void testPID() {
-    	if(autoLoopCounter == 0) {
-    		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
-    		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
-    		Subsystems.leftDriveEncoder.reset();
-        	Subsystems.rightDriveEncoder.reset();
-    	}
-    	
-    	double lDriveVal = leftPID.calcPID(Subsystems.leftDriveEncoder.get());
-    	double lLimitVal = SimLib.limitValue(lDriveVal, 0.25);
-    	
-    	double rDriveVal = rightPID.calcPID(Subsystems.rightDriveEncoder.get());
-    	double rLimitVal = SimLib.limitValue(rDriveVal, 0.25);
-    	
+//    	if(autoLoopCounter == 0) {
+//    		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
+//    		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
+//    		Subsystems.leftDriveEncoder.reset();
+//        	Subsystems.rightDriveEncoder.reset();
+//    	}
+//    	
+//    	double lDriveVal = leftPID.calcPID(Subsystems.leftDriveEncoder.get());
+//    	double lLimitVal = SimLib.limitValue(lDriveVal, 0.25);
+//    	
+//    	double rDriveVal = rightPID.calcPID(Subsystems.rightDriveEncoder.get());
+//    	double rLimitVal = SimLib.limitValue(rDriveVal, 0.25);
+//    	
 //    	Subsystems.leftDrive.set(lLimitVal);
 //    	Subsystems.rightDrive.set(rLimitVal);
-    	autoLoopCounter++;
+//    	autoLoopCounter++;
     }
     
     public void testPlyboyPIDLevels()
     {
-    	Subsystems.rightDriveJoystick.update();
-    	
-    	int brightness = (int)((Subsystems.rightDriveJoystick.getZ() + 1.0) * 128.0) - 1;
-    	
-    	if(brightness < 0)
-    	{
-    		brightness = 0;
-    	}
+//    	Subsystems.rightDriveJoystick.update();
+//    	
+//    	int brightness = (int)((Subsystems.rightDriveJoystick.getZ() + 1.0) * 128.0) - 1;
+//    	
+//    	if(brightness < 0)
+//    	{
+//    		brightness = 0;
+//    	}
     	
 //    	Subsystems.blingPort.writeString("I");
 		
-		Timer.delay(0.05);
+//		Timer.delay(0.05);
 		
 //		String readString = Subsystems.blingPort.readString();
 		
@@ -160,43 +159,43 @@ public class AstechzRobot extends IterativeRobot {
     	
 //    	Subsystems.blingPort.writeString("F6");
     	
-    	if(Subsystems.rightDriveJoystick.getEvent(1) == ButtonEntry.EVENT_CLOSED)
-    	{
-    		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
-    		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
+//    	if(Subsystems.rightDriveJoystick.getEvent(1) == ButtonEntry.EVENT_CLOSED)
+//    	{
+//    		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
+//    		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
 //    		Subsystems.blingPort.writeString("C16711680");
-    	}
+//    	}
     	
-    	if(Subsystems.rightDriveJoystick.getEvent(2) == ButtonEntry.EVENT_CLOSED)
-    	{
-    		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_2));
-    		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_2));
+//    	if(Subsystems.rightDriveJoystick.getEvent(2) == ButtonEntry.EVENT_CLOSED)
+//    	{
+//    		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_2));
+//    		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_2));
 //    		Subsystems.blingPort.writeString("C65280");
-    	}
+//    	}
     	
-    	if(Subsystems.rightDriveJoystick.getEvent(3) == ButtonEntry.EVENT_CLOSED)
-    	{
-    		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_3));
-    		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_3));
+//    	if(Subsystems.rightDriveJoystick.getEvent(3) == ButtonEntry.EVENT_CLOSED)
+//    	{
+//    		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_3));
+//    		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_3));
 //    		Subsystems.blingPort.writeString("C255");
-    	}
-    	
-    	if(Subsystems.rightDriveJoystick.getEvent(4) == ButtonEntry.EVENT_CLOSED)
-    	{
-    		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_4));
-    		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_4));
+//    	}
+//    	
+//    	if(Subsystems.rightDriveJoystick.getEvent(4) == ButtonEntry.EVENT_CLOSED)
+//    	{
+//    		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_4));
+//    		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_4));
 //    		Subsystems.blingPort.writeString("C16777215");
-    	}
+//    	}
     	
 //    	Subsystems.blingPort.writeString("B" + brightness + "E6Z");
     	
-    	double lDriveVal = leftPID.calcPID(-Subsystems.leftDriveEncoder.get());
-    	double lLimitVal = SimLib.limitValue(lDriveVal, 0.25);
+//    	double lDriveVal = leftPID.calcPID(-Subsystems.leftDriveEncoder.get());
+//    	double lLimitVal = SimLib.limitValue(lDriveVal, 0.25);
+//    	
+//    	double rDriveVal = rightPID.calcPID(Subsystems.rightDriveEncoder.get());
+//    	double rLimitVal = SimLib.limitValue(rDriveVal, 0.25);
     	
-    	double rDriveVal = rightPID.calcPID(Subsystems.rightDriveEncoder.get());
-    	double rLimitVal = SimLib.limitValue(rDriveVal, 0.25);
-    	
-//   		Subsystems.leftDrive.set(lLimitVal);
+//   	Subsystems.leftDrive.set(lLimitVal);
 //    	Subsystems.rightDrive.set(rLimitVal);
     }
 }
