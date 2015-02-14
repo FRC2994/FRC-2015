@@ -43,6 +43,9 @@ public class Subsystems {
 	
 	// Mechanisms
 	public static Forklift forklift;
+	//
+	//Robot Arm
+ 	public static RobotArm robotArm;
 
 	/**
 	 * Initialize all of the subsystems, assumes that the constants file has been read already
@@ -84,5 +87,8 @@ public class Subsystems {
 		
 		// Mechanisms
 		forklift = new Forklift(forkliftMotor, forkliftEncoder);
+		
+		// Robot Arm
+		robotArm = new RobotArm(leftArmMotor, rightArmMotor);
 	}
 }

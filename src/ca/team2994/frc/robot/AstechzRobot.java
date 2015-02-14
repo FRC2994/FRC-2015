@@ -51,6 +51,7 @@ public class AstechzRobot extends IterativeRobot {
     @Override
 	public void teleopPeriodic() {
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, true);
+    	robotArm();
     }
     
     /**
@@ -67,4 +68,32 @@ public class AstechzRobot extends IterativeRobot {
     @Override
     public void disabledInit() {
 	}
+    
+    
+    public void robotArm() {
+    	if(Subsystems.controlGamepad.getNumberedButton(9)) {
+    		Subsystems.robotArm.Stop();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(3)) {
+    		Subsystems.robotArm.Forward();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(2)) {
+    		Subsystems.robotArm.Reverse();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(1)) {
+    		Subsystems.robotArm.pickup();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(4)) {
+    		Subsystems.robotArm.dropoff();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(6)) {
+    		Subsystems.robotArm.load();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(7)) {
+    		Subsystems.robotArm.unload();
+    	}
+    	else {
+    		Subsystems.robotArm.Stop();
+    	}
+    }
 }
