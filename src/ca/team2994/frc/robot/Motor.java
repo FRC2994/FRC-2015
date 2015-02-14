@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.Victor;
 
 public class Motor implements SpeedController 
 {
-	
 	SafePWM realMotor;
 	CANJaguar canJaguar;
 	CANTalon canTalon;
