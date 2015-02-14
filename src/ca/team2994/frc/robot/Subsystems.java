@@ -40,6 +40,9 @@ public class Subsystems {
 	
 	// Bling
 	public static SerialPort blingPort;
+	
+	// Mechanisms
+	public static Forklift forklift;
 
 	/**
 	 * Initialize all of the subsystems, assumes that the constants file has been read already
@@ -78,5 +81,8 @@ public class Subsystems {
 		if (Constants.getConstantAsInt(Constants.BLING_ENABLED) > 0) {
 			blingPort = new SerialPort(9600, Port.kMXP);
 		}
+		
+		// Mechanisms
+		forklift = new Forklift(forkliftMotor, forkliftEncoder);
 	}
 }
