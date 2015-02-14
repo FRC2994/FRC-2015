@@ -191,8 +191,7 @@ public class Motor implements SpeedController
 		{
 			canTalon.setExpiration(timeout);
 		}
-		else
-		{
+ else {
 			canJaguar.setExpiration(timeout);
 		}
 	}
