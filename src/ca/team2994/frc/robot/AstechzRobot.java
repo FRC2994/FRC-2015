@@ -1,7 +1,5 @@
 package ca.team2994.frc.robot;
 
-import com.google.common.base.Strings;
-
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -59,12 +57,12 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void teleopInit(){
-    	Subsystems.blingPort.writeString("X");
+//    	Subsystems.blingPort.writeString("X");
     	
     	Subsystems.leftDriveEncoder.reset();
     	Subsystems.rightDriveEncoder.reset();
-    	leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
-		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
+//    	leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
+//		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
 		Subsystems.rightDriveJoystick.enableButton(1);
 		Subsystems.rightDriveJoystick.enableButton(2);
 		Subsystems.rightDriveJoystick.enableButton(3);
@@ -77,16 +75,16 @@ public class AstechzRobot extends IterativeRobot {
     @Override
 	public void teleopPeriodic() {
     	Subsystems.robotDrive.arcadeDrive(Subsystems.rightDriveJoystick, true);
-    	System.out.println("Temp=" + Subsystems.powerPanel.getTemperature());
-    	System.out.println("Tote_Sensor=" + Subsystems.totesensor.get());
-    	if (blingReady == false) {
-    		String readyString = Subsystems.blingPort.readString();
-    		if (!Strings.isNullOrEmpty(readyString) && (readyString.endsWith("Send a command"))) {
-    			blingReady = true;
-    			Subsystems.blingPort.writeString("E1Z");
-    		}
-    	}
-    	System.out.println("BlingReady=" + blingReady);
+//    	System.out.println("Temp=" + Subsystems.powerPanel.getTemperature());
+//    	System.out.println("Tote_Sensor=" + Subsystems.totesensor.get());
+//    	if (blingReady == false) {
+//    		String readyString = Subsystems.blingPort.readString();
+//    		if (!Strings.isNullOrEmpty(readyString) && (readyString.endsWith("Send a command"))) {
+//    			blingReady = true;
+//    			Subsystems.blingPort.writeString("E1Z");
+//    		}
+//    	}
+//    	System.out.println("BlingReady=" + blingReady);
     }
     
     /**
@@ -103,19 +101,19 @@ public class AstechzRobot extends IterativeRobot {
     @Override
     public void disabledInit()
 	{
-		Subsystems.blingPort.writeString("I");
-		
-		Timer.delay(0.05);
-		
-		String readString = Subsystems.blingPort.readString();
-		
-		while(!readString.contains("R"))
-		{
-			System.out.println(readString);
-			readString = Subsystems.blingPort.readString();
-		}
-    	
-    	Subsystems.blingPort.writeString("F6C0E6Z");
+//		Subsystems.blingPort.writeString("I");
+//		
+//		Timer.delay(0.05);
+//		
+//		String readString = Subsystems.blingPort.readString();
+//		
+//		while(!readString.contains("R"))
+//		{
+//			System.out.println(readString);
+//			readString = Subsystems.blingPort.readString();
+//		}
+//    	
+//    	Subsystems.blingPort.writeString("F6C0E6Z");
 	}
     
     public void testPID() {
@@ -132,8 +130,8 @@ public class AstechzRobot extends IterativeRobot {
     	double rDriveVal = rightPID.calcPID(Subsystems.rightDriveEncoder.get());
     	double rLimitVal = SimLib.limitValue(rDriveVal, 0.25);
     	
-    	Subsystems.leftDrive.set(lLimitVal);
-    	Subsystems.rightDrive.set(rLimitVal);
+//    	Subsystems.leftDrive.set(lLimitVal);
+//    	Subsystems.rightDrive.set(rLimitVal);
     	autoLoopCounter++;
     }
     
@@ -148,49 +146,49 @@ public class AstechzRobot extends IterativeRobot {
     		brightness = 0;
     	}
     	
-    	Subsystems.blingPort.writeString("I");
+//    	Subsystems.blingPort.writeString("I");
 		
 		Timer.delay(0.05);
 		
-		String readString = Subsystems.blingPort.readString();
+//		String readString = Subsystems.blingPort.readString();
 		
-		while(!readString.contains("R"))
-		{
-			System.out.println(readString);
-			readString = Subsystems.blingPort.readString();
-		}
+//		while(!readString.contains("R"))
+//		{
+//			System.out.println(readString);
+//			readString = Subsystems.blingPort.readString();
+//		}
     	
-    	Subsystems.blingPort.writeString("F6");
+//    	Subsystems.blingPort.writeString("F6");
     	
     	if(Subsystems.rightDriveJoystick.getEvent(1) == ButtonEntry.EVENT_CLOSED)
     	{
     		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
     		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
-    		Subsystems.blingPort.writeString("C16711680");
+//    		Subsystems.blingPort.writeString("C16711680");
     	}
     	
     	if(Subsystems.rightDriveJoystick.getEvent(2) == ButtonEntry.EVENT_CLOSED)
     	{
     		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_2));
     		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_2));
-    		Subsystems.blingPort.writeString("C65280");
+//    		Subsystems.blingPort.writeString("C65280");
     	}
     	
     	if(Subsystems.rightDriveJoystick.getEvent(3) == ButtonEntry.EVENT_CLOSED)
     	{
     		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_3));
     		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_3));
-    		Subsystems.blingPort.writeString("C255");
+//    		Subsystems.blingPort.writeString("C255");
     	}
     	
     	if(Subsystems.rightDriveJoystick.getEvent(4) == ButtonEntry.EVENT_CLOSED)
     	{
     		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_4));
     		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_4));
-    		Subsystems.blingPort.writeString("C16777215");
+//    		Subsystems.blingPort.writeString("C16777215");
     	}
     	
-    	Subsystems.blingPort.writeString("B" + brightness + "E6Z");
+//    	Subsystems.blingPort.writeString("B" + brightness + "E6Z");
     	
     	double lDriveVal = leftPID.calcPID(-Subsystems.leftDriveEncoder.get());
     	double lLimitVal = SimLib.limitValue(lDriveVal, 0.25);
@@ -198,7 +196,7 @@ public class AstechzRobot extends IterativeRobot {
     	double rDriveVal = rightPID.calcPID(Subsystems.rightDriveEncoder.get());
     	double rLimitVal = SimLib.limitValue(rDriveVal, 0.25);
     	
-   		Subsystems.leftDrive.set(lLimitVal);
-    	Subsystems.rightDrive.set(rLimitVal);
+//   		Subsystems.leftDrive.set(lLimitVal);
+//    	Subsystems.rightDrive.set(rLimitVal);
     }
 }

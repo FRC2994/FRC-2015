@@ -1,16 +1,15 @@
 package ca.team2994.frc.robot;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.SerialPort.Port;
 
 
 public class Subsystems {
 	// Motors
-	public static Motor leftDrive;
-	public static Motor rightDrive;
+	public static Motor leftFrontDrive;
+	public static Motor rightFrontDrive;
+	public static Motor leftRearDrive;
+	public static Motor rightRearDrive;
 	
 	// Drive 
 	public static ERobotDrive robotDrive;
@@ -23,23 +22,25 @@ public class Subsystems {
 	public static EJoystick rightDriveJoystick;
 	public static PowerDistributionPanel powerPanel;
 	
-	public static DigitalInput totesensor;
+//	public static DigitalInput totesensor;
 	
-	public static SerialPort blingPort;
+//	public static SerialPort blingPort;
 	
 	
 	/**
 	 * Initialize all of the subsystems, assumes that the constants file has been read already
 	 */
 	public static void initialize() {
-		leftDrive = new Motor(10, 2);
-		rightDrive = new Motor(11, 2);
-//		robotDrive = new ERobotDrive(leftDrive, rightDrive);
+		leftFrontDrive = new Motor(Constants.getConstantAsInt(Constants.LEFT_FRONT_DRIVE_PWM), Constants.getConstantAsInt(Constants.MOTOR_TYPE));
+		leftRearDrive = new Motor(Constants.getConstantAsInt(Constants.LEFT_REAR_DRIVE_PWM), Constants.getConstantAsInt(Constants.MOTOR_TYPE));
+		rightFrontDrive = new Motor(Constants.getConstantAsInt(Constants.RIGHT_FRONT_DRIVE_PWM), Constants.getConstantAsInt(Constants.MOTOR_TYPE));
+		rightRearDrive = new Motor(Constants.getConstantAsInt(Constants.RIGHT_REAR_DRIVE_PWM), Constants.getConstantAsInt(Constants.MOTOR_TYPE));
+		robotDrive = new ERobotDrive(leftFrontDrive, leftRearDrive, rightFrontDrive, rightRearDrive);
 		rightDriveJoystick = new EJoystick(Constants.getConstantAsInt(Constants.RIGHT_DRIVE_STICK));
 		leftDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.LEFT_ENCODER_A), Constants.getConstantAsInt(Constants.LEFT_ENCODER_B));
 		rightDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.RIGHT_ENCODER_A), Constants.getConstantAsInt(Constants.RIGHT_ENCODER_B));
 		powerPanel = new PowerDistributionPanel();
-		totesensor = new DigitalInput(Constants.getConstantAsInt(Constants.TOTE_SENSOR));
-		blingPort = new SerialPort(9600, Port.kMXP);
+//		totesensor = new DigitalInput(Constants.getConstantAsInt(Constants.TOTE_SENSOR));
+//		blingPort = new SerialPort(9600, Port.kMXP);
 	}
 }

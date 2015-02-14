@@ -70,6 +70,7 @@ public class ERobotDrive implements MotorSafety {
 		m_centerRightMotor = centerRightMotor;
 		m_frontRightMotor = frontRightMotor;
 		m_rearRightMotor = rearRightMotor;
+		m_invertedMotors = new int[6];
 		for (int i=0; i < SIX_MOTORS; i++) {
 			m_invertedMotors[i] = 1;
 		}
@@ -90,6 +91,7 @@ public class ERobotDrive implements MotorSafety {
 		m_rearLeftMotor = rearLeftMotor;
 		m_frontRightMotor = frontRightMotor;
 		m_rearRightMotor = rearRightMotor;
+		m_invertedMotors = new int[4];
 		for (int i=0; i < FOUR_MOTORS; i++) {
 			m_invertedMotors[i] = 1;
 		}
@@ -105,6 +107,7 @@ public class ERobotDrive implements MotorSafety {
 		initRobotDrive();
 		m_frontLeftMotor = frontLeftMotor;
 		m_frontRightMotor = frontRightMotor;
+		m_invertedMotors = new int[2];
 		for (int i=0; i < TWO_MOTORS; i++) {
 			m_invertedMotors[i] = 1;
 		}

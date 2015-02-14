@@ -23,12 +23,12 @@ public class Constants {
 	public static final String PID_TARGET_4 = "PID_TARGET_4";
 	
 	// PWMs
-//	public static final String LEFT_FRONT_DRIVE_PWM   ="LEFT_FRONT_DRIVE_PWM";
-//	public static final String LEFT_REAR_DRIVE_PWM    ="LEFT_REAR_DRIVE_PWM";
-//	public static final String RIGHT_FRONT_DRIVE_PWM  ="RIGHT_FRONT_DRIVE_PWM";
-//	public static final String RIGHT_REAR_DRIVE_PWM   ="RIGHT_REAR_DRIVE_PWM";
-	public static final String CENTER_LEFT_DRIVE_PWM  ="CENTER_LEFT_DRIVE_PWM";
-	public static final String CENTER_RIGHT_DRIVE_PWM ="CENTER_RIGHT_DRIVE_PWM";
+	public static final String LEFT_FRONT_DRIVE_PWM   ="LEFT_FRONT_DRIVE_PWM";
+	public static final String LEFT_REAR_DRIVE_PWM    ="LEFT_REAR_DRIVE_PWM";
+	public static final String RIGHT_FRONT_DRIVE_PWM  ="RIGHT_FRONT_DRIVE_PWM";
+	public static final String RIGHT_REAR_DRIVE_PWM   ="RIGHT_REAR_DRIVE_PWM";
+//	public static final String CENTER_LEFT_DRIVE_PWM  ="CENTER_LEFT_DRIVE_PWM";
+//	public static final String CENTER_RIGHT_DRIVE_PWM ="CENTER_RIGHT_DRIVE_PWM";
 //	public static final String INTAKE_MOTOR_PWM       ="INTAKE_MOTOR_PWM";
 //	public static final String RIGHT_WINCH_MOTOR_PWM  ="RIGHT_WINCH_MOTOR_PWM";
 //	public static final String LEFT_WINCH_MOTOR_PWM   ="LEFT_WINCH_MOTOR_PWM";
@@ -46,6 +46,7 @@ public class Constants {
 	public static final String LEFT_ENCODER_B = "LEFT_ENCODER_B";
 	public static final String RIGHT_ENCODER_A = "RIGHT_ENCODER_A";
 	public static final String RIGHT_ENCODER_B = "RIGHT_ENCODER_B";
+	public static final String GYRO_SENSOR = "GYRO_SENSOR";
 	public static final String TOTE_SENSOR = "TOTE_SENSOR";
 //	public static final String COMPRESSOR_PRESSURE_SW = "COMPRESSOR_PRESSURE_SW";
 
@@ -81,12 +82,12 @@ public class Constants {
 		defaults.put(PID_TARGET_3, 			"900");
 		defaults.put(PID_TARGET_4, 			"1200");
 		
-//		defaults.put(LEFT_FRONT_DRIVE_PWM,	"4");
-//		defaults.put(LEFT_REAR_DRIVE_PWM,	"3");
-//		defaults.put(RIGHT_FRONT_DRIVE_PWM,	"2");
-//		defaults.put(RIGHT_REAR_DRIVE_PWM,	"1");
-		defaults.put(CENTER_LEFT_DRIVE_PWM,	"0"); 
-		defaults.put(CENTER_RIGHT_DRIVE_PWM,"1");
+		defaults.put(LEFT_FRONT_DRIVE_PWM,	"1");
+		defaults.put(LEFT_REAR_DRIVE_PWM,	"0");
+		defaults.put(RIGHT_FRONT_DRIVE_PWM,	"3");
+		defaults.put(RIGHT_REAR_DRIVE_PWM,	"2");
+//		defaults.put(CENTER_LEFT_DRIVE_PWM,	"0"); 
+//		defaults.put(CENTER_RIGHT_DRIVE_PWM,"1");
 //		defaults.put(INTAKE_MOTOR_PWM,		"5");
 //		defaults.put(RIGHT_WINCH_MOTOR_PWM,	"6"); 
 //		defaults.put(LEFT_WINCH_MOTOR_PWM,	"9");
@@ -96,11 +97,12 @@ public class Constants {
 //		defaults.put(ARM_B,					"4");
 //		defaults.put(EJECT_A,				"5");
 //		defaults.put(EJECT_B,				"6");
-		defaults.put(LEFT_ENCODER_A,		"0");
-		defaults.put(LEFT_ENCODER_B,		"1");
-		defaults.put(RIGHT_ENCODER_A,		"2");
-		defaults.put(RIGHT_ENCODER_B,		"3");
-		defaults.put(TOTE_SENSOR, 			"4");
+		defaults.put(LEFT_ENCODER_A,		"6");
+		defaults.put(LEFT_ENCODER_B,		"7");
+		defaults.put(RIGHT_ENCODER_A,		"8");
+		defaults.put(RIGHT_ENCODER_B,		"9");
+		defaults.put(GYRO_SENSOR,			"5");
+//		defaults.put(TOTE_SENSOR, 			"4");
 //		defaults.put(COMPRESSOR_PRESSURE_SW,"8");
 //		defaults.put(COMPRESSOR_SPIKE,		"2");
 		defaults.put(RIGHT_DRIVE_STICK,		"0");
