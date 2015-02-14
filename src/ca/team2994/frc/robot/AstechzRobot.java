@@ -73,17 +73,9 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void teleopPeriodic() {
-//    	Subsystems.robotDrive.arcadeDrive(Subsystems.rightDriveJoystick, true);
-//    	System.out.println("Temp=" + Subsystems.powerPanel.getTemperature());
-//    	System.out.println("Tote_Sensor=" + Subsystems.totesensor.get());
-//    	if (blingReady == false) {
-//    		String readyString = Subsystems.blingPort.readString();
-//    		if (!Strings.isNullOrEmpty(readyString) && (readyString.endsWith("Send a command"))) {
-//    			blingReady = true;
-//    			Subsystems.blingPort.writeString("E1Z");
-//    		}
-//    	}
-//    	System.out.println("BlingReady=" + blingReady);
+
+    	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, true);
+    	robotArm();
     }
     
     /**
@@ -115,87 +107,31 @@ public class AstechzRobot extends IterativeRobot {
 //    	Subsystems.blingPort.writeString("F6C0E6Z");
 	}
     
-    public void testPID() {
-//    	if(autoLoopCounter == 0) {
-//    		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
-//    		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
-//    		Subsystems.leftDriveEncoder.reset();
-//        	Subsystems.rightDriveEncoder.reset();
-//    	}
-//    	
-//    	double lDriveVal = leftPID.calcPID(Subsystems.leftDriveEncoder.get());
-//    	double lLimitVal = SimLib.limitValue(lDriveVal, 0.25);
-//    	
-//    	double rDriveVal = rightPID.calcPID(Subsystems.rightDriveEncoder.get());
-//    	double rLimitVal = SimLib.limitValue(rDriveVal, 0.25);
-//    	
-//    	Subsystems.leftDrive.set(lLimitVal);
-//    	Subsystems.rightDrive.set(rLimitVal);
-//    	autoLoopCounter++;
-    }
     
-    public void testPlyboyPIDLevels()
-    {
-//    	Subsystems.rightDriveJoystick.update();
-//    	
-//    	int brightness = (int)((Subsystems.rightDriveJoystick.getZ() + 1.0) * 128.0) - 1;
-//    	
-//    	if(brightness < 0)
-//    	{
-//    		brightness = 0;
-//    	}
-    	
-//    	Subsystems.blingPort.writeString("I");
-		
-//		Timer.delay(0.05);
-		
-//		String readString = Subsystems.blingPort.readString();
-		
-//		while(!readString.contains("R"))
-//		{
-//			System.out.println(readString);
-//			readString = Subsystems.blingPort.readString();
-//		}
-    	
-//    	Subsystems.blingPort.writeString("F6");
-    	
-//    	if(Subsystems.rightDriveJoystick.getEvent(1) == ButtonEntry.EVENT_CLOSED)
-//    	{
-//    		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
-//    		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
-//    		Subsystems.blingPort.writeString("C16711680");
-//    	}
-    	
-//    	if(Subsystems.rightDriveJoystick.getEvent(2) == ButtonEntry.EVENT_CLOSED)
-//    	{
-//    		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_2));
-//    		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_2));
-//    		Subsystems.blingPort.writeString("C65280");
-//    	}
-    	
-//    	if(Subsystems.rightDriveJoystick.getEvent(3) == ButtonEntry.EVENT_CLOSED)
-//    	{
-//    		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_3));
-//    		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_3));
-//    		Subsystems.blingPort.writeString("C255");
-//    	}
-//    	
-//    	if(Subsystems.rightDriveJoystick.getEvent(4) == ButtonEntry.EVENT_CLOSED)
-//    	{
-//    		leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_4));
-//    		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_4));
-//    		Subsystems.blingPort.writeString("C16777215");
-//    	}
-    	
-//    	Subsystems.blingPort.writeString("B" + brightness + "E6Z");
-    	
-//    	double lDriveVal = leftPID.calcPID(-Subsystems.leftDriveEncoder.get());
-//    	double lLimitVal = SimLib.limitValue(lDriveVal, 0.25);
-//    	
-//    	double rDriveVal = rightPID.calcPID(Subsystems.rightDriveEncoder.get());
-//    	double rLimitVal = SimLib.limitValue(rDriveVal, 0.25);
-    	
-//   	Subsystems.leftDrive.set(lLimitVal);
-//    	Subsystems.rightDrive.set(rLimitVal);
+    public void robotArm() {
+    	if(Subsystems.controlGamepad.getNumberedButton(9)) {
+    		Subsystems.robotArm.Stop();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(3)) {
+    		Subsystems.robotArm.Forward();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(2)) {
+    		Subsystems.robotArm.Reverse();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(1)) {
+    		Subsystems.robotArm.pickup();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(4)) {
+    		Subsystems.robotArm.dropoff();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(6)) {
+    		Subsystems.robotArm.load();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(7)) {
+    		Subsystems.robotArm.unload();
+    	}
+    	else {
+    		Subsystems.robotArm.Stop();
+    	}
     }
 }

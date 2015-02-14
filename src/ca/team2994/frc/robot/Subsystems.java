@@ -48,6 +48,18 @@ public class Subsystems {
 	public static EJoystick 	driveJoystick;
 	public static EGamepad 		controlGamepad;
 	
+	// Power Panel
+	public static PowerDistributionPanel powerPanel;
+	
+	// Bling
+	public static SerialPort blingPort;
+	
+	// Mechanisms
+	public static Forklift forklift;
+	//
+	//Robot Arm
+ 	public static RobotArm robotArm;
+
 	/**
 	 * Initialize all of the subsystems, assumes that the constants file has been read already
 	 */
@@ -86,5 +98,15 @@ public class Subsystems {
 //		powerPanel = new PowerDistributionPanel();
 //		totesensor = new DigitalInput(Constants.getConstantAsInt(Constants.TOTE_SENSOR));
 //		blingPort = new SerialPort(9600, Port.kMXP);
+		// Bling
+		if (Constants.getConstantAsInt(Constants.BLING_ENABLED) > 0) {
+			blingPort = new SerialPort(9600, Port.kMXP);
+		}
+		
+		// Mechanisms
+		forklift = new Forklift(forkliftMotor, forkliftEncoder);
+		
+		// Robot Arm
+		robotArm = new RobotArm(leftArmMotor, rightArmMotor);
 	}
 }
