@@ -5,7 +5,6 @@ import ca.team2994.frc.mechanism.RobotArm;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.SerialPort.Port;
@@ -32,7 +31,7 @@ public class Subsystems {
 	
 	// Sensor
 	public static DigitalInput toteDetectionSensor;
-	public static Gyro gyroSensor;
+	public static SimGyro gyroSensor;
 	
 	//Compressor
 	public static Compressor compressor;
