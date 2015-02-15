@@ -2,10 +2,11 @@ package ca.team2994.frc.robot;
 
 import ca.team2994.frc.mechanism.Forklift;
 import ca.team2994.frc.mechanism.RobotArm;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 
@@ -33,6 +34,11 @@ public class Subsystems {
 	public static DigitalInput toteDetectionSensor;
 	public static SimGyro gyroSensor;
 	
+	//Compressor
+	public static Compressor compressor;
+	
+	//Solenoid - Gear control
+	public static DoubleSolenoid gearShiftSolenoid;
 	// USB
 	public static EJoystick	driveJoystick;
 	public static EGamepad controlGamepad;
@@ -45,14 +51,19 @@ public class Subsystems {
 	
 	// Mechanisms
 	public static Forklift forklift;
+
 	//
 	//Robot Arm
  	public static RobotArm robotArm;
  	
+ 	//PIDs
+ 	public static SimPID gyroPID;
+ 	public static SimPID encoderPID;
+
 	/**
 	 * Initialize all of the subsystems, assumes that the constants file has been read already
 	 */
-	public static void initialize(RobotBase robot)
+	public static void initialize()
 	{
 		// Motors
 		leftFrontDrive = new Motor(Constants.getConstantAsInt(Constants.PWM_RIGHT_FRONT_DRIVE), Constants.getConstantAsInt(Constants.MOTOR_TYPE_DRIVE));
@@ -65,11 +76,11 @@ public class Subsystems {
 		conveyorMotor = new Motor(Constants.getConstantAsInt(Constants.PWM_CONVEYOR), Constants.getConstantAsInt(Constants.MOTOR_TYPE_CONVEYOR));
 		
 		// Drive
-		robotDrive = new ERobotDrive(leftFrontDrive, leftRearDrive, rightFrontDrive, rightRearDrive);
+		robotDrive = new ERobotDrive(leftFrontDrive, leftRearDrive, rightFrontDrive, rightRearDrive); 
 		
 		// Encoders
 		rightDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_B));
-		leftDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_LEFT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_LEFT_ENCODER_B), true);
+		leftDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_LEFT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_LEFT_ENCODER_B));
 		forkliftEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_FORKLIFT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_FORKLIFT_ENCODER_B));
 		
 		// USB
@@ -79,11 +90,18 @@ public class Subsystems {
 		// Power Panel
 		powerPanel = new PowerDistributionPanel();
 		
+		//Compressor
+		compressor = new Compressor(1);
+		compressor.setClosedLoopControl(false); // turn back on when compressor is ready
+		
+		//Solenoid - Gear shift
+		gearShiftSolenoid = new DoubleSolenoid(6,7);
+		
 		// Sensors
 		toteDetectionSensor = new DigitalInput(Constants.getConstantAsInt(Constants.DIO_TOTE_DETECT_SENSOR));
 		gyroSensor = new SimGyro(Constants.getConstantAsInt(Constants.AIO_GYRO_SENSOR));
 		gyroSensor.initGyro();
-		
+
 		// Bling
 		if (Constants.getConstantAsInt(Constants.BLING_ENABLED) > 0) {
 			blingPort = new SerialPort(9600, Port.kMXP);
@@ -91,8 +109,30 @@ public class Subsystems {
 		
 		// Mechanisms
 		forklift = new Forklift(forkliftMotor, forkliftEncoder);
+
+		// Robot Arm
+		robotArm = new RobotArm(leftArmMotor, rightArmMotor);
+		
+		//PIDs
+		gyroPID = new SimPID(
+				Constants.getConstantAsDouble(Constants.GYRO_PID_P),
+				Constants.getConstantAsDouble(Constants.GYRO_PID_I),
+				Constants.getConstantAsDouble(Constants.GYRO_PID_D),
+				Constants.getConstantAsDouble(Constants.GYRO_PID_E)
+		);
+		
+		encoderPID = new SimPID(
+				Constants.getConstantAsDouble(Constants.ENCODER_PID_P),
+				Constants.getConstantAsDouble(Constants.ENCODER_PID_I),
+				Constants.getConstantAsDouble(Constants.ENCODER_PID_D),
+				Constants.getConstantAsDouble(Constants.ENCODER_PID_E)
+		);
 		
 		// Robot Arm
 		robotArm = new RobotArm(leftArmMotor, rightArmMotor);
+		
+		// Set low gear by default
+		robotDrive.setLowGear();
+
 	}
 }

@@ -21,9 +21,13 @@ public class AstechzRobot extends IterativeRobot {
     @Override
 	public void robotInit() {
     	Constants.readConstantPropertiesFromFile();
-    	Subsystems.initialize(this);
+    	Subsystems.initialize();
     	Subsystems.leftDriveEncoder.reset();
     	Subsystems.rightDriveEncoder.reset();
+    	
+    	Subsystems.driveJoystick.enableButton(6);
+    	Subsystems.driveJoystick.enableButton(7);
+    	
     }
     
     /**
@@ -52,7 +56,10 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void teleopPeriodic() {
+    	Subsystems.driveJoystick.update();
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, true);
+    	robotArm();
+    	gearShift();
     }
     
     /**
@@ -73,13 +80,13 @@ public class AstechzRobot extends IterativeRobot {
     
     public void robotArm() {
     	if(Subsystems.controlGamepad.getNumberedButton(9)) {
-    		Subsystems.robotArm.Stop();
+    		Subsystems.robotArm.stop();
     	}
     	else if(Subsystems.controlGamepad.getNumberedButton(3)) {
-    		Subsystems.robotArm.Forward();
+    		Subsystems.robotArm.forward();
     	}
     	else if(Subsystems.controlGamepad.getNumberedButton(2)) {
-    		Subsystems.robotArm.Reverse();
+    		Subsystems.robotArm.reverse();
     	}
     	else if(Subsystems.controlGamepad.getNumberedButton(1)) {
     		Subsystems.robotArm.pickup();
@@ -94,7 +101,16 @@ public class AstechzRobot extends IterativeRobot {
     		Subsystems.robotArm.unload();
     	}
     	else {
-    		Subsystems.robotArm.Stop();
+    		Subsystems.robotArm.stop();
+    	}
+    }
+    public void gearShift() {
+    	if(Subsystems.driveJoystick.getEvent(6) == ButtonEntry.EVENT_CLOSED) {
+    		Subsystems.robotDrive.setHighGear();
+    		
+    	}
+    	else if(Subsystems.driveJoystick.getEvent(7) == ButtonEntry.EVENT_CLOSED) {
+    		Subsystems.robotDrive.setLowGear();
     	}
     }
 }
