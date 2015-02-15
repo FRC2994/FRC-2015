@@ -63,6 +63,18 @@ public class Constants
 	public static final String ARM_LOAD_SPEED =              "ARM_LOAD_SPEED";
 	public static final String ARM_UNLOAD_SPEED =            "ARM_UNLOAD_SPEED";
 	
+	
+	//PID
+	public static final String GYRO_PID_P = 					"GYRO_PID_P";
+	public static final String GYRO_PID_I = 					"GYRO_PID_I";
+	public static final String GYRO_PID_D = 					"GYRO_PID_D";
+	public static final String GYRO_PID_E = 					"GYRO_PID_E";
+	
+	public static final String ENCODER_PID_P = 					"ENCODER_PID_P";
+	public static final String ENCODER_PID_I = 					"ENCODER_PID_I";
+	public static final String ENCODER_PID_D = 					"ENCODER_PID_D";
+	public static final String ENCODER_PID_E = 					"ENCODER_PID_E";
+	
 	static
 	{
 		// PWM
@@ -113,6 +125,17 @@ public class Constants
 		defaults.put(ARM_UNLOAD_SPEED, "0.3");
 		// Other
 		defaults.put(BLING_ENABLED, "0");
+		
+		//PID
+		defaults.put(GYRO_PID_P, "2.16");
+		defaults.put(GYRO_PID_I, "0.0");
+		defaults.put(GYRO_PID_D, "0.1");
+		defaults.put(GYRO_PID_E, "0.1");
+		
+		defaults.put(ENCODER_PID_P, "2.16");
+		defaults.put(ENCODER_PID_I, "0.0");
+		defaults.put(ENCODER_PID_D, "0.0");
+		defaults.put(ENCODER_PID_E, "0.1");
 	}
 	
 	/**
