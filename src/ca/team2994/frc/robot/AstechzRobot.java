@@ -54,6 +54,7 @@ public class AstechzRobot extends IterativeRobot {
 	public void teleopPeriodic() {
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, true);
     	robotArm();
+    	gearShift();
     }
     
     /**
@@ -96,6 +97,14 @@ public class AstechzRobot extends IterativeRobot {
     	}
     	else {
     		Subsystems.robotArm.Stop();
+    	}
+    }
+    public void gearShift() {
+    	if(Subsystems.driveJoystick.getState(6) == 1) {
+    		Subsystems.robotDrive.setHighGear();
+    	}
+    	else if(Subsystems.driveJoystick.getState(7) == 1) {
+    		Subsystems.robotDrive.setLowGear();
     	}
     }
 }

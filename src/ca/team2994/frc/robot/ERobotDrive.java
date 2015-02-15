@@ -1,6 +1,7 @@
 package ca.team2994.frc.robot;
 
 import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.MotorSafety;
 import edu.wpi.first.wpilibj.MotorSafetyHelper;
@@ -442,7 +443,12 @@ public class ERobotDrive implements MotorSafety {
 			m_centerRightMotor.disable();
 		}
 	}
-
+public void setLowGear() {
+	Subsystems.GearShiftSolenoid.set(DoubleSolenoid.Value.kForward);
+}
+public static void setHighGear() {
+	Subsystems.GearShiftSolenoid.set(DoubleSolenoid.Value.kReverse);
+}
 	@Override
 	public void setSafetyEnabled(boolean enabled) {
 		m_safetyHelper.setSafetyEnabled(enabled);
