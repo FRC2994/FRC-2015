@@ -22,19 +22,19 @@ double UNLOAD_SPEED = Constants.getConstantAsDouble(Constants.ARM_UNLOAD_SPEED);
 	}
 
 	// Stop the arms from moving
-	public void Stop() {
+	public void stop() {
 		m_leftArmMotor.set(0.0);
 		m_rightArmMotor.set(0.0);
 	}
 
-	public void Forward() {
+	public void forward() {
 		//Move forward manually
 		m_leftArmMotor.set(FORWARD_SPEED);
 		m_rightArmMotor.set(FORWARD_SPEED * -1);
 
 	}
 
-	public void Reverse() {
+	public void reverse() {
 		//Move in reverse manually
 		m_leftArmMotor.set(REVERSE_SPEED * -1);
 		m_rightArmMotor.set(REVERSE_SPEED);
@@ -49,7 +49,7 @@ double UNLOAD_SPEED = Constants.getConstantAsDouble(Constants.ARM_UNLOAD_SPEED);
 			m_rightArmMotor.set(PICKUP_SPEED * -1);
 		}
 		if (Subsystems.toteDetectionSensor.get()) {
-			Stop();
+			stop();
 		}
 
 	}
@@ -67,7 +67,7 @@ double UNLOAD_SPEED = Constants.getConstantAsDouble(Constants.ARM_UNLOAD_SPEED);
 			m_rightArmMotor.set(LOAD_SPEED * -1);
 		}
 		if (Subsystems.toteDetectionSensor.get() == false) {
-			Stop();
+			stop();
 		}
 	}
 
