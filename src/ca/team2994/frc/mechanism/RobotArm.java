@@ -1,5 +1,7 @@
-package ca.team2994.frc.robot;
+package ca.team2994.frc.mechanism;
 
+import ca.team2994.frc.robot.Motor;
+import ca.team2994.frc.robot.Subsystems;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;

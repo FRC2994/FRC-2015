@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SmartDash {
 
-	SmartDashboard.putnumber("LeftFrontMotor", Subsysystems.leftFrontDrive.get());
-	
+	public SmartDash() {
+		SmartDashboard.putNumber("LeftFrontMotor", Subsystems.leftFrontDrive.get());	
+	}
 }

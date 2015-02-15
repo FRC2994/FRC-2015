@@ -11,10 +11,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * directory.
  */
 public class AstechzRobot extends IterativeRobot {
-//	int autoLoopCounter;
-//	SimPID leftPID;
-//	SimPID rightPID;
-//	boolean blingReady = false;
+	
+	int counter = 0;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -23,9 +21,9 @@ public class AstechzRobot extends IterativeRobot {
     @Override
 	public void robotInit() {
     	Constants.readConstantPropertiesFromFile();
-    	Subsystems.initialize();
-//    	leftPID = new SimPID(0.006, 0.0001, 0.0001); 
-//    	rightPID = new SimPID(0.006, 0.0001, 0.0001); 
+    	Subsystems.initialize(this);
+    	Subsystems.leftDriveEncoder.reset();
+    	Subsystems.rightDriveEncoder.reset();
     }
     
     /**
@@ -33,9 +31,6 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void autonomousInit() {
-//    	autoLoopCounter = 0;
-//    	Subsystems.leftDriveEncoder.reset();
-//    	Subsystems.rightDriveEncoder.reset();
     }
 
     /**
@@ -43,12 +38,6 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void autonomousPeriodic() {
-//    	if(autoLoopCounter < 100) { //Check if we've completed 100 loops (approximately 2 seconds)
-//			Subsystems.robotDrive.drive(-0.5, 0.0); 	// drive forwards half speed
-//			autoLoopCounter++;
-//		} else {
-//			Subsystems.robotDrive.drive(0.0, 0.0); 	// stop robot
-//		}
     }
     
     /**
@@ -56,16 +45,6 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void teleopInit(){
-//    	Subsystems.blingPort.writeString("X");
-    	
-//    	Subsystems.leftDriveEncoder.reset();
-//    	Subsystems.rightDriveEncoder.reset();
-//    	leftPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
-//		rightPID.setDesiredValue(Constants.getConstantAsDouble(Constants.PID_TARGET_1));
-//		Subsystems.rightDriveJoystick.enableButton(1);
-//		Subsystems.rightDriveJoystick.enableButton(2);
-//		Subsystems.rightDriveJoystick.enableButton(3);
-//		Subsystems.rightDriveJoystick.enableButton(4);
     }
 
     /**
@@ -73,9 +52,7 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void teleopPeriodic() {
-
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, true);
-    	robotArm();
     }
     
     /**
@@ -90,21 +67,7 @@ public class AstechzRobot extends IterativeRobot {
      * This function is called by default when the robot is disabled
      */
     @Override
-    public void disabledInit()
-	{
-//		Subsystems.blingPort.writeString("I");
-//		
-//		Timer.delay(0.05);
-//		
-//		String readString = Subsystems.blingPort.readString();
-//		
-//		while(!readString.contains("R"))
-//		{
-//			System.out.println(readString);
-//			readString = Subsystems.blingPort.readString();
-//		}
-//    	
-//    	Subsystems.blingPort.writeString("F6C0E6Z");
+    public void disabledInit() {
 	}
     
     
