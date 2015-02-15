@@ -49,6 +49,10 @@ public class Subsystems {
 	//Robot Arm
  	public static RobotArm robotArm;
  	
+ 	//PIDs
+ 	public static SimPID gyroPID;
+ 	public static SimPID encoderPID;
+ 	
 	/**
 	 * Initialize all of the subsystems, assumes that the constants file has been read already
 	 */
@@ -94,5 +98,9 @@ public class Subsystems {
 		
 		// Robot Arm
 		robotArm = new RobotArm(leftArmMotor, rightArmMotor);
+		
+		//PIDs
+		gyroPID = new SimPID(2.16, 0.0, 0.1, 0.1);
+		encoderPID = new SimPID(2.16, 0.0, 0.0, 0.1);
 	}
 }
