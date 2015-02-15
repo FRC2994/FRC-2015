@@ -1,5 +1,10 @@
 package ca.team2994.frc.mechanism;
 
+/**
+ * 
+ * @author Tylar aka Mr.Perfect
+ *
+ */
 public class StateMachine
 {
 	

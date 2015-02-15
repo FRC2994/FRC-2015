@@ -4,6 +4,11 @@ import ca.team2994.frc.robot.Motor;
 import ca.team2994.frc.robot.SimPID;
 import edu.wpi.first.wpilibj.Encoder;
 
+/**
+ * 
+ * @author Tylar aka Mr.Perfect
+ *
+ */
 public class Forklift
 {
 	private final Motor forkliftMotor;
