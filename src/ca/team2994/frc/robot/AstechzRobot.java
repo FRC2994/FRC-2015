@@ -54,10 +54,6 @@ public class AstechzRobot extends IterativeRobot {
 	public void teleopPeriodic() {
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, true);
     	robotArm();
-    	boolean enabled = Subsystems.compressor.enabled();
-    	boolean pressureSwitch = Subsystems.compressor.getPressureSwitchValue();
-    	double current = Subsystems.compressor.getCompressorCurrent();
-    	System.out.println("isenabled = " + enabled + " getpressureswitchvalue = " + pressureSwitch + " getcompressorcurrent = " + current);
     }
     
     /**

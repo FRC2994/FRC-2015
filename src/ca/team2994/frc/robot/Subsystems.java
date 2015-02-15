@@ -85,7 +85,7 @@ public class Subsystems {
 		
 		//Compressor
 		compressor = new Compressor(1);
-		compressor.setClosedLoopControl(true);
+		//compressor.setClosedLoopControl(true); // turn back on when compressor is ready
 		
 		// Sensors
 		toteDetectionSensor = new DigitalInput(Constants.getConstantAsInt(Constants.DIO_TOTE_DETECT_SENSOR));

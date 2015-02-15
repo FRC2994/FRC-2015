@@ -52,12 +52,13 @@ public class Constants
 	public static final String BLING_ENABLED =			"BLING_ENABLED";
 	
 	//Robot Arm
-	public static final double ARM_FORWARD_SPEED = 0.4;
-	public static final double ARM_REVERSE_SPEED = 0.4;
-	public static final double ARM_PICKUP_SPEED = 0.4;
-	public static final double ARM_DROPOFF_SPEED = 0.4;
-	public static final double ARM_LOAD_SPEED = 0.3;
-	public static final double ARM_UNLOAD_SPEED = 0.3;
+	
+	public static final String ARM_FORWARD_SPEED =         "ARM_FORWARD_SPEED";
+	public static final String ARM_REVERSE_SPEED =           "ARM_REVERSE_SPEED";
+	public static final String ARM_PICKUP_SPEED =           "ARM_PICKUP_SPEED";
+	public static final String ARM_DROPOFF_SPEED =           "ARM_DROPOFF_SPEED";
+	public static final String ARM_LOAD_SPEED =              "ARM_LOAD_SPEED";
+	public static final String ARM_UNLOAD_SPEED =            "ARM_UNLOAD_SPEED";
 	
 	static
 	{
@@ -97,6 +98,13 @@ public class Constants
 		defaults.put(PCM_SHIFTER_A, "0");
 		defaults.put(PCM_SHIFTER_B, "1");
 		
+		//Robot Arm
+		defaults.put(ARM_FORWARD_SPEED, "0.4");
+		defaults.put(ARM_REVERSE_SPEED, "0.4");
+		defaults.put(ARM_PICKUP_SPEED, "0.4");
+		defaults.put(ARM_DROPOFF_SPEED, "0.4");
+		defaults.put(ARM_LOAD_SPEED, "0.3");
+		defaults.put(ARM_UNLOAD_SPEED, "0.3");
 		// Other
 		defaults.put(BLING_ENABLED, "0");
 	}

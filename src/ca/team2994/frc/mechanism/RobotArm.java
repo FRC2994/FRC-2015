@@ -7,12 +7,12 @@ import ca.team2994.frc.robot.Subsystems;
 public class RobotArm {
 	
 	//Declare your speeds for different parts of the arm usage here
-double FORWARD_SPEED = Constants.ARM_FORWARD_SPEED;
-double REVERSE_SPEED = Constants.ARM_REVERSE_SPEED;
-double PICKUP_SPEED = Constants.ARM_PICKUP_SPEED;
-double DROPOFF_SPEED = Constants.ARM_DROPOFF_SPEED;
-double LOAD_SPEED = Constants.ARM_LOAD_SPEED;
-double UNLOAD_SPEED = Constants.ARM_UNLOAD_SPEED;
+double FORWARD_SPEED = Constants.getConstantAsDouble(Constants.ARM_FORWARD_SPEED);
+double REVERSE_SPEED = Constants.getConstantAsDouble(Constants.ARM_REVERSE_SPEED);
+double PICKUP_SPEED = Constants.getConstantAsDouble(Constants.ARM_PICKUP_SPEED);
+double DROPOFF_SPEED = Constants.getConstantAsDouble(Constants.ARM_DROPOFF_SPEED);
+double LOAD_SPEED = Constants.getConstantAsDouble(Constants.ARM_LOAD_SPEED);
+double UNLOAD_SPEED = Constants.getConstantAsDouble(Constants.ARM_UNLOAD_SPEED);
 	private Motor m_leftArmMotor;
 	private Motor m_rightArmMotor;
 
