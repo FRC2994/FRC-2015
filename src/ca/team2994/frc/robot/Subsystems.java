@@ -4,6 +4,7 @@ import ca.team2994.frc.mechanism.Forklift;
 import ca.team2994.frc.mechanism.RobotArm;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SerialPort;
@@ -36,6 +37,8 @@ public class Subsystems {
 	//Compressor
 	public static Compressor compressor;
 	
+	//Solenoid - Gear control
+	public static DoubleSolenoid gearShiftSolenoid;
 	// USB
 	public static EJoystick	driveJoystick;
 	public static EGamepad controlGamepad;
@@ -73,7 +76,7 @@ public class Subsystems {
 		conveyorMotor = new Motor(Constants.getConstantAsInt(Constants.PWM_CONVEYOR), Constants.getConstantAsInt(Constants.MOTOR_TYPE_CONVEYOR));
 		
 		// Drive
-		robotDrive = new ERobotDrive(leftFrontDrive, leftRearDrive, rightFrontDrive, rightRearDrive);
+		robotDrive = new ERobotDrive(leftFrontDrive, leftRearDrive, rightFrontDrive, rightRearDrive); 
 		
 		// Encoders
 		rightDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_B));
@@ -89,7 +92,10 @@ public class Subsystems {
 		
 		//Compressor
 		compressor = new Compressor(1);
-		//compressor.setClosedLoopControl(true); // turn back on when compressor is ready
+		compressor.setClosedLoopControl(false); // turn back on when compressor is ready
+		
+		//Solenoid - Gear shift
+		gearShiftSolenoid = new DoubleSolenoid(6,7);
 		
 		// Sensors
 		toteDetectionSensor = new DigitalInput(Constants.getConstantAsInt(Constants.DIO_TOTE_DETECT_SENSOR));
@@ -124,5 +130,9 @@ public class Subsystems {
 		
 		// Robot Arm
 		robotArm = new RobotArm(leftArmMotor, rightArmMotor);
+		
+		// Set low gear by default
+		robotDrive.setLowGear();
+
 	}
 }

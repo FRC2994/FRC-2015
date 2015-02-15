@@ -74,6 +74,11 @@ public class Forklift
 		manualSpeed = speed;
 	}
 	
+	public int getLevel()
+	{
+		return levelIndex;
+	}
+	
 	private boolean getManualMode()
 	{
 		return isManualMode;
@@ -102,11 +107,6 @@ public class Forklift
 		levelIndex = level;
 		capLiftLevel();
 		forkliftPID.setDesiredValue(encoderLevels[levelIndex]);
-	}
-	
-	private int getLevel()
-	{
-		return levelIndex;
 	}
 	
 	public void update()
