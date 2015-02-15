@@ -297,7 +297,7 @@ public class ERobotDrive implements MotorSafety {
 	 * @param rightOutput The speed to send to the right side of the robot.
 	 * @throws CANTimeoutException 
 	 */
-	private void setLeftRightMotorOutputs(double leftOutput, double rightOutput) {
+	public void setLeftRightMotorOutputs(double leftOutput, double rightOutput) {
         if (m_rearLeftMotor == null || m_rearRightMotor == null) {
             throw new NullPointerException("Null motor provided");
         }
