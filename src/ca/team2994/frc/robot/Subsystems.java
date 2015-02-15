@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.SerialPort.Port;
@@ -33,7 +32,7 @@ public class Subsystems {
 	
 	// Sensor
 	public static DigitalInput toteDetectionSensor;
-	public static Gyro gyroSensor;
+	public static SimGyro gyroSensor;
 	
 	//Compressor
 	public static Compressor compressor;
@@ -52,9 +51,14 @@ public class Subsystems {
 	
 	// Mechanisms
 	public static Forklift forklift;
+
 	//
 	//Robot Arm
  	public static RobotArm robotArm;
+ 	
+ 	//PIDs
+ 	public static SimPID gyroPID;
+ 	public static SimPID encoderPID;
 
 	/**
 	 * Initialize all of the subsystems, assumes that the constants file has been read already
@@ -96,7 +100,9 @@ public class Subsystems {
 		
 		// Sensors
 		toteDetectionSensor = new DigitalInput(Constants.getConstantAsInt(Constants.DIO_TOTE_DETECT_SENSOR));
-		
+		gyroSensor = new SimGyro(Constants.getConstantAsInt(Constants.AIO_GYRO_SENSOR));
+		gyroSensor.initGyro();
+
 		// Bling
 		if (Constants.getConstantAsInt(Constants.BLING_ENABLED) > 0) {
 			blingPort = new SerialPort(9600, Port.kMXP);
@@ -104,6 +110,13 @@ public class Subsystems {
 		
 		// Mechanisms
 		forklift = new Forklift(forkliftMotor, forkliftEncoder);
+		
+		// Robot Arm
+		robotArm = new RobotArm(leftArmMotor, rightArmMotor);
+		
+		//PIDs
+		gyroPID = new SimPID(2.16, 0.0, 0.1, 0.1);
+		encoderPID = new SimPID(2.16, 0.0, 0.0, 0.1);
 		
 		// Robot Arm
 		robotArm = new RobotArm(leftArmMotor, rightArmMotor);

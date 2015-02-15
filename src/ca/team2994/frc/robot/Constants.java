@@ -40,6 +40,9 @@ public class Constants
 	public static final String DIO_FORKLIFT_ENCODER_B =	"DIO_FORKLIFT_ENCODER_B";
 	public static final String DIO_GYRO_SENSOR =		"DIO_GYRO_SENSOR";
 	
+	// Analog IO
+	public static final String AIO_GYRO_SENSOR =		"AIO_GYRO_SENSOR";
+
 	// USB
 	public static final String USB_DRIVE_STICK =		"USB_RIGHT_STICK";
 	public static final String USB_CONTROL_GAMEPAD =	"USB_CONTROL_GAMEPAD";
@@ -90,6 +93,9 @@ public class Constants
 		defaults.put(DIO_FORKLIFT_ENCODER_B, "4");
 		defaults.put(DIO_GYRO_SENSOR, "5");
 		
+		// Analog IO
+		defaults.put(AIO_GYRO_SENSOR, "0");
+
 		// USB
 		defaults.put(USB_DRIVE_STICK, "0");
 		defaults.put(USB_CONTROL_GAMEPAD, "1");
