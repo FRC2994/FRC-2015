@@ -2,10 +2,11 @@ package ca.team2994.frc.robot;
 
 import ca.team2994.frc.mechanism.Forklift;
 import ca.team2994.frc.mechanism.RobotArm;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 
@@ -31,7 +32,10 @@ public class Subsystems {
 	
 	// Sensor
 	public static DigitalInput toteDetectionSensor;
-	public static SimGyro gyroSensor;
+	public static Gyro gyroSensor;
+	
+	//Compressor
+	public static Compressor compressor;
 	
 	// USB
 	public static EJoystick	driveJoystick;
@@ -45,6 +49,7 @@ public class Subsystems {
 	
 	// Mechanisms
 	public static Forklift forklift;
+
 	//
 	//Robot Arm
  	public static RobotArm robotArm;
@@ -52,11 +57,11 @@ public class Subsystems {
  	//PIDs
  	public static SimPID gyroPID;
  	public static SimPID encoderPID;
- 	
+
 	/**
 	 * Initialize all of the subsystems, assumes that the constants file has been read already
 	 */
-	public static void initialize(RobotBase robot)
+	public static void initialize()
 	{
 		// Motors
 		leftFrontDrive = new Motor(Constants.getConstantAsInt(Constants.PWM_RIGHT_FRONT_DRIVE), Constants.getConstantAsInt(Constants.MOTOR_TYPE_DRIVE));
@@ -73,7 +78,7 @@ public class Subsystems {
 		
 		// Encoders
 		rightDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_B));
-		leftDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_LEFT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_LEFT_ENCODER_B), true);
+		leftDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_LEFT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_LEFT_ENCODER_B));
 		forkliftEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_FORKLIFT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_FORKLIFT_ENCODER_B));
 		
 		// USB
@@ -83,10 +88,12 @@ public class Subsystems {
 		// Power Panel
 		powerPanel = new PowerDistributionPanel();
 		
+		//Compressor
+		compressor = new Compressor(1);
+		//compressor.setClosedLoopControl(true); // turn back on when compressor is ready
+		
 		// Sensors
 		toteDetectionSensor = new DigitalInput(Constants.getConstantAsInt(Constants.DIO_TOTE_DETECT_SENSOR));
-		gyroSensor = new SimGyro(Constants.getConstantAsInt(Constants.AIO_GYRO_SENSOR));
-		gyroSensor.initGyro();
 		
 		// Bling
 		if (Constants.getConstantAsInt(Constants.BLING_ENABLED) > 0) {
@@ -102,5 +109,8 @@ public class Subsystems {
 		//PIDs
 		gyroPID = new SimPID(2.16, 0.0, 0.1, 0.1);
 		encoderPID = new SimPID(2.16, 0.0, 0.0, 0.1);
+		
+		// Robot Arm
+		robotArm = new RobotArm(leftArmMotor, rightArmMotor);
 	}
 }

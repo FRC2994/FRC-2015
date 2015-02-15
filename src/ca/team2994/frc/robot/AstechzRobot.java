@@ -21,7 +21,7 @@ public class AstechzRobot extends IterativeRobot {
     @Override
 	public void robotInit() {
     	Constants.readConstantPropertiesFromFile();
-    	Subsystems.initialize(this);
+    	Subsystems.initialize();
     	Subsystems.leftDriveEncoder.reset();
     	Subsystems.rightDriveEncoder.reset();
     }
@@ -53,6 +53,7 @@ public class AstechzRobot extends IterativeRobot {
     @Override
 	public void teleopPeriodic() {
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, true);
+    	robotArm();
     }
     
     /**

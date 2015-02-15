@@ -38,9 +38,7 @@ public class Constants
 	public static final String DIO_TOTE_DETECT_SENSOR =	"DIO_TOTE_DETECT_SENSOR";
 	public static final String DIO_FORKLIFT_ENCODER_A =	"DIO_FORKLIFT_ENCODER_A";
 	public static final String DIO_FORKLIFT_ENCODER_B =	"DIO_FORKLIFT_ENCODER_B";
-	
-	// Analog IO
-	public static final String AIO_GYRO_SENSOR =		"AIO_GYRO_SENSOR";
+	public static final String DIO_GYRO_SENSOR =		"DIO_GYRO_SENSOR";
 	
 	// USB
 	public static final String USB_DRIVE_STICK =		"USB_RIGHT_STICK";
@@ -52,6 +50,15 @@ public class Constants
 	
 	// Other
 	public static final String BLING_ENABLED =			"BLING_ENABLED";
+	
+	//Robot Arm
+	
+	public static final String ARM_FORWARD_SPEED =         "ARM_FORWARD_SPEED";
+	public static final String ARM_REVERSE_SPEED =           "ARM_REVERSE_SPEED";
+	public static final String ARM_PICKUP_SPEED =           "ARM_PICKUP_SPEED";
+	public static final String ARM_DROPOFF_SPEED =           "ARM_DROPOFF_SPEED";
+	public static final String ARM_LOAD_SPEED =              "ARM_LOAD_SPEED";
+	public static final String ARM_UNLOAD_SPEED =            "ARM_UNLOAD_SPEED";
 	
 	static
 	{
@@ -81,9 +88,7 @@ public class Constants
 		defaults.put(DIO_TOTE_DETECT_SENSOR, "2");
 		defaults.put(DIO_FORKLIFT_ENCODER_A, "3");
 		defaults.put(DIO_FORKLIFT_ENCODER_B, "4");
-		
-		// Analog IO
-		defaults.put(AIO_GYRO_SENSOR, "0");
+		defaults.put(DIO_GYRO_SENSOR, "5");
 		
 		// USB
 		defaults.put(USB_DRIVE_STICK, "0");
@@ -93,6 +98,13 @@ public class Constants
 		defaults.put(PCM_SHIFTER_A, "0");
 		defaults.put(PCM_SHIFTER_B, "1");
 		
+		//Robot Arm
+		defaults.put(ARM_FORWARD_SPEED, "0.4");
+		defaults.put(ARM_REVERSE_SPEED, "0.4");
+		defaults.put(ARM_PICKUP_SPEED, "0.4");
+		defaults.put(ARM_DROPOFF_SPEED, "0.4");
+		defaults.put(ARM_LOAD_SPEED, "0.3");
+		defaults.put(ARM_UNLOAD_SPEED, "0.3");
 		// Other
 		defaults.put(BLING_ENABLED, "0");
 	}
