@@ -93,7 +93,9 @@ public class Subsystems {
 		
 		// Sensors
 		toteDetectionSensor = new DigitalInput(Constants.getConstantAsInt(Constants.DIO_TOTE_DETECT_SENSOR));
-		
+		gyroSensor = new SimGyro(Constants.getConstantAsInt(Constants.AIO_GYRO_SENSOR));
+		gyroSensor.initGyro();
+
 		// Bling
 		if (Constants.getConstantAsInt(Constants.BLING_ENABLED) > 0) {
 			blingPort = new SerialPort(9600, Port.kMXP);
