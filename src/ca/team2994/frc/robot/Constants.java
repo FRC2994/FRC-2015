@@ -76,8 +76,14 @@ public class Constants
 	public static final String ENCODER_PID_E = 					"ENCODER_PID_E";
 	
 	public static final String CALIBRATION_FILE_LOC = 			"CALIBRATION_FILE_LOC";
-	
 	public static final String CALIBRATION_BUTTON = 			"CALIBRATION_BUTTON";
+	
+	//Compressor channel
+	public static final String COMPRESSOR_CHANNEL =             "COMPRESSOR_CHANNEL";
+	
+	//Double Solenoid Channels
+	public static final String SOLENOID_SHIFTER_CHANNEL1 =		"SOLENOID_SHIFTER_CHANNEL1";
+	public static final String SOLENOID_SHIFTER_CHANNEL2 =		"SOLENOID_SHIFTER_CHANNEL2";
 	
 	static
 	{
@@ -141,9 +147,16 @@ public class Constants
 		defaults.put(ENCODER_PID_D, "0.0");
 		defaults.put(ENCODER_PID_E, "0.1");
 		
+
 		defaults.put(CALIBRATION_FILE_LOC, "/home/lvuser/calibration.txt");
-		
 		defaults.put(CALIBRATION_BUTTON, "2");
+		
+		//Compressor Channel
+		defaults.put(COMPRESSOR_CHANNEL, "1");
+		
+		// Double Solenoid Channels
+		defaults.put(SOLENOID_SHIFTER_CHANNEL1, "6");
+		defaults.put(SOLENOID_SHIFTER_CHANNEL2, "7");
 	}
 	
 	/**
