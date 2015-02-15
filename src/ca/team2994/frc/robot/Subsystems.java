@@ -109,13 +109,24 @@ public class Subsystems {
 		
 		// Mechanisms
 		forklift = new Forklift(forkliftMotor, forkliftEncoder);
-		
+
 		// Robot Arm
 		robotArm = new RobotArm(leftArmMotor, rightArmMotor);
 		
 		//PIDs
-		gyroPID = new SimPID(2.16, 0.0, 0.1, 0.1);
-		encoderPID = new SimPID(2.16, 0.0, 0.0, 0.1);
+		gyroPID = new SimPID(
+				Constants.getConstantAsDouble(Constants.GYRO_PID_P),
+				Constants.getConstantAsDouble(Constants.GYRO_PID_I),
+				Constants.getConstantAsDouble(Constants.GYRO_PID_D),
+				Constants.getConstantAsDouble(Constants.GYRO_PID_E)
+		);
+		
+		encoderPID = new SimPID(
+				Constants.getConstantAsDouble(Constants.ENCODER_PID_P),
+				Constants.getConstantAsDouble(Constants.ENCODER_PID_I),
+				Constants.getConstantAsDouble(Constants.ENCODER_PID_D),
+				Constants.getConstantAsDouble(Constants.ENCODER_PID_E)
+		);
 		
 		// Robot Arm
 		robotArm = new RobotArm(leftArmMotor, rightArmMotor);
