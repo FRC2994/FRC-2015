@@ -13,6 +13,9 @@ public class RobotArm {
 	public double DROPOFF_SPEED = Constants.getConstantAsDouble(Constants.ARM_DROPOFF_SPEED);
 	public double LOAD_SPEED = Constants.getConstantAsDouble(Constants.ARM_LOAD_SPEED);
 	public double UNLOAD_SPEED = Constants.getConstantAsDouble(Constants.ARM_UNLOAD_SPEED);
+	public int DROPOFF_TIME = Constants.getConstantAsInt(Constants.ARM_DROPOFF_TIME);
+	public int UNLOAD_TIME = Constants.getConstantAsInt(Constants.ARM_UNLOAD_TIME);
+	
 	private Motor m_leftArmMotor;
 	private Motor m_rightArmMotor;
 
@@ -54,6 +57,8 @@ public class RobotArm {
 		//Drop off totes on ground
 		m_leftArmMotor.set(DROPOFF_SPEED * -1);
 		m_rightArmMotor.set(DROPOFF_SPEED);
+		m_leftArmMotor.setExpiration(DROPOFF_TIME);
+		m_rightArmMotor.setExpiration(DROPOFF_TIME);
 	}
 
 	public void load() {
@@ -71,5 +76,7 @@ public class RobotArm {
 		//Unload totes from storage area
 		m_leftArmMotor.set(UNLOAD_SPEED * -1);
 		m_leftArmMotor.set(UNLOAD_SPEED);
+		m_leftArmMotor.setExpiration(UNLOAD_TIME);
+		m_rightArmMotor.setExpiration(UNLOAD_TIME);
 	}
 }
