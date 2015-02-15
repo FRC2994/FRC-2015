@@ -14,7 +14,7 @@ public class SmartDash {
 		SmartDashboard.putNumber(" Right_Motor_Rotation", Subsystems.rightDriveEncoder.get());	
 	}
 	
-	public void CompDash() {
+	public void compDash() {
 		SmartDashboard.putBoolean(" Tote_ready: ",Subsystems.toteDetectionSensor.get());
 		SmartDashboard.putNumber(" ForkLift_Level: ",Subsystems.forklift.getLevel());
 		
