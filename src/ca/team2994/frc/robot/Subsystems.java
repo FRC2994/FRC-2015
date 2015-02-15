@@ -38,7 +38,7 @@ public class Subsystems {
 	public static Compressor compressor;
 	
 	//Solenoid - Gear control
-	public static DoubleSolenoid GearShiftSolenoid;
+	public static DoubleSolenoid gearShiftSolenoid;
 	// USB
 	public static EJoystick	driveJoystick;
 	public static EGamepad controlGamepad;
@@ -77,7 +77,6 @@ public class Subsystems {
 		
 		// Drive
 		robotDrive = new ERobotDrive(leftFrontDrive, leftRearDrive, rightFrontDrive, rightRearDrive); 
-		robotDrive.setLowGear();
 		
 		// Encoders
 		rightDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_B));
@@ -93,10 +92,10 @@ public class Subsystems {
 		
 		//Compressor
 		compressor = new Compressor(1);
-		//compressor.setClosedLoopControl(true); // turn back on when compressor is ready
+		compressor.setClosedLoopControl(false); // turn back on when compressor is ready
 		
 		//Solenoid - Gear shift
-		GearShiftSolenoid = new DoubleSolenoid(6,7);
+		gearShiftSolenoid = new DoubleSolenoid(6,7);
 		
 		// Sensors
 		toteDetectionSensor = new DigitalInput(Constants.getConstantAsInt(Constants.DIO_TOTE_DETECT_SENSOR));
@@ -120,5 +119,9 @@ public class Subsystems {
 		
 		// Robot Arm
 		robotArm = new RobotArm(leftArmMotor, rightArmMotor);
+		
+		// Set low gear by default
+		robotDrive.setLowGear();
+
 	}
 }
