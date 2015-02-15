@@ -51,6 +51,14 @@ public class Constants
 	// Other
 	public static final String BLING_ENABLED =			"BLING_ENABLED";
 	
+	//Robot Arm
+	public static final double ARM_FORWARD_SPEED = 0.4;
+	public static final double ARM_REVERSE_SPEED = 0.4;
+	public static final double ARM_PICKUP_SPEED = 0.4;
+	public static final double ARM_DROPOFF_SPEED = 0.4;
+	public static final double ARM_LOAD_SPEED = 0.3;
+	public static final double ARM_UNLOAD_SPEED = 0.3;
+	
 	static
 	{
 		// PWM

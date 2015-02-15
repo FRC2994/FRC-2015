@@ -1,5 +1,6 @@
 package ca.team2994.frc.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
@@ -30,6 +31,9 @@ public class Subsystems {
 	// Sensor
 	public static DigitalInput toteDetectionSensor;
 	public static Gyro gyroSensor;
+	
+	//Compressor
+	public static Compressor compressor;
 	
 	// USB
 	public static EJoystick	driveJoystick;
@@ -76,6 +80,10 @@ public class Subsystems {
 
 		// Power Panel
 		powerPanel = new PowerDistributionPanel();
+		
+		//Compressor
+		compressor = new Compressor(1);
+		compressor.setClosedLoopControl(true);
 		
 		// Sensors
 		toteDetectionSensor = new DigitalInput(Constants.getConstantAsInt(Constants.DIO_TOTE_DETECT_SENSOR));

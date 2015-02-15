@@ -1,12 +1,14 @@
 package ca.team2994.frc.robot;
 
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Timer;
-
 public class RobotArm {
-	public final double FORWARD_SPEED = 0.4;
-	public final double REVERSE_SPEED = 0.4;
+	
+	//Declare your speeds for different parts of the arm usage here
+double FORWARD_SPEED = Constants.ARM_FORWARD_SPEED;
+double REVERSE_SPEED = Constants.ARM_REVERSE_SPEED;
+double PICKUP_SPEED = Constants.ARM_PICKUP_SPEED;
+double DROPOFF_SPEED = Constants.ARM_DROPOFF_SPEED;
+double LOAD_SPEED = Constants.ARM_LOAD_SPEED;
+double UNLOAD_SPEED = Constants.ARM_UNLOAD_SPEED;
 	private Motor m_leftArmMotor;
 	private Motor m_rightArmMotor;
 
@@ -15,31 +17,32 @@ public class RobotArm {
 		m_rightArmMotor = rightArmMotor;
 	}
 
-	// Manually control the arms
+	// Stop the arms from moving
 	public void Stop() {
 		m_leftArmMotor.set(0.0);
 		m_rightArmMotor.set(0.0);
 	}
 
 	public void Forward() {
-
+		//Move forward manually
 		m_leftArmMotor.set(FORWARD_SPEED);
 		m_rightArmMotor.set(FORWARD_SPEED * -1);
 
 	}
 
 	public void Reverse() {
-
+		//Move in reverse manually
 		m_leftArmMotor.set(REVERSE_SPEED * -1);
 		m_rightArmMotor.set(REVERSE_SPEED);
 	}
 
 	public void pickup() {
 
-		// Get sensor value here
+		// Use the sensor to know when to run motors when picking up totes
 
 		if (Subsystems.toteDetectionSensor.get() == false) {
-			Forward();
+			m_leftArmMotor.set(PICKUP_SPEED);
+			m_rightArmMotor.set(PICKUP_SPEED * -1);
 		}
 		if (Subsystems.toteDetectionSensor.get()) {
 			Stop();
@@ -48,12 +51,16 @@ public class RobotArm {
 	}
 
 	public void dropoff() {
-		Reverse();
+		//Drop off totes on ground
+		m_leftArmMotor.set(DROPOFF_SPEED * -1);
+		m_rightArmMotor.set(DROPOFF_SPEED);
 	}
 
 	public void load() {
+		//Load totes into storage area
 		if (Subsystems.toteDetectionSensor.get()) {
-			Forward();
+			m_leftArmMotor.set(LOAD_SPEED);
+			m_rightArmMotor.set(LOAD_SPEED * -1);
 		}
 		if (Subsystems.toteDetectionSensor.get() == false) {
 			Stop();
@@ -61,6 +68,8 @@ public class RobotArm {
 	}
 
 	public void unload() {
-		Reverse();
+		//Unload totes from storage area
+		m_leftArmMotor.set(UNLOAD_SPEED * -1);
+		m_leftArmMotor.set(UNLOAD_SPEED);
 	}
 }
