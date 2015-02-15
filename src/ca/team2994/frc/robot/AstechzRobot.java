@@ -32,6 +32,8 @@ public class AstechzRobot extends IterativeRobot {
     	Subsystems.driveJoystick.enableButton(7);
     	
     	currentAutoMode = new TestAutoMode();
+    	
+    	Subsystems.readEncoderValues();
     }
     
     /**

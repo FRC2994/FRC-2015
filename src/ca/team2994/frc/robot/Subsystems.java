@@ -1,5 +1,14 @@
 package ca.team2994.frc.robot;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import com.google.common.base.Charsets;
+import com.google.common.collect.Iterables;
+import com.google.common.io.Files;
+
+import ca.team2994.frc.autonomous.AutoHelper;
 import ca.team2994.frc.mechanism.Forklift;
 import ca.team2994.frc.mechanism.RobotArm;
 import edu.wpi.first.wpilibj.Compressor;
@@ -134,5 +143,34 @@ public class Subsystems {
 		// Set low gear by default
 		robotDrive.setLowGear();
 
+	}
+	
+	/**
+	 * Read in the encoder values from the autonomous config file. TODO:
+	 * Integrate this with Georges' Constants class.
+	 */
+	public static void readEncoderValues() {
+		try {
+
+			List<String> guavaResult = Files.readLines(new File(
+					Constants.getConstant(Constants.CALIBRATION_FILE_LOC)), Charsets.UTF_8);
+			Iterable<String> guavaResultFiltered = Iterables.filter(
+					guavaResult, AutoHelper.SKIP_COMMENTS);
+
+			String[] s = Iterables
+					.toArray(AutoHelper.SPLITTER.split(guavaResultFiltered
+							.iterator().next()), String.class);
+
+			double encoderAConst = Double.parseDouble(s[0]);
+			double encoderBConst = Double.parseDouble(s[1]);
+
+			leftDriveEncoder.setDistancePerPulse(encoderAConst);
+			rightDriveEncoder.setDistancePerPulse(encoderBConst);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			leftDriveEncoder.setDistancePerPulse(1);
+			rightDriveEncoder.setDistancePerPulse(1);
+		}
 	}
 }

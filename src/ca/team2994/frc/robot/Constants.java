@@ -75,6 +75,10 @@ public class Constants
 	public static final String ENCODER_PID_D = 					"ENCODER_PID_D";
 	public static final String ENCODER_PID_E = 					"ENCODER_PID_E";
 	
+	public static final String CALIBRATION_FILE_LOC = 			"CALIBRATION_FILE_LOC";
+	
+	public static final String CALIBRATION_BUTTON = 			"CALIBRATION_BUTTON";
+	
 	static
 	{
 		// PWM
@@ -136,6 +140,10 @@ public class Constants
 		defaults.put(ENCODER_PID_I, "0.0");
 		defaults.put(ENCODER_PID_D, "0.0");
 		defaults.put(ENCODER_PID_E, "0.1");
+		
+		defaults.put(CALIBRATION_FILE_LOC, "/home/lvuser/calibration.txt");
+		
+		defaults.put(CALIBRATION_BUTTON, "2");
 	}
 	
 	/**
