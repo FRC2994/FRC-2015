@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class AstechzRobot extends IterativeRobot {
 	
 	int counter = 0;
+	SmartDash smartdash;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -27,6 +28,7 @@ public class AstechzRobot extends IterativeRobot {
     	
     	Subsystems.driveJoystick.enableButton(6);
     	Subsystems.driveJoystick.enableButton(7);
+    	smartdash = new SmartDash();
     	
     }
     
@@ -56,6 +58,7 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void teleopPeriodic() {
+//    	smartdash.showMotors();
     	Subsystems.driveJoystick.update();
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, true);
     	robotArm();

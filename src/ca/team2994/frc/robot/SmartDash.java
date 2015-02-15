@@ -4,7 +4,19 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SmartDash {
 
-	public SmartDash() {
-		SmartDashboard.putNumber("LeftFrontMotor", Subsystems.leftFrontDrive.get());	
+	public void showMotors() {
+		
+		SmartDashboard.putNumber(" Left_Front_Motor_Speed", Subsystems.leftFrontDrive.get());	
+		SmartDashboard.putNumber(" Left_Rear_Motors_Speed", Subsystems.leftRearDrive.get());	
+		SmartDashboard.putNumber(" Right_Front_Motors_Speed", Subsystems.rightFrontDrive.get());	
+		SmartDashboard.putNumber(" Right_Rear_Motors_Speed", Subsystems.rightRearDrive.get());
+		SmartDashboard.putNumber(" Left_Motor_Rotation", Subsystems.leftDriveEncoder.get());		
+		SmartDashboard.putNumber(" Right_Motor_Rotation", Subsystems.rightDriveEncoder.get());	
+	}
+	
+	public void CompDash() {
+		SmartDashboard.putBoolean(" Tote_ready: ",Subsystems.toteDetectionSensor.get());
+		SmartDashboard.putNumber(" ForkLift_Level: ",Subsystems.forklift.getLevel());
+		
 	}
 }
