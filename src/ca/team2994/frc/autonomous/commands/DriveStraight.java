@@ -38,7 +38,7 @@ public class DriveStraight implements AutoCommand {
 			// TODO: Read this from the constants file as "encoderPIDMax"
 			double limitVal = SimLib.limitValue(driveVal, 0.25);
 
-			Subsystems.robotDrive.setLeftRightMotorOutputs(limitVal + 0.0038, limitVal);
+			Subsystems.robotDrive.setLeftRightMotorOutputs(limitVal, limitVal);
 			return true;
 		}
 		return false;
