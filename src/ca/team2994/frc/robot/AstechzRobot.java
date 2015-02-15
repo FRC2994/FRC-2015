@@ -1,5 +1,7 @@
 package ca.team2994.frc.robot;
 
+import ca.team2994.frc.autonomous.AutoMode;
+import ca.team2994.frc.autonomous.modes.TestAutoMode;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -13,7 +15,11 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class AstechzRobot extends IterativeRobot {
 	
 	int counter = 0;
+	
+	AutoMode currentAutoMode;
+	
 	SmartDash smartdash;
+
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -30,6 +36,9 @@ public class AstechzRobot extends IterativeRobot {
     	Subsystems.driveJoystick.enableButton(7);
     	smartdash = new SmartDash();
     	
+    	currentAutoMode = new TestAutoMode();
+    	
+    	Subsystems.readEncoderValues();
     }
     
     /**
@@ -37,6 +46,7 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void autonomousInit() {
+    	currentAutoMode.initialize();
     }
 
     /**
@@ -44,6 +54,7 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void autonomousPeriodic() {
+    	currentAutoMode.tick();
     }
     
     /**
