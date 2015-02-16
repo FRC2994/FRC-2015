@@ -50,29 +50,29 @@ public class StateMachineTest
 	
 	public void loadTote()
 	{
-		stateMachine.callEvent(Event.E_B3);
+		stateMachine.callEvent(Event.B3);
 		printCode();
-		stateMachine.callEvent(Event.E_AS);
+		stateMachine.callEvent(Event.AS);
 		printCode();
-		stateMachine.callEvent(Event.E_LRP);
+		stateMachine.callEvent(Event.LRP);
 		printCode();
-		stateMachine.callEvent(Event.E_AS);
+		stateMachine.callEvent(Event.AS);
 		printCode();
-		stateMachine.callEvent(Event.E_LRP);
+		stateMachine.callEvent(Event.LRP);
 		printCode();
 	}
 	
 	public void dropTotes()
 	{
-		stateMachine.callEvent(Event.E_B4);
+		stateMachine.callEvent(Event.B4);
 		printCode();
-		stateMachine.callEvent(Event.E_LRP);
+		stateMachine.callEvent(Event.LRP);
 		printCode();
-		stateMachine.callEvent(Event.E_AS);
+		stateMachine.callEvent(Event.AS);
 		printCode();
-		stateMachine.callEvent(Event.E_LRP);
+		stateMachine.callEvent(Event.LRP);
 		printCode();
-		stateMachine.callEvent(Event.E_AS);
+		stateMachine.callEvent(Event.AS);
 		printCode();
 	}
 	

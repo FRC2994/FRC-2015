@@ -78,18 +78,12 @@ public class AstechzRobot extends IterativeRobot {
 	public void teleopPeriodic() {
     	Subsystems.driveJoystick.update();
     	Subsystems.controlGamepad.update();
-    	
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
-    	
-<<<<<<< HEAD
     	GearShifter.gearShift();
     	GearShifter.compressorEnable();
-    	if(Subsystems.driveJoystick.getEvent(11) == ButtonEntry.EVENT_CLOSED) {
-    		GearShifter.solenoidStatus = true;
-    	}
-=======
-    	RobotArm.robotArm();
->>>>>>> 62c8b05b3cb71951dbdf3c7a05bd707da702d07a
+
+
+
     }
     
     @Override
