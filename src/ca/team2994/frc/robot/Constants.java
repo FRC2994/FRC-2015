@@ -87,18 +87,11 @@ public class Constants
 	//Double Solenoid Channels
 	public static final String SOLENOID_SHIFTER_CHANNEL1 =		"SOLENOID_SHIFTER_CHANNEL1";
 	public static final String SOLENOID_SHIFTER_CHANNEL2 =		"SOLENOID_SHIFTER_CHANNEL2";
-<<<<<<< HEAD
-	
+
 	//Conveyor
 	public static final String CONVEYOR_SPEED =					"CONVEYOR_SPEED";
 	public static final String CONVEYOR_TIME =					"CONVEYOR_TIME";
-=======
 
-
-
-	//Conveyor
-	public static final String CONVEYOR_SPEED = 				"CONVEYOR_SPEED";
-	public static final String CONVEYOR_TIME =					"CONVEYOR_TIME";
 	
 	//Gamepad Buttons
 	public static final String GAMEPAD_ARM_FORWARD =			"GAMEPAD_ARM_FORWARD";
@@ -109,7 +102,7 @@ public class Constants
 	public static final String GAMEPAD_ARM_UNLOAD  =			"GAMEPAD_ARM_UNLOAD";
 	public static final String GAMEPAD_ARM_STOP    =			"GAMEPAD_ARM_STOP";
 
->>>>>>> origin/master
+
 	static
 	{
 		// PWM
@@ -183,21 +176,17 @@ public class Constants
 		defaults.put(COMPRESSOR_CHANNEL, "1");
 		
 		// Double Solenoid Channels
-<<<<<<< HEAD
-		defaults.put(SOLENOID_SHIFTER_CHANNEL1, "6");
-		defaults.put(SOLENOID_SHIFTER_CHANNEL2, "7");
-=======
+
 		defaults.put(SOLENOID_SHIFTER_CHANNEL1, "0");
 		defaults.put(SOLENOID_SHIFTER_CHANNEL2, "1");
 
 
->>>>>>> origin/master
+
 		
 		//Conveyor
 		defaults.put(CONVEYOR_SPEED, "0.4");
 		defaults.put(CONVEYOR_TIME,"20");
-<<<<<<< HEAD
-=======
+
 
 		//Gamepad Buttons
 		defaults.put(GAMEPAD_ARM_FORWARD, "1");
@@ -207,7 +196,7 @@ public class Constants
 		defaults.put(GAMEPAD_ARM_LOAD,"5");
 		defaults.put(GAMEPAD_ARM_UNLOAD, "6");
 		defaults.put(GAMEPAD_ARM_STOP, "7");
->>>>>>> origin/master
+
 	}
 	
 	/**
