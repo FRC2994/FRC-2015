@@ -496,12 +496,12 @@ public class ERobotDrive implements MotorSafety {
 		}
 	}
 
-	public void setLowGear() {
+	public void setHighGear() {
 		Subsystems.gearShiftSolenoid.set(DoubleSolenoid.Value.kForward);
 		System.out.println("low gear selected");
 	}
 
-	public void setHighGear() {
+	public void setLowGear() {
 		Subsystems.gearShiftSolenoid.set(DoubleSolenoid.Value.kReverse);
 		System.out.println("high gear selected");
 	}
