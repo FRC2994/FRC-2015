@@ -3,8 +3,8 @@ package ca.team2994.frc.mechanism;
 import ca.team2994.frc.robot.*;
 
 public class Conveyor {
-	private Motor motor; // Include motor number for next time Note* 2 is for
-						 // Talon and will remain the same
+	private Motor motor; 
+	
 	int time = Constants.getConstantAsInt(Constants.CONVEYOR_TIME);
 	double speed = Constants.getConstantAsInt(Constants.CONVEYOR_SPEED);
 	/**
@@ -27,30 +27,14 @@ public class Conveyor {
 	}
 
 	/**
-	 * Automatically loads totes for a given time and at a given speed
-	 */
-	public void load() {
-		motor.set(speed);
-		motor.setExpiration(time);
-	}
-
-	/**
-	 * Automatically unloads totes for a given time and at a given speed
-	 */
-	public void unload() {
-		motor.set(-speed);
-		motor.setExpiration(time);
-	}
-
-	/**
-	 * Moves the conveyer forward at a given speed (used in manual mode)
+	 * Moves the conveyer forward at a speed from the constants
 	 */
 	public void forward() {
 		motor.set(speed);
 	}
 
 	/**
-	 * Moves the conveyer backwards at a given speed (used in manual mode)
+	 * Moves the conveyer backwards at a speed from the constants
 	 */
 	public void reverse() {
 		motor.set(-speed);
