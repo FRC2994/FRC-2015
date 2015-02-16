@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * directory.
  */
 public class AstechzRobot extends IterativeRobot {
-	
 	public int counter = 0; // Unused
 	public CalibrationManager calibration;
 	public AutoMode currentAutoMode;
@@ -35,8 +34,12 @@ public class AstechzRobot extends IterativeRobot {
     	Subsystems.leftDriveEncoder.reset();
     	Subsystems.rightDriveEncoder.reset();
     	
-    	Subsystems.driveJoystick.enableButton(6);
-    	Subsystems.driveJoystick.enableButton(7);
+    	Subsystems.driveJoystick.enableButton(Constants.getConstantAsInt(Constants.JOYSTICK_GEAR_HIGH));
+    	Subsystems.driveJoystick.enableButton(Constants.getConstantAsInt(Constants.JOYSTICK_GEAR_LOW));
+    	Subsystems.driveJoystick.enableButton(8);
+    	Subsystems.driveJoystick.enableButton(9);
+    	Subsystems.driveJoystick.enableButton(10);
+    	Subsystems.driveJoystick.enableButton(11);
     	smartdash = new SmartDash();
     	
     	currentAutoMode = new TestAutoMode();
@@ -73,9 +76,11 @@ public class AstechzRobot extends IterativeRobot {
     @Override
 	public void teleopPeriodic() {
     	Subsystems.driveJoystick.update();
+    	Subsystems.controlGamepad.update();
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
-    	
-    	RobotArm.robotArm();
+
+    Subsystems.gearShifter.gearShift();
+		smartdash.compDash();
     }
     
     @Override
@@ -99,4 +104,32 @@ public class AstechzRobot extends IterativeRobot {
     @Override
     public void disabledInit() {
 	}
+    
+    
+    public void robotArm() {
+    	if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_STOP))) {
+    		Subsystems.robotArm.stop();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_FORWARD))) {
+    		Subsystems.robotArm.forward();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_REVERSE))) {
+    		Subsystems.robotArm.reverse();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_PICKUP))) {
+    		Subsystems.robotArm.pickup();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_DROPOFF))) {
+    		Subsystems.robotArm.dropoff();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_LOAD))) {
+    		Subsystems.robotArm.load();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_UNLOAD))) {
+    		Subsystems.robotArm.unload();
+    	}
+    	else {
+    		Subsystems.robotArm.stop();
+    	}
+    }
 }

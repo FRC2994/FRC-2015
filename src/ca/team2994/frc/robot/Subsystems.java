@@ -47,9 +47,6 @@ public class Subsystems {
 	public static DigitalInput toteDetectionSensor;
 	public static SimGyro gyroSensor;
 	
-	//Compressor
-	public static Compressor compressor;
-	
 	//Solenoid - Gear control
 	public static DoubleSolenoid gearShiftSolenoid;
 	// USB
@@ -106,12 +103,17 @@ public class Subsystems {
 		powerPanel = new PowerDistributionPanel();
 		
 		//Compressor
-		compressor = new Compressor(Constants.getConstantAsInt(Constants.COMPRESSOR_CHANNEL));
-		compressor.setClosedLoopControl(false); // turn back on when compressor is ready
+		//compressor = new Compressor(Constants.getConstantAsInt(Constants.COMPRESSOR_CHANNEL));
+		//compressor.setClosedLoopControl(false); // turn back on when compressor is ready
+
 		
 		//Solenoid - Gear shift
-		gearShiftSolenoid = new DoubleSolenoid(Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL1), 
+		gearShiftSolenoid = new DoubleSolenoid(Constants.getConstantAsInt(Constants.COMPRESSOR_CHANNEL), 
+				Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL1),
 				Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL2));
+
+		
+
 		
 		// Sensors
 		toteDetectionSensor = new DigitalInput(Constants.getConstantAsInt(Constants.DIO_TOTE_DETECT_SENSOR));
