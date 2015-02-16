@@ -10,6 +10,7 @@ public class DriveStraightAndTurn implements AutoCommand {
 	private final double y;
 	
 	private boolean stage2 = false;
+	private static final double DRIVE_LIMIT_VALUE = 0.4; // must be < 1
 	
 	public DriveStraightAndTurn(double x, double y) {
 		this.x = x;
@@ -56,9 +57,9 @@ public class DriveStraightAndTurn implements AutoCommand {
 	public boolean tick() {
 		if (!Subsystems.gyroPID.isDone()) {
 			System.out.println("gyro.getAngle() = " + Subsystems.gyroSensor.getAngle());
-			double driveVal = Subsystems.gyroPID.calcPID(-Subsystems.gyroSensor.getAngle());
+			double driveVal = Subsystems.gyroPID.calcPID(Subsystems.gyroSensor.getAngle());
 			// TODO: Read this from the constants file as "gyroPIDMax"
-			double limitVal = SimLib.limitValue(driveVal, 0.25);
+			double limitVal = SimLib.limitValue(driveVal, DRIVE_LIMIT_VALUE);
 			System.out.println("limitVal = " + limitVal);
 			Subsystems.robotDrive.setLeftRightMotorOutputs(limitVal, -limitVal);
 			//stage2 = true;

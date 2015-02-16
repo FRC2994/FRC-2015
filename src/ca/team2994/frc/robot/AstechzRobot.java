@@ -15,12 +15,12 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * directory.
  */
 public class AstechzRobot extends IterativeRobot {
+	public int counter = 0; // Unused
+	public CalibrationManager calibration;
+	public AutoMode currentAutoMode;
+	public SmartDash smartdash;
 	
-	static boolean Gear = false;
-	int counter = 0;
-	CalibrationManager calibration;
-	AutoMode currentAutoMode;
-	SmartDash smartdash;
+	private boolean gamepadManual = false;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -30,6 +30,7 @@ public class AstechzRobot extends IterativeRobot {
 	public void robotInit() {
     	Constants.readConstantPropertiesFromFile();
     	Subsystems.initialize();
+    	
     	Subsystems.leftDriveEncoder.reset();
     	Subsystems.rightDriveEncoder.reset();
     	
@@ -70,13 +71,12 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void teleopPeriodic() {
-//    	smartdash.showMotors();
     	Subsystems.driveJoystick.update();
+    	Subsystems.controlGamepad.update();
+    	
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
     	robotArm();
-	gearShift();
 		smartdash.compDash();
-    	RobotArm.robotArm();
     }
     
     @Override
@@ -126,18 +126,6 @@ public class AstechzRobot extends IterativeRobot {
     	}
     	else {
     		Subsystems.robotArm.stop();
-    	}
-    }
-    public void gearShift() {
-    	if(Subsystems.driveJoystick.getEvent(6) == ButtonEntry.EVENT_CLOSED) {
-    		Subsystems.robotDrive.setHighGear();
-    		Gear = true;
-    		
-    		
-    	}
-    	else if(Subsystems.driveJoystick.getEvent(7) == ButtonEntry.EVENT_CLOSED) {
-    		Subsystems.robotDrive.setLowGear();
-    		Gear =  false;
     	}
     }
 }
