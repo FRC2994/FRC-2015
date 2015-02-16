@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * directory.
  */
 public class AstechzRobot extends IterativeRobot {
-	
 	public int counter = 0; // Unused
 	public CalibrationManager calibration;
 	public AutoMode currentAutoMode;
@@ -79,11 +78,10 @@ public class AstechzRobot extends IterativeRobot {
     	Subsystems.driveJoystick.update();
     	Subsystems.controlGamepad.update();
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
+    	robotArm();
+		smartdash.compDash();
     	GearShifter.gearShift();
     	GearShifter.compressorEnable();
-
-
-
     }
     
     @Override
@@ -107,4 +105,32 @@ public class AstechzRobot extends IterativeRobot {
     @Override
     public void disabledInit() {
 	}
+    
+    
+    public void robotArm() {
+    	if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_STOP))) {
+    		Subsystems.robotArm.stop();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_FORWARD))) {
+    		Subsystems.robotArm.forward();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_REVERSE))) {
+    		Subsystems.robotArm.reverse();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_PICKUP))) {
+    		Subsystems.robotArm.pickup();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_DROPOFF))) {
+    		Subsystems.robotArm.dropoff();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_LOAD))) {
+    		Subsystems.robotArm.load();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_UNLOAD))) {
+    		Subsystems.robotArm.unload();
+    	}
+    	else {
+    		Subsystems.robotArm.stop();
+    	}
+    }
 }

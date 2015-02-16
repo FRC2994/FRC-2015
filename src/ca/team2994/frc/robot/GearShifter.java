@@ -37,4 +37,8 @@ public class GearShifter {
     }
     
     }
+    
+    public boolean isHighGear() {
+    	return highGear;
+    }
 }

@@ -2,7 +2,7 @@ package ca.team2994.frc.robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class SmartDash {
+public class SmartDash{
 
 	/**For testing everything
 	 * For testing use only, displays the motor's speed and rotation for all the available motors 
@@ -18,10 +18,15 @@ public class SmartDash {
 	 * The competition smart dashboard; displaying relevant information for users
 	 */
 	public void compDash() {
-//		motivational();
+//		Dash for Comp
 		SmartDashboard.putBoolean(" Tote_ready: ",Subsystems.toteDetectionSensor.get());
 		SmartDashboard.putNumber(" ForkLift_Level: ",Subsystems.forklift.getLevel());
 		SmartDashboard.putNumber(" Tote_Count: ", Subsystems.stateMachine.getToteCount());
+		if (Subsystems.gearShifter.isHighGear() == false){
+			SmartDashboard.putNumber(" Gear level: ",1);
+		} else {
+			SmartDashboard.putNumber(" Gear level: ",2);
+		}
 		
 		//To inform the user if another tote may be added and the number of the next tote
 		String next;
