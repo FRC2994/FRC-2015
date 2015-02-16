@@ -17,8 +17,6 @@ public class Forklift
 	
 	private double encoderLevels[] = new double[4];
 	private int levelIndex = 0;
-	private boolean isManualMode = true;
-	private double manualSpeed = 0.0;
 	
 	public Forklift(Motor liftMotor, Encoder liftEncoder)
 	{
@@ -49,29 +47,35 @@ public class Forklift
 		forkliftPID.setDesiredValue(encoderLevels[levelIndex]);
 	}
 	
-	public void toggleManual()
+	public void up(int level)
 	{
-		setManualMode(!getManualMode());
+		levelIndex = level;
+		capLiftLevel();
+		forkliftPID.setDesiredValue(encoderLevels[levelIndex]);
+		forkliftMotor.set(forkliftPID.calcPID(forkliftEncoder.get()));
+		
+		if(forkliftPID.isDone())
+		{
+			stop();
+		}
 	}
 	
-	public void moveUp()
+	public void down(int level)
 	{
-		setSpeed(0.5);
-	}
-	
-	public void moveDown()
-	{
-		setSpeed(-0.5);
+		levelIndex = level;
+		capLiftLevel();
+		forkliftPID.setDesiredValue(encoderLevels[levelIndex]);
+		forkliftMotor.set(forkliftPID.calcPID(forkliftEncoder.get()));
+		
+		if(forkliftPID.isDone())
+		{
+			stop();
+		}
 	}
 	
 	public void stop()
 	{
-		setSpeed(0.0);
-	}
-	
-	public void setSpeed(double speed)
-	{
-		manualSpeed = speed;
+		forkliftMotor.set(0.0);
 	}
 	
 	public int getLevel()
@@ -82,16 +86,6 @@ public class Forklift
 	public boolean isLevelReached()
 	{
 		return forkliftPID.isDone();
-	}
-	
-	private boolean getManualMode()
-	{
-		return isManualMode;
-	}
-	
-	private void setManualMode(boolean isManual)
-	{
-		isManualMode = isManual;
 	}
 	
 	private void capLiftLevel()
@@ -105,20 +99,5 @@ public class Forklift
 		{
 			levelIndex = 3;
 		}
-	}
-	
-	public void update()
-	{
-		double driveVal = 0.0;
-		if(isManualMode)
-		{
-			driveVal = manualSpeed;
-		}
-		else
-		{
-			driveVal = forkliftPID.calcPID(forkliftEncoder.get());
-		}
-		
-		forkliftMotor.set(driveVal);
 	}
 }

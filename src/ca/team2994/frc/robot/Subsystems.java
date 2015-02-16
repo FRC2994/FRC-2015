@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import ca.team2994.frc.autonomous.AutoHelper;
+import ca.team2994.frc.mechanism.Conveyor;
 import ca.team2994.frc.mechanism.Forklift;
 import ca.team2994.frc.mechanism.RobotArm;
 import ca.team2994.frc.mechanism.StateMachine;
@@ -59,9 +60,8 @@ public class Subsystems {
 	public static SerialPort blingPort;
 	
 	// Mechanisms
+	public static Conveyor conveyor;
 	public static Forklift forklift;
-	
-	//Robot Arm
  	public static RobotArm robotArm;
  	
  	// PIDs
@@ -126,9 +126,8 @@ public class Subsystems {
 		}
 		
 		// Mechanisms
+		conveyor = new Conveyor(conveyorMotor);
 		forklift = new Forklift(forkliftMotor, forkliftEncoder);
-
-		// Robot Arm
 		robotArm = new RobotArm(leftArmMotor, rightArmMotor);
 		
 		//PIDs

@@ -20,7 +20,6 @@ public class RobotArm {
 	private Motor m_leftArmMotor;
 	private Motor m_rightArmMotor;
 	
-
 	public RobotArm(Motor leftArmMotor, Motor rightArmMotor) {
 		m_leftArmMotor = leftArmMotor;
 		m_rightArmMotor = rightArmMotor;
@@ -33,7 +32,6 @@ public class RobotArm {
 		m_rightArmMotor.set(0.0);
 		Subsystems.stateMachine.callEvent(Event.AS);
 		// Whatever we were doing before.. we are no longer in any automatic mode
-
 	}
 
 	public void forward() {
@@ -50,8 +48,8 @@ public class RobotArm {
 
 	public void pickup() {
 		// Use the sensor to know when to run motors when picking up totes
-			m_leftArmMotor.set(PICKUP_SPEED);
-			m_rightArmMotor.set(PICKUP_SPEED * -1);
+		m_leftArmMotor.set(PICKUP_SPEED);
+		m_rightArmMotor.set(PICKUP_SPEED * -1);
 	}
 
 	public void dropoff() {
@@ -62,8 +60,8 @@ public class RobotArm {
 
 	public void load() {
 		//Load totes into storage area
-			m_leftArmMotor.set(LOAD_SPEED);
-			m_rightArmMotor.set(LOAD_SPEED * -1);
+		m_leftArmMotor.set(LOAD_SPEED);
+		m_rightArmMotor.set(LOAD_SPEED * -1);
 	}
 
 	public void unload() {
@@ -71,5 +69,4 @@ public class RobotArm {
 		m_leftArmMotor.set(UNLOAD_SPEED * -1);
 		m_leftArmMotor.set(UNLOAD_SPEED);
 	}
-
 }
