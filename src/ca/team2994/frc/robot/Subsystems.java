@@ -35,6 +35,7 @@ public class Subsystems {
 	
 	// Drive
 	public static ERobotDrive robotDrive;
+	public static GearShifter gearShifter;
 	
 	// Encoders
 	public static Encoder rightDriveEncoder;
@@ -89,7 +90,8 @@ public class Subsystems {
 		conveyorMotor = new Motor(Constants.getConstantAsInt(Constants.PWM_CONVEYOR), Constants.getConstantAsInt(Constants.MOTOR_TYPE_CONVEYOR));
 		
 		// Drive
-		robotDrive = new ERobotDrive(leftFrontDrive, leftRearDrive, rightFrontDrive, rightRearDrive); 
+		robotDrive = new ERobotDrive(leftFrontDrive, leftRearDrive, rightFrontDrive, rightRearDrive);
+		gearShifter = new GearShifter();
 		
 		// Encoders
 		rightDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_B), true);
@@ -105,12 +107,11 @@ public class Subsystems {
 		
 		//Compressor
 		compressor = new Compressor(Constants.getConstantAsInt(Constants.COMPRESSOR_CHANNEL));
-		compressor.setClosedLoopControl(true); // turn back on when compressor is ready
+		compressor.setClosedLoopControl(false); // turn back on when compressor is ready
 		
 		//Solenoid - Gear shift
-//		gearShiftSolenoid = new DoubleSolenoid(Constants.getConstantAsInt(Constants.COMPRESSOR_CHANNEL), 
-//				Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL1),
-//				Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL2));
+		gearShiftSolenoid = new DoubleSolenoid(Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL1), 
+				Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL2));
 		
 		// Sensors
 		toteDetectionSensor = new DigitalInput(Constants.getConstantAsInt(Constants.DIO_TOTE_DETECT_SENSOR));
@@ -159,22 +160,16 @@ public class Subsystems {
 	 */
 	public static void readEncoderValues() {
 		try {
+			List<String> guavaResult = Files.readLines(new File(Constants.getConstant(Constants.CALIBRATION_FILE_LOC)), Charsets.UTF_8);
+			Iterable<String> guavaResultFiltered = Iterables.filter(guavaResult, AutoHelper.SKIP_COMMENTS);
 
-			List<String> guavaResult = Files.readLines(new File(
-					Constants.getConstant(Constants.CALIBRATION_FILE_LOC)), Charsets.UTF_8);
-			Iterable<String> guavaResultFiltered = Iterables.filter(
-					guavaResult, AutoHelper.SKIP_COMMENTS);
-
-			String[] s = Iterables
-					.toArray(AutoHelper.SPLITTER.split(guavaResultFiltered
-							.iterator().next()), String.class);
+			String[] s = Iterables.toArray(AutoHelper.SPLITTER.split(guavaResultFiltered.iterator().next()), String.class);
 
 			double encoderAConst = Double.parseDouble(s[0]);
 			double encoderBConst = Double.parseDouble(s[1]);
 
 			leftDriveEncoder.setDistancePerPulse(encoderAConst);
 			rightDriveEncoder.setDistancePerPulse(encoderBConst);
-
 		} catch (IOException e) {
 			e.printStackTrace();
 			leftDriveEncoder.setDistancePerPulse(1);

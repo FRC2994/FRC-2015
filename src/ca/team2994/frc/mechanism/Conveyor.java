@@ -5,9 +5,8 @@ import ca.team2994.frc.robot.*;
 public class Conveyor {
 	private Motor motor; // Include motor number for next time Note* 2 is for
 						 // Talon and will remain the same
-	private double speed = 0.4;
-	private double time = 20;
-
+	int time = Constants.getConstantAsInt(Constants.CONVEYOR_TIME);
+	double speed = Constants.getConstantAsInt(Constants.CONVEYOR_SPEED);
 	/**
 	 * Constructs the motor using values for the motor
 	 * 
