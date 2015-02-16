@@ -15,13 +15,14 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class AstechzRobot extends IterativeRobot {
 	
+<<<<<<< HEAD
 	static boolean Gear = false;
+=======
+>>>>>>> origin/master
 	int counter = 0;
 	CalibrationManager calibration;
 	AutoMode currentAutoMode;
-	
 	SmartDash smartdash;
-
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -74,9 +75,13 @@ public class AstechzRobot extends IterativeRobot {
 //    	smartdash.showMotors();
     	Subsystems.driveJoystick.update();
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
+<<<<<<< HEAD
     	robotArm();
 	gearShift();
 		smartdash.compDash();
+=======
+    	RobotArm.robotArm();
+>>>>>>> origin/master
     }
     
     @Override
@@ -100,6 +105,7 @@ public class AstechzRobot extends IterativeRobot {
     @Override
     public void disabledInit() {
 	}
+<<<<<<< HEAD
     
     
     public void robotArm() {
@@ -140,4 +146,6 @@ public class AstechzRobot extends IterativeRobot {
     		Gear =  false;
     	}
     }
+=======
+>>>>>>> origin/master
 }

@@ -7,6 +7,7 @@ import ca.team2994.frc.robot.Subsystems;
 public class DriveTurn implements AutoCommand {
 
 	private final int angle;
+	private static final double DRIVE_LIMIT_VALUE = 0.4; // must be < 1
 	
 	public DriveTurn(int angle) {
 		this.angle = angle;
@@ -29,9 +30,10 @@ public class DriveTurn implements AutoCommand {
 	@Override
 	public boolean tick() {
 		if (!Subsystems.gyroPID.isDone()) {
-			double driveVal = Subsystems.gyroPID.calcPID(-Subsystems.gyroSensor.getAngle());
+			// Angle needs to be positive
+			double driveVal = Subsystems.gyroPID.calcPID(Subsystems.gyroSensor.getAngle());
 			// TODO: Read this from the constants file as "gyroPIDMax"
-			double limitVal = SimLib.limitValue(driveVal, 0.25);
+			double limitVal = SimLib.limitValue(driveVal, DRIVE_LIMIT_VALUE);
 			System.out.println("gyro.getAngle() = " + Subsystems.gyroSensor.getAngle()+",limitVal = " + limitVal);
 			Subsystems.robotDrive.setLeftRightMotorOutputs(limitVal, -limitVal);
 			return true;
