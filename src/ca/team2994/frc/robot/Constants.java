@@ -93,6 +93,15 @@ public class Constants
 	//Conveyor
 	public static final String CONVEYOR_SPEED = 				"CONVEYOR_SPEED";
 	public static final String CONVEYOR_TIME =					"CONVEYOR_TIME";
+	
+	//Gamepad Buttons
+	public static final String GAMEPAD_ARM_FORWARD =			"GAMEPAD_ARM_FORWARD";
+	public static final String GAMEPAD_ARM_REVERSE =			"GAMEPAD_ARM_REVERSE";
+	public static final String GAMEPAD_ARM_PICKUP = 			"GAMEPAD_ARM_PICKUP";
+	public static final String GAMEPAD_ARM_DROPOFF =			"GAMEPAD_ARM_DROPOFF";
+	public static final String GAMEPAD_ARM_LOAD    =			"GAMEPAD_ARM_LOAD";
+	public static final String GAMEPAD_ARM_UNLOAD  =			"GAMEPAD_ARM_UNLOAD";
+	public static final String GAMEPAD_ARM_STOP    =			"GAMEPAD_ARM_STOP";
 
 	static
 	{
@@ -176,6 +185,14 @@ public class Constants
 		defaults.put(CONVEYOR_SPEED, "0.4");
 		defaults.put(CONVEYOR_TIME,"20");
 
+		//Gamepad Buttons
+		defaults.put(GAMEPAD_ARM_FORWARD, "1");
+		defaults.put(GAMEPAD_ARM_REVERSE, "2");
+		defaults.put(GAMEPAD_ARM_PICKUP, "3");
+		defaults.put(GAMEPAD_ARM_DROPOFF, "4");
+		defaults.put(GAMEPAD_ARM_LOAD,"5");
+		defaults.put(GAMEPAD_ARM_UNLOAD, "6");
+		defaults.put(GAMEPAD_ARM_STOP, "7");
 	}
 	
 	/**
