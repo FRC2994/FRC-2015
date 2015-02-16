@@ -16,10 +16,12 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class AstechzRobot extends IterativeRobot {
 	
-	int counter = 0;
-	CalibrationManager calibration;
-	AutoMode currentAutoMode;
-	SmartDash smartdash;
+	public int counter = 0; // Unused
+	public CalibrationManager calibration;
+	public AutoMode currentAutoMode;
+	public SmartDash smartdash;
+	
+	private boolean gamepadManual = false;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -29,6 +31,7 @@ public class AstechzRobot extends IterativeRobot {
 	public void robotInit() {
     	Constants.readConstantPropertiesFromFile();
     	Subsystems.initialize();
+    	
     	Subsystems.leftDriveEncoder.reset();
     	Subsystems.rightDriveEncoder.reset();
     	
@@ -69,9 +72,11 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void teleopPeriodic() {
-//    	smartdash.showMotors();
     	Subsystems.driveJoystick.update();
+    	Subsystems.controlGamepad.update();
+    	
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
+    	
     	RobotArm.robotArm();
     }
     
