@@ -5,7 +5,7 @@ public class GearShifter {
 	private static boolean highGear = false;
 	public static boolean compressorStatus = false;
 	public static boolean gearShiftStatus = false;
-	
+	public static boolean solenoidStatus = false; 
     public static void gearShift() {
     		if (Subsystems.gearShiftSolenoid == null) {
 			return;

@@ -75,12 +75,13 @@ public class Constants
 	public static final String ENCODER_PID_I = 					"ENCODER_PID_I";
 	public static final String ENCODER_PID_D = 					"ENCODER_PID_D";
 	public static final String ENCODER_PID_E = 					"ENCODER_PID_E";
+	
 
-	public static final String CALIBRATION_FILE_LOC = 			"CALIBRATION_FILE_LOC";
+	public static final String CALIBRATION_FILE_LOC =			"CALIBRATION_FILE_LOC";
 	public static final String CALIBRATION_BUTTON = 			"CALIBRATION_BUTTON";
 	
 	//Compressor channel
-	public static final String COMPRESSOR_CHANNEL =             "COMPRESSOR_CHANNEL";
+	public static final String COMPRESSOR_CHANNEL =				"COMPRESSOR_CHANNEL";
 	
 
 	//Double Solenoid Channels
@@ -90,7 +91,6 @@ public class Constants
 	//Conveyor
 	public static final String CONVEYOR_SPEED =					"CONVEYOR_SPEED";
 	public static final String CONVEYOR_TIME =					"CONVEYOR_TIME";
-
 	
 	//Gamepad Buttons
 	public static final String GAMEPAD_ARM_FORWARD =			"GAMEPAD_ARM_FORWARD";

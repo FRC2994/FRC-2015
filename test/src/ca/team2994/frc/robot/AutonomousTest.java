@@ -7,8 +7,10 @@ import mockit.NonStrictExpectations;
 
 import org.junit.Test;
 
+import ca.team2994.frc.autonomous.AutoBuilder;
+import ca.team2994.frc.autonomous.AutoCommand;
 import ca.team2994.frc.autonomous.AutoMode;
-import ca.team2994.frc.autonomous.modes.TestAutoMode;
+import ca.team2994.frc.autonomous.commands.DriveTurn;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
  
@@ -41,16 +43,22 @@ public class AutonomousTest {
 		encoderPID = new SimPID(2.16, 0.0, 0.0, 0.1);
 		
 		new NonStrictExpectations() {{
-			simGyro.getAngle(); result = getAngle();
+			simGyro.getAngle();
+			result = new Delegate<Double>() {
+				@SuppressWarnings("unused")
+				double getAngle() {
+					return AutonomousTest.this.getAngle();
+				}
+			};
 			rightDriveEncoder.getDistance(); 
-			result = new Delegate<Integer>() {
+			result = new Delegate<Double>() {
 				@SuppressWarnings("unused")
 				double getDistance() {
 					return getRightEncoder();
 				}
 			};
 			leftDriveEncoder.getDistance();
-			result = new Delegate<Integer>() {
+			result = new Delegate<Double>() {
 				@SuppressWarnings("unused")
 				double getDistance() {
 					return getLeftEncoder();
@@ -60,6 +68,7 @@ public class AutonomousTest {
 			result = new Delegate() {
 				@SuppressWarnings("unused")
 				void setLeftRightMotorOutputs(double leftOutput, double rightOutput) {
+					
 					System.out.println("C:"+counter+",A:"+angle+",LE"+leftEncoder+",LO:"+leftOutput+",RE:"+rightEncoder+",RO:"+rightOutput);	
 				}
 			};
@@ -72,16 +81,20 @@ public class AutonomousTest {
 		Deencapsulation.setField(Subsystems.class, "gyroPID", gyroPID);
 		Deencapsulation.setField(Subsystems.class, "encoderPID", encoderPID);
  
-		AutoMode currentAutoMode = new TestAutoMode();
+		AutoMode currentAutoMode = new AutoMode() {
+			@Override
+			protected AutoCommand[] initializeCommands() {
+				AutoBuilder ab = new AutoBuilder();
+				ab.add(new DriveTurn(360));
+				return ab.toArray();
+			}
+		};
 		currentAutoMode.initialize();
-		
-    	while (counter < 60) {
+
+    	while (!gyroPID.isDone()) {
     		currentAutoMode.tick();
     		
-        	angle++;
-        	rightEncoder += 0.1;
-        	leftEncoder += 0.1;
-        	counter++;
+        	angle += 60;
     	}
 	}
 	

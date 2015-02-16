@@ -487,7 +487,14 @@ public class ERobotDrive implements MotorSafety {
 			m_centerRightMotor.disable();
 		}
 	}
-
+public void gearControl(boolean highGear) {
+	if(highGear == true) {
+		setHighGear();
+	}
+	else if(highGear == false) {
+		setLowGear();
+	}
+}
 	public void setHighGear() {
 		if (Subsystems.gearShiftSolenoid == null) {
 			return;

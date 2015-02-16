@@ -76,9 +76,12 @@ public class AstechzRobot extends IterativeRobot {
 //    	smartdash.showMotors();
     	Subsystems.driveJoystick.update();
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
-    	RobotArm.robotArm();
+    	
     	GearShifter.gearShift();
     	GearShifter.compressorEnable();
+    	if(Subsystems.driveJoystick.getEvent(11) == ButtonEntry.EVENT_CLOSED) {
+    		GearShifter.solenoidStatus = true;
+    	}
     }
     
     @Override
