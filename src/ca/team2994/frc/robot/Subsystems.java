@@ -105,7 +105,7 @@ public class Subsystems {
 		
 		//Compressor
 		compressor = new Compressor(Constants.getConstantAsInt(Constants.COMPRESSOR_CHANNEL));
-		compressor.setClosedLoopControl(true); // turn back on when compressor is ready
+		compressor.setClosedLoopControl(false); // turn back on when compressor is ready
 		
 		//Solenoid - Gear shift
 //		gearShiftSolenoid = new DoubleSolenoid(Constants.getConstantAsInt(Constants.COMPRESSOR_CHANNEL), 

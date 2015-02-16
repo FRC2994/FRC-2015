@@ -3,6 +3,7 @@ package ca.team2994.frc.robot;
 import ca.team2994.frc.autonomous.AutoMode;
 import ca.team2994.frc.autonomous.CalibrationManager;
 import ca.team2994.frc.autonomous.modes.TestAutoMode;
+import ca.team2994.frc.mechanism.RobotArm;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -74,8 +75,8 @@ public class AstechzRobot extends IterativeRobot {
 //    	smartdash.showMotors();
     	Subsystems.driveJoystick.update();
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
-    	robotArm();
-//    	gearShift();
+    	RobotArm.robotArm();
+    	gearShift();
     }
     
     @Override
@@ -101,32 +102,7 @@ public class AstechzRobot extends IterativeRobot {
 	}
     
     
-    public void robotArm() {
-    	if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_STOP))) {
-    		Subsystems.robotArm.stop();
-    	}
-    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_FORWARD))) {
-    		Subsystems.robotArm.forward();
-    	}
-    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_REVERSE))) {
-    		Subsystems.robotArm.reverse();
-    	}
-    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_PICKUP))) {
-    		Subsystems.robotArm.pickup();
-    	}
-    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_DROPOFF))) {
-    		Subsystems.robotArm.dropoff();
-    	}
-    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_LOAD))) {
-    		Subsystems.robotArm.load();
-    	}
-    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_UNLOAD))) {
-    		Subsystems.robotArm.unload();
-    	}
-    	else {
-    		Subsystems.robotArm.stop();
-    	}
-    }
+
     public void gearShift() {
     	if(Subsystems.driveJoystick.getEvent(6) == ButtonEntry.EVENT_CLOSED) {
     		Subsystems.robotDrive.setHighGear();
