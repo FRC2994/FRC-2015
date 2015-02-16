@@ -38,7 +38,6 @@ public class Constants
 	public static final String DIO_TOTE_DETECT_SENSOR =	"DIO_TOTE_DETECT_SENSOR";
 	public static final String DIO_FORKLIFT_ENCODER_A =	"DIO_FORKLIFT_ENCODER_A";
 	public static final String DIO_FORKLIFT_ENCODER_B =	"DIO_FORKLIFT_ENCODER_B";
-	public static final String DIO_GYRO_SENSOR =		"DIO_GYRO_SENSOR";
 	
 	// Analog IO
 	public static final String AIO_GYRO_SENSOR =		"AIO_GYRO_SENSOR";
@@ -84,17 +83,26 @@ public class Constants
 	//Compressor channel
 	public static final String COMPRESSOR_CHANNEL =				"COMPRESSOR_CHANNEL";
 	
+
 	//Double Solenoid Channels
 	public static final String SOLENOID_SHIFTER_CHANNEL1 =		"SOLENOID_SHIFTER_CHANNEL1";
 	public static final String SOLENOID_SHIFTER_CHANNEL2 =		"SOLENOID_SHIFTER_CHANNEL2";
-	
 
 	//Conveyor
-	public static final String CONVEYOR_SPEED = 				"CONVEYOR_SPEED";
+	public static final String CONVEYOR_SPEED =					"CONVEYOR_SPEED";
 	public static final String CONVEYOR_TIME =					"CONVEYOR_TIME";
+	
+	//Gamepad Buttons
+	public static final String GAMEPAD_ARM_FORWARD =			"GAMEPAD_ARM_FORWARD";
+	public static final String GAMEPAD_ARM_REVERSE =			"GAMEPAD_ARM_REVERSE";
+	public static final String GAMEPAD_ARM_PICKUP = 			"GAMEPAD_ARM_PICKUP";
+	public static final String GAMEPAD_ARM_DROPOFF =			"GAMEPAD_ARM_DROPOFF";
+	public static final String GAMEPAD_ARM_LOAD    =			"GAMEPAD_ARM_LOAD";
+	public static final String GAMEPAD_ARM_UNLOAD  =			"GAMEPAD_ARM_UNLOAD";
+	public static final String GAMEPAD_ARM_STOP    =			"GAMEPAD_ARM_STOP";
 
-	static
-	{
+
+	static {
 		// PWM
 		defaults.put(MOTOR_TYPE_DRIVE, "0");
 		defaults.put(MOTOR_TYPE_ARM, "0");
@@ -121,7 +129,6 @@ public class Constants
 		defaults.put(DIO_TOTE_DETECT_SENSOR, "2");
 		defaults.put(DIO_FORKLIFT_ENCODER_A, "3");
 		defaults.put(DIO_FORKLIFT_ENCODER_B, "4");
-		defaults.put(DIO_GYRO_SENSOR, "5");
 		
 		// Analog IO
 		defaults.put(AIO_GYRO_SENSOR, "0");
@@ -148,16 +155,15 @@ public class Constants
 		defaults.put(BLING_ENABLED, "0");
 		
 		//PID
-		defaults.put(GYRO_PID_P, "2.16");
+		defaults.put(GYRO_PID_P, "0.005");
 		defaults.put(GYRO_PID_I, "0.0");
-		defaults.put(GYRO_PID_D, "0.1");
-		defaults.put(GYRO_PID_E, "0.1");
+		defaults.put(GYRO_PID_D, "0.0");
+		defaults.put(GYRO_PID_E, "1.0");
 		
 		defaults.put(ENCODER_PID_P, "2.16");
 		defaults.put(ENCODER_PID_I, "0.0");
 		defaults.put(ENCODER_PID_D, "0.0");
 		defaults.put(ENCODER_PID_E, "0.1");
-		
 
 		defaults.put(CALIBRATION_FILE_LOC, "/home/lvuser/calibration.txt");
 		defaults.put(CALIBRATION_BUTTON, "2");
@@ -166,12 +172,21 @@ public class Constants
 		defaults.put(COMPRESSOR_CHANNEL, "1");
 		
 		// Double Solenoid Channels
-		defaults.put(SOLENOID_SHIFTER_CHANNEL1, "6");
-		defaults.put(SOLENOID_SHIFTER_CHANNEL2, "7");
+		defaults.put(SOLENOID_SHIFTER_CHANNEL1, "0");
+		defaults.put(SOLENOID_SHIFTER_CHANNEL2, "1");
 		
 		//Conveyor
 		defaults.put(CONVEYOR_SPEED, "0.4");
 		defaults.put(CONVEYOR_TIME,"20");
+
+		//Gamepad Buttons
+		defaults.put(GAMEPAD_ARM_FORWARD, "1");
+		defaults.put(GAMEPAD_ARM_REVERSE, "2");
+		defaults.put(GAMEPAD_ARM_PICKUP, "3");
+		defaults.put(GAMEPAD_ARM_DROPOFF, "4");
+		defaults.put(GAMEPAD_ARM_LOAD,"5");
+		defaults.put(GAMEPAD_ARM_UNLOAD, "6");
+		defaults.put(GAMEPAD_ARM_STOP, "7");
 	}
 	
 	/**

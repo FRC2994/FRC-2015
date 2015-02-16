@@ -8,14 +8,14 @@ package ca.team2994.frc.mechanism;
 public class StateMachine
 {
 	
-	public static enum Mode
+	private static enum Mode
 	{
 		M_A, 						// Add
 		M_R, 						// Remove
 		M_N 						// None
 	}
 	
-	public static enum Arm
+	private static enum Arm
 	{
 		A_P, 						// Picking up
 		A_D, 						// Dropping off
@@ -24,14 +24,14 @@ public class StateMachine
 		A_S 						// Stopped
 	}
 	
-	public static enum Conveyor
+	private static enum Conveyor
 	{
 		C_L, 						// Loading
 		C_U, 						// Unloading
 		C_S							// Stopped
 	}
 	
-	public static enum Lift
+	private static enum Lift
 	{
 		L_S, 						// Stopped
 		L_U, 						// Up
@@ -52,6 +52,7 @@ public class StateMachine
 	private Conveyor conveyorState;
 	private Lift liftState;
 	private int toteCount;
+	private boolean increaseToteCount = false;
 	
 	public StateMachine()
 	{
@@ -146,9 +147,7 @@ public class StateMachine
 		return stateCode;
 	}
 	
-	boolean increaseToteCount = false;
-	
-	public void CallEvent(Event event)
+	public void callEvent(Event event)
 	{
 		switch(mode)
 		{

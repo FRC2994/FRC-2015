@@ -1,7 +1,9 @@
 package ca.team2994.frc.robot;
 
 import ca.team2994.frc.autonomous.AutoMode;
+import ca.team2994.frc.autonomous.CalibrationManager;
 import ca.team2994.frc.autonomous.modes.TestAutoMode;
+import ca.team2994.frc.mechanism.RobotArm;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -15,11 +17,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class AstechzRobot extends IterativeRobot {
 	
 	int counter = 0;
-	
+	CalibrationManager calibration;
 	AutoMode currentAutoMode;
-	
 	SmartDash smartdash;
-
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -71,9 +71,14 @@ public class AstechzRobot extends IterativeRobot {
 	public void teleopPeriodic() {
 //    	smartdash.showMotors();
     	Subsystems.driveJoystick.update();
-    	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, true);
-    	robotArm();
-    	gearShift();
+    	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
+    	RobotArm.robotArm();
+    }
+    
+    @Override
+	public void testInit() {
+    	calibration = new CalibrationManager();
+    	calibration.calibrateInit();    	
     }
     
     /**
@@ -81,6 +86,7 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void testPeriodic() {
+    	calibration.calibrateTick();
     	LiveWindow.run();
     }
     
@@ -90,41 +96,4 @@ public class AstechzRobot extends IterativeRobot {
     @Override
     public void disabledInit() {
 	}
-    
-    
-    public void robotArm() {
-    	if(Subsystems.controlGamepad.getNumberedButton(9)) {
-    		Subsystems.robotArm.stop();
-    	}
-    	else if(Subsystems.controlGamepad.getNumberedButton(3)) {
-    		Subsystems.robotArm.forward();
-    	}
-    	else if(Subsystems.controlGamepad.getNumberedButton(2)) {
-    		Subsystems.robotArm.reverse();
-    	}
-    	else if(Subsystems.controlGamepad.getNumberedButton(1)) {
-    		Subsystems.robotArm.pickup();
-    	}
-    	else if(Subsystems.controlGamepad.getNumberedButton(4)) {
-    		Subsystems.robotArm.dropoff();
-    	}
-    	else if(Subsystems.controlGamepad.getNumberedButton(6)) {
-    		Subsystems.robotArm.load();
-    	}
-    	else if(Subsystems.controlGamepad.getNumberedButton(7)) {
-    		Subsystems.robotArm.unload();
-    	}
-    	else {
-    		Subsystems.robotArm.stop();
-    	}
-    }
-    public void gearShift() {
-    	if(Subsystems.driveJoystick.getEvent(6) == ButtonEntry.EVENT_CLOSED) {
-    		Subsystems.robotDrive.setHighGear();
-    		
-    	}
-    	else if(Subsystems.driveJoystick.getEvent(7) == ButtonEntry.EVENT_CLOSED) {
-    		Subsystems.robotDrive.setLowGear();
-    	}
-    }
 }

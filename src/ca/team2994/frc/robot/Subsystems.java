@@ -4,14 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import com.google.common.base.Charsets;
-import com.google.common.collect.Iterables;
-import com.google.common.io.Files;
-
 import ca.team2994.frc.autonomous.AutoHelper;
 import ca.team2994.frc.mechanism.Forklift;
 import ca.team2994.frc.mechanism.RobotArm;
 import ca.team2994.frc.mechanism.StateMachine;
+
+import com.google.common.base.Charsets;
+import com.google.common.collect.Iterables;
+import com.google.common.io.Files;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -34,6 +35,7 @@ public class Subsystems {
 	
 	// Drive
 	public static ERobotDrive robotDrive;
+	public static GearShifter gearShifter;
 	
 	// Encoders
 	public static Encoder rightDriveEncoder;
@@ -88,11 +90,12 @@ public class Subsystems {
 		conveyorMotor = new Motor(Constants.getConstantAsInt(Constants.PWM_CONVEYOR), Constants.getConstantAsInt(Constants.MOTOR_TYPE_CONVEYOR));
 		
 		// Drive
-		robotDrive = new ERobotDrive(leftFrontDrive, leftRearDrive, rightFrontDrive, rightRearDrive); 
+		robotDrive = new ERobotDrive(leftFrontDrive, leftRearDrive, rightFrontDrive, rightRearDrive);
+		gearShifter = new GearShifter();
 		
 		// Encoders
-		rightDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_B));
-		leftDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_LEFT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_LEFT_ENCODER_B));
+		rightDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_B), true);
+		leftDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_LEFT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_LEFT_ENCODER_B), true);
 		forkliftEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_FORKLIFT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_FORKLIFT_ENCODER_B));
 		
 		// USB
@@ -104,11 +107,18 @@ public class Subsystems {
 		
 		//Compressor
 		compressor = new Compressor(Constants.getConstantAsInt(Constants.COMPRESSOR_CHANNEL));
-		compressor.setClosedLoopControl(true); // turn back on when compressor is ready
+		compressor.setClosedLoopControl(false); // turn back on when compressor is ready
 		
+<<<<<<< HEAD
 		//Solenoid - Gear shift
 		gearShiftSolenoid = new DoubleSolenoid(Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL1), 
 				Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL2));
+=======
+		//Solenoid - Gear shift
+//		gearShiftSolenoid = new DoubleSolenoid(Constants.getConstantAsInt(Constants.COMPRESSOR_CHANNEL), 
+//				Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL1),
+//				Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL2));
+>>>>>>> 446a00573ace6bed0df7040316b99d5d7fcfc2e8
 		
 		// Sensors
 		toteDetectionSensor = new DigitalInput(Constants.getConstantAsInt(Constants.DIO_TOTE_DETECT_SENSOR));
@@ -145,7 +155,7 @@ public class Subsystems {
 		robotArm = new RobotArm(leftArmMotor, rightArmMotor);
 		
 		// Set low gear by default
-		robotDrive.setLowGear();
+//		robotDrive.setLowGear();
 		
 		// State Machine
 		stateMachine = new StateMachine();
@@ -157,22 +167,16 @@ public class Subsystems {
 	 */
 	public static void readEncoderValues() {
 		try {
+			List<String> guavaResult = Files.readLines(new File(Constants.getConstant(Constants.CALIBRATION_FILE_LOC)), Charsets.UTF_8);
+			Iterable<String> guavaResultFiltered = Iterables.filter(guavaResult, AutoHelper.SKIP_COMMENTS);
 
-			List<String> guavaResult = Files.readLines(new File(
-					Constants.getConstant(Constants.CALIBRATION_FILE_LOC)), Charsets.UTF_8);
-			Iterable<String> guavaResultFiltered = Iterables.filter(
-					guavaResult, AutoHelper.SKIP_COMMENTS);
-
-			String[] s = Iterables
-					.toArray(AutoHelper.SPLITTER.split(guavaResultFiltered
-							.iterator().next()), String.class);
+			String[] s = Iterables.toArray(AutoHelper.SPLITTER.split(guavaResultFiltered.iterator().next()), String.class);
 
 			double encoderAConst = Double.parseDouble(s[0]);
 			double encoderBConst = Double.parseDouble(s[1]);
 
 			leftDriveEncoder.setDistancePerPulse(encoderAConst);
 			rightDriveEncoder.setDistancePerPulse(encoderBConst);
-
 		} catch (IOException e) {
 			e.printStackTrace();
 			leftDriveEncoder.setDistancePerPulse(1);
