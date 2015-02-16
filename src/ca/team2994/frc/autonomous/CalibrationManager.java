@@ -20,7 +20,7 @@ public class CalibrationManager {
 	public void calibrateTick() {
 		if(Subsystems.driveJoystick.getEvent(2) != ButtonEntry.EVENT_CLOSED) {
     		Subsystems.driveJoystick.update();
-    		Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, true);
+    		Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
     	}
 		else if(!calibrationDone) {
 			Subsystems.robotDrive.drive(0, 0);
@@ -39,13 +39,15 @@ public class CalibrationManager {
 	    		encoderBConstant = 5.0 / encoderBValue;
 	    	}
 	    	
-			AutoHelper.writeLineToFile("//Encoder A (Left), Distance Travelled: 5ft, Number of encoder ticks: " + encoderAValue
-	    			+ ", Calibration constant: " + encoderAConstant, 
-	    			new File(Constants.getConstant(Constants.CALIBRATION_FILE_LOC)));
+	    	String value = "//Encoder A (Left), Distance Travelled: 5ft, Number of encoder ticks: " + encoderAValue
+	    			+ ", Calibration constant: " + encoderAConstant;
+	    	System.out.println(value);
+			AutoHelper.writeLineToFile(value, new File(Constants.getConstant(Constants.CALIBRATION_FILE_LOC)));
 	    	
-			AutoHelper.writeLineToFile("//Encoder B (Right), Distance Travelled: 5ft, Number of encoder ticks: " + encoderBValue
-	    			+ ", Calibration constant: " + encoderBConstant, 
-	    			new File(Constants.getConstant(Constants.CALIBRATION_FILE_LOC)));
+			value = "//Encoder B (Right), Distance Travelled: 5ft, Number of encoder ticks: " + encoderBValue
+	    			+ ", Calibration constant: " + encoderBConstant;
+			System.out.println(value);
+			AutoHelper.writeLineToFile(value, new File(Constants.getConstant(Constants.CALIBRATION_FILE_LOC)));
 	    	
 			AutoHelper.writeLineToFile(encoderAConstant + ", " + encoderBConstant, new File(Constants.getConstant(Constants.CALIBRATION_FILE_LOC)));
 			

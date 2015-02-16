@@ -26,19 +26,19 @@ public class DriveStraight implements AutoCommand {
 		// right away (we know both the distances are zero from the
 		// above reset).
 		Subsystems.encoderPID.calcPID(0);
-		
+		System.out.println("DriveStraight Init");
 	}
 	
 	@Override
 	public boolean tick() {
 		if (!Subsystems.encoderPID.isDone()) {
-			double driveVal = Subsystems.encoderPID
-					.calcPID((Subsystems.leftDriveEncoder.getDistance() + Subsystems.rightDriveEncoder.getDistance()) / 2.0);
+			double driveVal = Subsystems.encoderPID.calcPID((Subsystems.leftDriveEncoder.getDistance() + Subsystems.rightDriveEncoder.getDistance()) / 2.0);
 			// TODO: Read this from the constants file as "encoderPIDMax"
 			double limitVal = SimLib.limitValue(driveVal, 0.25);
 
 			Subsystems.robotDrive.setLeftRightMotorOutputs(limitVal, limitVal);
-			System.out.println("LE:" + Subsystems.leftDriveEncoder.getDistance() + ",RE:" + Subsystems.rightDriveEncoder.getDistance()+",DV:"+driveVal);
+			System.out.println("LEV:" + Subsystems.leftDriveEncoder.get() + ",REV:" + Subsystems.rightDriveEncoder.get()+
+					",LED:" + Subsystems.leftDriveEncoder.getDistance() + ",RED:" + Subsystems.rightDriveEncoder.getDistance()+",DV:"+driveVal);
 			return true;
 		}
 		return false;

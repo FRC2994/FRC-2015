@@ -223,7 +223,7 @@ public class ERobotDrive implements MotorSafety {
 	 */
 	public void arcadeDrive(GenericHID stick, boolean squaredInputs) {
 		// simply call the full-featured ArcadeDrive with the appropriate values
-		arcadeDrive(stick.getY(), stick.getX(), squaredInputs);
+		arcadeDrive(-stick.getY(), -stick.getX(), squaredInputs);
 	}
 
 	/**
