@@ -17,6 +17,10 @@ public class SmartDash {
 	public void compDash() {
 		SmartDashboard.putBoolean(" Tote_ready: ",Subsystems.toteDetectionSensor.get());
 		SmartDashboard.putNumber(" ForkLift_Level: ",Subsystems.forklift.getLevel());
-		
-	}
+		if (AstechzRobot.Gear == false){
+			SmartDashboard.putNumber(" Gear level: ",1);
+		} else {
+			SmartDashboard.putNumber(" Gear level: ",2);
+		}
+  }
 }

@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class AstechzRobot extends IterativeRobot {
 	
-	boolean Gear = false;
+	static boolean Gear = false;
 	int counter = 0;
 	CalibrationManager calibration;
 	AutoMode currentAutoMode;
@@ -75,7 +75,8 @@ public class AstechzRobot extends IterativeRobot {
     	Subsystems.driveJoystick.update();
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
     	robotArm();
-//    	gearShift();
+	gearShift();
+		smartdash.compDash();
     }
     
     @Override
