@@ -4,18 +4,19 @@ import mockit.Deencapsulation;
 import mockit.Delegate;
 import mockit.Mocked;
 import mockit.NonStrictExpectations;
- 
+
 import org.junit.Test;
- 
-import ca.team2994.frc.auto.AutonControl;
+
+import ca.team2994.frc.autonomous.AutoMode;
+import ca.team2994.frc.autonomous.modes.TestAutoMode;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
  
 public class AutonomousTest {
  
 	double angle = 0;
-	int rightEncoder = 0;
-	int leftEncoder = 0;
+	double rightEncoder = 0;
+	double leftEncoder = 0;
 	int counter = 0;
  
 	
@@ -33,19 +34,25 @@ public class AutonomousTest {
 		leftDriveEncoder = new Encoder(2,3);
 		robotDrive = new ERobotDrive(new Motor(0,0), new Motor(1,0), new Motor(2,0), new Motor(3,0));
 		
+		SimPID gyroPID;
+		SimPID encoderPID;
+		
+		gyroPID = new SimPID(2.16, 0.0, 0.1, 0.1);
+		encoderPID = new SimPID(2.16, 0.0, 0.0, 0.1);
+		
 		new NonStrictExpectations() {{
 			simGyro.getAngle(); result = getAngle();
-			rightDriveEncoder.get(); 
+			rightDriveEncoder.getDistance(); 
 			result = new Delegate<Integer>() {
 				@SuppressWarnings("unused")
-				int get() {
+				double getDistance() {
 					return getRightEncoder();
 				}
 			};
-			leftDriveEncoder.get();
+			leftDriveEncoder.getDistance();
 			result = new Delegate<Integer>() {
 				@SuppressWarnings("unused")
-				int get() {
+				double getDistance() {
 					return getLeftEncoder();
 				}
 			};
@@ -62,22 +69,19 @@ public class AutonomousTest {
 		Deencapsulation.setField(Subsystems.class, "rightDriveEncoder", rightDriveEncoder);
 		Deencapsulation.setField(Subsystems.class, "leftDriveEncoder", leftDriveEncoder);
 		Deencapsulation.setField(Subsystems.class, "robotDrive", robotDrive);
-		        
-    	AutonControl.getInstance().reset();
-    	AutonControl.getInstance().initialize();
+		Deencapsulation.setField(Subsystems.class, "gyroPID", gyroPID);
+		Deencapsulation.setField(Subsystems.class, "encoderPID", encoderPID);
  
-    	while (counter < 100) {
-        	AutonControl.getInstance().updatePosition();
-        	AutonControl.getInstance().runCycle();
-//        	angle++;
-        	rightEncoder += 100;
-        	leftEncoder += 100;
+		AutoMode currentAutoMode = new TestAutoMode();
+		currentAutoMode.initialize();
+		
+    	while (counter < 60) {
+    		currentAutoMode.tick();
+    		
+        	angle++;
+        	rightEncoder += 0.1;
+        	leftEncoder += 0.1;
         	counter++;
-        	try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
     	}
 	}
 	
@@ -85,11 +89,11 @@ public class AutonomousTest {
 		return angle;
 	}
 	
-	public int getRightEncoder() {
+	public double getRightEncoder() {
 		return rightEncoder;
 	}
 	
-	public int getLeftEncoder() {
+	public double getLeftEncoder() {
 		return leftEncoder;
 	}
 }
