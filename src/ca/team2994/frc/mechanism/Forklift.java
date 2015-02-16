@@ -34,20 +34,19 @@ public class Forklift
 	
 	public void levelUp()
 	{
-		setManualMode(false);
 		setLevel(getLevel() + 1);
 	}
 	
 	public void levelDown()
 	{
-		setManualMode(false);
 		setLevel(getLevel() - 1);
 	}
 	
-	public void moveToLevel(int level)
+	public void setLevel(int level)
 	{
-		setManualMode(false);
-		setLevel(level);
+		levelIndex = level;
+		capLiftLevel();
+		forkliftPID.setDesiredValue(encoderLevels[levelIndex]);
 	}
 	
 	public void toggleManual()
@@ -57,31 +56,32 @@ public class Forklift
 	
 	public void moveUp()
 	{
-		setManualMode(true);
 		setSpeed(0.5);
 	}
 	
 	public void moveDown()
 	{
-		setManualMode(true);
 		setSpeed(-0.5);
 	}
 	
 	public void stop()
 	{
-		setManualMode(true);
 		setSpeed(0.0);
 	}
 	
 	public void setSpeed(double speed)
 	{
-		setManualMode(true);
 		manualSpeed = speed;
 	}
 	
 	public int getLevel()
 	{
 		return levelIndex;
+	}
+	
+	public boolean isLevelReached()
+	{
+		return forkliftPID.isDone();
 	}
 	
 	private boolean getManualMode()
@@ -105,13 +105,6 @@ public class Forklift
 		{
 			levelIndex = 3;
 		}
-	}
-	
-	private void setLevel(int level)
-	{
-		levelIndex = level;
-		capLiftLevel();
-		forkliftPID.setDesiredValue(encoderLevels[levelIndex]);
 	}
 	
 	public void update()
