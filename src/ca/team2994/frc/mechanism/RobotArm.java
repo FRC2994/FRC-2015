@@ -1,5 +1,6 @@
 package ca.team2994.frc.mechanism;
 
+import ca.team2994.frc.mechanism.StateMachine.Event;
 import ca.team2994.frc.robot.Constants;
 import ca.team2994.frc.robot.Motor;
 import ca.team2994.frc.robot.Subsystems;
@@ -61,18 +62,21 @@ public class RobotArm {
 		
 		// Whatever we were doing before.. we are no longer in any automatic mode
 		m_currentMode = MANUAL_MODE;
+		Subsystems.stateMachine.callEvent(Event.E_AS);
 	}
 
 	public void forward() {
 		//Move forward manually
 		m_leftArmMotor.set(FORWARD_SPEED);
 		m_rightArmMotor.set(FORWARD_SPEED * -1);
+		m_currentMode = MANUAL_MODE;
 	}
 
 	public void reverse() {
 		//Move in reverse manually
 		m_leftArmMotor.set(REVERSE_SPEED * -1);
 		m_rightArmMotor.set(REVERSE_SPEED);
+		m_currentMode = MANUAL_MODE;
 	}
 
 	public void pickup() {
@@ -80,9 +84,12 @@ public class RobotArm {
 		if (Subsystems.toteDetectionSensor.get() == false) {
 			m_leftArmMotor.set(PICKUP_SPEED);
 			m_rightArmMotor.set(PICKUP_SPEED * -1);
+		
+			m_currentMode = PICKUP_MODE;
 		}
 		if (Subsystems.toteDetectionSensor.get()) {
 			stop();
+	
 		}
 	}
 
@@ -92,6 +99,7 @@ public class RobotArm {
 		m_rightArmMotor.set(DROPOFF_SPEED);
 		m_leftArmMotor.setExpiration(DROPOFF_TIME);
 		m_rightArmMotor.setExpiration(DROPOFF_TIME);
+		m_currentMode = PICKUP_MODE;
 	}
 
 	public void load() {
@@ -99,6 +107,7 @@ public class RobotArm {
 		if (Subsystems.toteDetectionSensor.get()) {
 			m_leftArmMotor.set(LOAD_SPEED);
 			m_rightArmMotor.set(LOAD_SPEED * -1);
+			m_currentMode = LOAD_MODE;
 		}
 		if (Subsystems.toteDetectionSensor.get() == false) {
 			stop();
@@ -111,5 +120,32 @@ public class RobotArm {
 		m_leftArmMotor.set(UNLOAD_SPEED);
 		m_leftArmMotor.setExpiration(UNLOAD_TIME);
 		m_rightArmMotor.setExpiration(UNLOAD_TIME);
+		m_currentMode = LOAD_MODE;
 	}
+    public static void robotArm() {
+    	if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_STOP))) {
+    		Subsystems.robotArm.stop();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_FORWARD))) {
+    		Subsystems.robotArm.forward();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_REVERSE))) {
+    		Subsystems.robotArm.reverse();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_PICKUP))) {
+    		Subsystems.robotArm.pickup();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_DROPOFF))) {
+    		Subsystems.robotArm.dropoff();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_LOAD))) {
+    		Subsystems.robotArm.load();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_UNLOAD))) {
+    		Subsystems.robotArm.unload();
+    	}
+    	else {
+    		Subsystems.robotArm.stop();
+    	}
+    }
 }
