@@ -1,5 +1,7 @@
 package ca.team2994.frc.mechanism;
 
+import ca.team2994.frc.robot.Subsystems;
+
 /**
  * 
  * @author Tylar aka Mr.Perfect
@@ -80,7 +82,7 @@ public class StateMachine
 		return stateCode;
 	}
 	
-	private void callEvent(Event event)
+	public void callEvent(Event event)
 	{
 		switch(mode)
 		{
@@ -199,25 +201,128 @@ public class StateMachine
 		// LRP means that the lift has reached the ground
 		// Stop everything and increase the tote count (should be done automatically)
 		
-		callEvent(Event.E_B3);
+		callEvent(Event.B3);
 	}
 	
 	public void dropTotes()
 	{
-		
+		// TODO: Add description here
+		callEvent(Event.B4);
 	}
 	
 	public void update()
 	{
-		switch(mode)
+		if(Subsystems.forklift.isLevelReached())
 		{
-		case M_A:
+			callEvent(Event.LRP);
+		}
+		
+		if(Subsystems.robotArm.isDone())
+		{
+			callEvent(Event.AS);
+		}
+		
+		switch(armState)
+		{
+		case P:
+			Subsystems.robotArm.pickup();
 			break;
-		case M_R:
+		case D:
+			Subsystems.robotArm.dropoff();
 			break;
-		case M_N:
+		case L:
+			Subsystems.robotArm.load();
+			break;
+		case U:
+			Subsystems.robotArm.unload();
+			break;
+		case S:
+			Subsystems.robotArm.stop();
 			break;
 		}
+		
+		switch(conveyorState)
+		{
+		case L:
+			Subsystems.conveyor.load();
+			 break;
+		case U:
+			Subsystems.conveyor.unload();
+			break;
+		case S:
+			Subsystems.conveyor.stop();
+			break;
+		}
+		
+		switch(liftState)
+		{
+		case U:
+			Subsystems.forklift.up(toteCount);
+			break;
+		case D:
+			Subsystems.forklift.down(0);
+			break;
+		case S:
+			Subsystems.forklift.stop();
+			break;
+		}
+		
+//		switch(mode)
+//		{
+//		case A:
+//			
+//			switch(armState)
+//			{
+//			case P:
+//				Subsystems.robotArm.pickup();
+//				break;
+//			case L:
+//				Subsystems.robotArm.load();
+//				break;
+//			case S:
+//				// TODO: THIS HAPPENS TWICE!!!!
+//				if(liftState == Lift.U)
+//				{
+//					
+//				}
+//				else if(liftState == Lift.D)
+//				{
+//					
+//				}
+//				
+//				break;
+//			default:
+//				break;
+//			}
+//			
+//			break;
+//			
+//		case R:
+//			
+//			switch(armState)
+//			{
+//			case U:
+//				Subsystems.robotArm.unload(); // TODO: Verify that this has been changed to call the stop() function
+//				break;
+//			case D:
+//				Subsystems.robotArm.dropoff(); // TODO: Verify that this has been changed to call the stop() function
+//				break;
+//			case S:
+//				// TODO: THIS HAPPENS TWICE!!!!
+//				break;
+//			default:
+//				break;
+//			}
+//			
+//			break;
+//			
+//		case N:
+//			armState = Arm.S;
+//			conveyorState = Conveyor.S;
+//			liftState = Lift.S;
+//			break;
+//			
+//		}
 	}
 	
 }

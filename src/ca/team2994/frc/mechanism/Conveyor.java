@@ -1,6 +1,6 @@
 package ca.team2994.frc.mechanism;
-
-import ca.team2994.frc.robot.*;
+import ca.team2994.frc.robot.Constants;
+import ca.team2994.frc.robot.Motor;
 
 public class Conveyor {
 	private Motor motor; // Include motor number for next time Note* 2 is for

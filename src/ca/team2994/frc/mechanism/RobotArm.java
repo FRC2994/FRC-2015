@@ -33,6 +33,8 @@ public class RobotArm {
 	private static final int PICKUP_MODE = 1;
 	private static final int LOAD_MODE = 2;
 	
+	private boolean isDone = false;
+	
 	// Note to Connor: Your challenge is to figure out how to change pickup() and load() to start the automatic
 	//                 behavior so it switch into a certain mode when the operator presses a button, and keep
 	//                 doing stuff on its own.
@@ -53,7 +55,17 @@ public class RobotArm {
 		
 		m_currentMode = MANUAL_MODE;
 	}
-
+	
+	public boolean isDone()
+	{
+		return isDone();
+	}
+	
+	public void setDone(boolean val)
+	{
+		isDone = val;
+	}
+	
 	// Stop the arms from moving
 	public void stop() {
 		m_leftArmMotor.set(0.0);
@@ -61,6 +73,7 @@ public class RobotArm {
 		
 		// Whatever we were doing before.. we are no longer in any automatic mode
 		m_currentMode = MANUAL_MODE;
+		isDone = true;
 	}
 
 	public void forward() {
@@ -86,8 +99,8 @@ public class RobotArm {
 			m_currentMode = PICKUP_MODE;
 		}
 		if (Subsystems.toteDetectionSensor.get()) {
+			isDone = true;
 			stop();
-	
 		}
 	}
 
@@ -98,6 +111,11 @@ public class RobotArm {
 		m_leftArmMotor.setExpiration(DROPOFF_TIME);
 		m_rightArmMotor.setExpiration(DROPOFF_TIME);
 		m_currentMode = PICKUP_MODE;
+		
+		if(Subsystems.toteDetectionSensor.get()) {
+			isDone = true;
+			stop();
+		}
 	}
 
 	public void load() {
@@ -108,6 +126,7 @@ public class RobotArm {
 			m_currentMode = LOAD_MODE;
 		}
 		if (Subsystems.toteDetectionSensor.get() == false) {
+			isDone = true;
 			stop();
 		}
 	}
@@ -119,6 +138,11 @@ public class RobotArm {
 		m_leftArmMotor.setExpiration(UNLOAD_TIME);
 		m_rightArmMotor.setExpiration(UNLOAD_TIME);
 		m_currentMode = LOAD_MODE;
+		
+		if(Subsystems.toteDetectionSensor.get()) {
+			isDone = true;
+			stop();
+		}
 	}
     public static void robotArm() {
     	if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_STOP))) {
