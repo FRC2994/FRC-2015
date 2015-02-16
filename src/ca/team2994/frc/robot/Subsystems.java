@@ -4,14 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import com.google.common.base.Charsets;
-import com.google.common.collect.Iterables;
-import com.google.common.io.Files;
-
 import ca.team2994.frc.autonomous.AutoHelper;
 import ca.team2994.frc.mechanism.Forklift;
 import ca.team2994.frc.mechanism.RobotArm;
 import ca.team2994.frc.mechanism.StateMachine;
+
+import com.google.common.base.Charsets;
+import com.google.common.collect.Iterables;
+import com.google.common.io.Files;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -107,12 +108,7 @@ public class Subsystems {
 		compressor.setClosedLoopControl(true); // turn back on when compressor is ready
 		
 		//Solenoid - Gear shift
-<<<<<<< HEAD
 		gearShiftSolenoid = new DoubleSolenoid(Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL1),Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL2));
-=======
-		gearShiftSolenoid = new DoubleSolenoid(Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL1), 
-				Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL2));
->>>>>>> 551a3cde459e5844a9fd76800fea463c92632c30
 		
 		// Sensors
 		toteDetectionSensor = new DigitalInput(Constants.getConstantAsInt(Constants.DIO_TOTE_DETECT_SENSOR));
