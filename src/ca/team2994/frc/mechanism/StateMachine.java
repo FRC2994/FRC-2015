@@ -147,7 +147,7 @@ public class StateMachine
 		return stateCode;
 	}
 	
-	public void callEvent(Event event)
+	private void callEvent(Event event)
 	{
 		switch(mode)
 		{
@@ -254,4 +254,44 @@ public class StateMachine
 			increaseToteCount = false;
 		}
 	}
+	
+	// Public functions to handle what to do
+	
+	public void loadTote()
+	{
+		// B3, AS, LRP, AS, LRP, done
+		// B3 means I want to load a tote and put it onto the conveyor
+		// Since arm is in picking up state, put it on the ground and set the motors on until
+		// the light sensor is switched
+		// AS means that the arm has successfully pulled in a tote
+		// Move the lift up to position one (or the next position)
+		// LRP is called when the forklift reaches that position (Subsystems.forklift.isLevelReached());
+		// Turn botht the arm motors and conveyor motor to intake and push the tote anto the conveyor
+		// AS means that the tote is no longer crossing the light sensor so the tote has been loaded onto the
+		// conveyor
+		// Put the lift back to the ground
+		// LRP means that the lift has reached the ground
+		// Stop everything and increase the tote count (should be done automatically)
+		
+		callEvent(Event.E_B3);
+	}
+	
+	public void dropTotes()
+	{
+		
+	}
+	
+	public void update()
+	{
+		switch(mode)
+		{
+		case M_A:
+			break;
+		case M_R:
+			break;
+		case M_N:
+			break;
+		}
+	}
+	
 }

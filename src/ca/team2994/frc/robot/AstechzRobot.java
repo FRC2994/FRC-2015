@@ -73,8 +73,6 @@ public class AstechzRobot extends IterativeRobot {
     @Override
 	public void teleopPeriodic() {
     	Subsystems.driveJoystick.update();
-    	Subsystems.controlGamepad.update();
-    	
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
     	
     	RobotArm.robotArm();
