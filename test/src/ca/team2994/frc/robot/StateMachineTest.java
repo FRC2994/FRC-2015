@@ -50,29 +50,29 @@ public class StateMachineTest
 	
 	public void loadTote()
 	{
-		stateMachine.CallEvent(Event.E_B3);
+		stateMachine.callEvent(Event.E_B3);
 		printCode();
-		stateMachine.CallEvent(Event.E_AS);
+		stateMachine.callEvent(Event.E_AS);
 		printCode();
-		stateMachine.CallEvent(Event.E_LRP);
+		stateMachine.callEvent(Event.E_LRP);
 		printCode();
-		stateMachine.CallEvent(Event.E_AS);
+		stateMachine.callEvent(Event.E_AS);
 		printCode();
-		stateMachine.CallEvent(Event.E_LRP);
+		stateMachine.callEvent(Event.E_LRP);
 		printCode();
 	}
 	
 	public void dropTotes()
 	{
-		stateMachine.CallEvent(Event.E_B4);
+		stateMachine.callEvent(Event.E_B4);
 		printCode();
-		stateMachine.CallEvent(Event.E_LRP);
+		stateMachine.callEvent(Event.E_LRP);
 		printCode();
-		stateMachine.CallEvent(Event.E_AS);
+		stateMachine.callEvent(Event.E_AS);
 		printCode();
-		stateMachine.CallEvent(Event.E_LRP);
+		stateMachine.callEvent(Event.E_LRP);
 		printCode();
-		stateMachine.CallEvent(Event.E_AS);
+		stateMachine.callEvent(Event.E_AS);
 		printCode();
 	}
 	
