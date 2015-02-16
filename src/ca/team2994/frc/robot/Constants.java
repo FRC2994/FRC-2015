@@ -88,7 +88,7 @@ public class Constants
 	public static final String SOLENOID_SHIFTER_CHANNEL2 =		"SOLENOID_SHIFTER_CHANNEL2";
 	
 	//Conveyor
-	public static final String CONVEYOR_SPEED =					"CONVEYOR_SPEED";
+	public static final String CONVEYOR_SPEED = 				"CONVEYOR_SPEED";
 	public static final String CONVEYOR_TIME =					"CONVEYOR_TIME";
 	static
 	{
