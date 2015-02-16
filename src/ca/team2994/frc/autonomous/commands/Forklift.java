@@ -20,7 +20,7 @@ public class Forklift implements AutoCommand {
 	@Override
 	public boolean tick() {
 		if(!Subsystems.forklift.isLevelReached()) {
-			Subsystems.forklift.update();
+			Subsystems.forklift.pidLoop();
 			return true;
 		}
 		return false;

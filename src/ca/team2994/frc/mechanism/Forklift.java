@@ -47,6 +47,16 @@ public class Forklift
 		forkliftPID.setDesiredValue(encoderLevels[levelIndex]);
 	}
 	
+	public void pidLoop()
+	{
+		forkliftMotor.set(forkliftPID.calcPID(forkliftEncoder.get()));
+		
+		if(forkliftPID.isDone())
+		{
+			stop();
+		}
+	}
+	
 	public void up(int level)
 	{
 		levelIndex = level;
