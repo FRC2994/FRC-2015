@@ -77,30 +77,22 @@ public class Constants
 	public static final String ENCODER_PID_D = 					"ENCODER_PID_D";
 	public static final String ENCODER_PID_E = 					"ENCODER_PID_E";
 	
-<<<<<<< HEAD
+
 	public static final String CALIBRATION_FILE_LOC =			"CALIBRATION_FILE_LOC";
 	public static final String CALIBRATION_BUTTON = 			"CALIBRATION_BUTTON";
 	
 	//Compressor channel
 	public static final String COMPRESSOR_CHANNEL =				"COMPRESSOR_CHANNEL";
-=======
-	public static final String CALIBRATION_FILE_LOC = 			"CALIBRATION_FILE_LOC";
-	public static final String CALIBRATION_BUTTON = 			"CALIBRATION_BUTTON";
-	
-	//Compressor channel
-	public static final String COMPRESSOR_CHANNEL =             "COMPRESSOR_CHANNEL";
->>>>>>> 551a3cde459e5844a9fd76800fea463c92632c30
 	
 	//Double Solenoid Channels
 	public static final String SOLENOID_SHIFTER_CHANNEL1 =		"SOLENOID_SHIFTER_CHANNEL1";
 	public static final String SOLENOID_SHIFTER_CHANNEL2 =		"SOLENOID_SHIFTER_CHANNEL2";
 	
-<<<<<<< HEAD
+
 	//Conveyor
 	public static final String CONVEYOR_SPEED = 				"CONVEYOR_SPEED";
 	public static final String CONVEYOR_TIME =					"CONVEYOR_TIME";
-=======
->>>>>>> 551a3cde459e5844a9fd76800fea463c92632c30
+
 	static
 	{
 		// PWM
@@ -176,13 +168,10 @@ public class Constants
 		// Double Solenoid Channels
 		defaults.put(SOLENOID_SHIFTER_CHANNEL1, "6");
 		defaults.put(SOLENOID_SHIFTER_CHANNEL2, "7");
-<<<<<<< HEAD
 		
 		//Conveyor
 		defaults.put(CONVEYOR_SPEED, "0.4");
 		defaults.put(CONVEYOR_TIME,"20");
-=======
->>>>>>> 551a3cde459e5844a9fd76800fea463c92632c30
 	}
 	
 	/**
