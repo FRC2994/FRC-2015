@@ -1,5 +1,6 @@
 package ca.team2994.frc.mechanism;
 
+import ca.team2994.frc.mechanism.StateMachine.Event;
 import ca.team2994.frc.robot.Constants;
 import ca.team2994.frc.robot.Motor;
 import ca.team2994.frc.robot.Subsystems;
@@ -48,7 +49,7 @@ public class RobotArm {
 	public void stop() {
 		m_leftArmMotor.set(0.0);
 		m_rightArmMotor.set(0.0);
-		
+		Subsystems.stateMachine.callEvent(Event.AS);
 		// Whatever we were doing before.. we are no longer in any automatic mode
 
 	}
