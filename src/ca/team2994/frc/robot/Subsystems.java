@@ -107,12 +107,11 @@ public class Subsystems {
 		compressor.setClosedLoopControl(true); // turn back on when compressor is ready
 		
 		//Solenoid - Gear shift
-<<<<<<< HEAD
-		gearShiftSolenoid = new DoubleSolenoid(Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL1),Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL2));
-=======
-		gearShiftSolenoid = new DoubleSolenoid(Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL1), 
+
+		gearShiftSolenoid = new DoubleSolenoid(Constants.getConstantAsInt(Constants.COMPRESSOR_CHANNEL), 
+				Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL1),
 				Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL2));
->>>>>>> 551a3cde459e5844a9fd76800fea463c92632c30
+
 		
 		// Sensors
 		toteDetectionSensor = new DigitalInput(Constants.getConstantAsInt(Constants.DIO_TOTE_DETECT_SENSOR));
