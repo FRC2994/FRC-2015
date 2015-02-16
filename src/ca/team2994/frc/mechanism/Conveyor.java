@@ -29,14 +29,14 @@ public class Conveyor {
 	/**
 	 * Moves the conveyer forward at a speed from the constants
 	 */
-	public void forward() {
+	public void unload() {
 		motor.set(speed);
 	}
 
 	/**
 	 * Moves the conveyer backwards at a speed from the constants
 	 */
-	public void reverse() {
+	public void load() {
 		motor.set(-speed);
 	}
 
