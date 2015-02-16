@@ -128,11 +128,11 @@ public class AstechzRobot extends IterativeRobot {
     }
     public void gearShift() {
     	if(Subsystems.driveJoystick.getEvent(6) == ButtonEntry.EVENT_CLOSED) {
-    		Subsystems.robotDrive.setHighGear();
+//    		Subsystems.robotDrive.setHighGear();
     		
     	}
     	else if(Subsystems.driveJoystick.getEvent(7) == ButtonEntry.EVENT_CLOSED) {
-    		Subsystems.robotDrive.setLowGear();
+//    		Subsystems.robotDrive.setLowGear();
     	}
     }
 }

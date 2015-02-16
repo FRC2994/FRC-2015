@@ -149,10 +149,10 @@ public class Constants
 		defaults.put(BLING_ENABLED, "0");
 		
 		//PID
-		defaults.put(GYRO_PID_P, "2.16");
+		defaults.put(GYRO_PID_P, "0.005");
 		defaults.put(GYRO_PID_I, "0.0");
-		defaults.put(GYRO_PID_D, "0.1");
-		defaults.put(GYRO_PID_E, "0.1");
+		defaults.put(GYRO_PID_D, "0.0");
+		defaults.put(GYRO_PID_E, "1.0");
 		
 		defaults.put(ENCODER_PID_P, "2.16");
 		defaults.put(ENCODER_PID_I, "0.0");

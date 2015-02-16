@@ -339,28 +339,20 @@ public class ERobotDrive implements MotorSafety {
 		byte syncGroup = (byte) 0x80;
 
 		if (m_frontLeftMotor != null) {
-			m_frontLeftMotor.set(limit(leftOutput)
-					* m_invertedMotors[MOTOR_FRONT_LEFT] * m_maxOutput,
-					syncGroup);
+			m_frontLeftMotor.set(limit(leftOutput) * m_invertedMotors[MOTOR_FRONT_LEFT] * m_maxOutput, syncGroup);
 		}
 		if (m_centerLeftMotor != null) {
-			m_centerLeftMotor.set(limit(leftOutput)
-					* m_invertedMotors[MOTOR_CENTER_LEFT] * m_maxOutput,
-					syncGroup);
+			m_centerLeftMotor.set(limit(leftOutput) * m_invertedMotors[MOTOR_CENTER_LEFT] * m_maxOutput, syncGroup);
 		}
-		m_rearLeftMotor.set(limit(leftOutput)
-				* m_invertedMotors[MOTOR_REAR_LEFT] * m_maxOutput, syncGroup);
+		m_rearLeftMotor.set(limit(leftOutput) * m_invertedMotors[MOTOR_REAR_LEFT] * m_maxOutput, syncGroup);
 
-		if (m_frontRightMotor != null)
-			m_frontRightMotor.set(-limit(rightOutput)
-					* m_invertedMotors[MOTOR_FRONT_RIGHT] * m_maxOutput,
-					syncGroup);
-		if (m_centerRightMotor != null)
-			m_centerRightMotor.set(-limit(rightOutput)
-					* m_invertedMotors[MOTOR_CENTER_LEFT] * m_maxOutput,
-					syncGroup);
-		m_rearRightMotor.set(-limit(rightOutput)
-				* m_invertedMotors[MOTOR_REAR_RIGHT] * m_maxOutput, syncGroup);
+		if (m_frontRightMotor != null) {
+			m_frontRightMotor.set(-limit(rightOutput) * m_invertedMotors[MOTOR_FRONT_RIGHT] * m_maxOutput, syncGroup);
+		}
+		if (m_centerRightMotor != null) {
+			m_centerRightMotor.set(-limit(rightOutput) * m_invertedMotors[MOTOR_CENTER_RIGHT] * m_maxOutput, syncGroup);
+		}
+		m_rearRightMotor.set(-limit(rightOutput)* m_invertedMotors[MOTOR_REAR_RIGHT] * m_maxOutput, syncGroup);
 
 		try {
 			CANJaguar.updateSyncGroup(syncGroup);
