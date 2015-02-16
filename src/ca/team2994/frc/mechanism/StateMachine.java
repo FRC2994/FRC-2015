@@ -217,10 +217,10 @@ public class StateMachine
 			callEvent(Event.LRP);
 		}
 		
-		if(Subsystems.robotArm.isDone())
-		{
-			callEvent(Event.AS);
-		}
+//		if(Subsystems.robotArm.isDone())
+//		{
+//			callEvent(Event.AS);
+//		}
 		
 		switch(armState)
 		{
