@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class AstechzRobot extends IterativeRobot {
 	
+	static boolean Gear = false;
 	int counter = 0;
 	CalibrationManager calibration;
 	AutoMode currentAutoMode;
@@ -72,6 +73,9 @@ public class AstechzRobot extends IterativeRobot {
 //    	smartdash.showMotors();
     	Subsystems.driveJoystick.update();
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
+    	robotArm();
+	gearShift();
+		smartdash.compDash();
     	RobotArm.robotArm();
     }
     
@@ -96,4 +100,44 @@ public class AstechzRobot extends IterativeRobot {
     @Override
     public void disabledInit() {
 	}
+    
+    
+    public void robotArm() {
+    	if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_STOP))) {
+    		Subsystems.robotArm.stop();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_FORWARD))) {
+    		Subsystems.robotArm.forward();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_REVERSE))) {
+    		Subsystems.robotArm.reverse();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_PICKUP))) {
+    		Subsystems.robotArm.pickup();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_DROPOFF))) {
+    		Subsystems.robotArm.dropoff();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_LOAD))) {
+    		Subsystems.robotArm.load();
+    	}
+    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_UNLOAD))) {
+    		Subsystems.robotArm.unload();
+    	}
+    	else {
+    		Subsystems.robotArm.stop();
+    	}
+    }
+    public void gearShift() {
+    	if(Subsystems.driveJoystick.getEvent(6) == ButtonEntry.EVENT_CLOSED) {
+    		Subsystems.robotDrive.setHighGear();
+    		Gear = true;
+    		
+    		
+    	}
+    	else if(Subsystems.driveJoystick.getEvent(7) == ButtonEntry.EVENT_CLOSED) {
+    		Subsystems.robotDrive.setLowGear();
+    		Gear =  false;
+    	}
+    }
 }
