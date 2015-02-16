@@ -33,12 +33,12 @@ public class DriveStraight implements AutoCommand {
 	public boolean tick() {
 		if (!Subsystems.encoderPID.isDone()) {
 			double driveVal = Subsystems.encoderPID
-					.calcPID((Subsystems.leftDriveEncoder.getDistance() + Subsystems.rightDriveEncoder
-							.getDistance()) / 2.0);
+					.calcPID((Subsystems.leftDriveEncoder.getDistance() + Subsystems.rightDriveEncoder.getDistance()) / 2.0);
 			// TODO: Read this from the constants file as "encoderPIDMax"
 			double limitVal = SimLib.limitValue(driveVal, 0.25);
 
 			Subsystems.robotDrive.setLeftRightMotorOutputs(limitVal, limitVal);
+			System.out.println("LE:" + Subsystems.leftDriveEncoder.getDistance() + ",RE:" + Subsystems.rightDriveEncoder.getDistance()+",DV:"+driveVal);
 			return true;
 		}
 		return false;

@@ -12,7 +12,7 @@ public class TestAutoMode extends AutoMode {
 	protected AutoCommand[] initializeCommands() {
 		AutoBuilder builder = new AutoBuilder();
 		
-		builder.add(new DriveStraight(3));
+		builder.add(new DriveStraight(5));
 		builder.add(new DriveTurn(360));
 		
 		return builder.toArray();
