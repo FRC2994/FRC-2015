@@ -79,8 +79,8 @@ public class AstechzRobot extends IterativeRobot {
     	Subsystems.driveJoystick.update();
     	Subsystems.controlGamepad.update();
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
-    	GearShifter.gearShift();
-    	GearShifter.compressorEnable();
+    Subsystems.gearShifter.gearShift();
+    	//GearShifter.compressorEnable();
 
 
 
