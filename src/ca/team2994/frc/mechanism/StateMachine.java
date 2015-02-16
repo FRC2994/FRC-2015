@@ -10,41 +10,41 @@ public class StateMachine
 	
 	private static enum Mode
 	{
-		M_A, 						// Add
-		M_R, 						// Remove
-		M_N 						// None
+		A, 						// Add
+		R, 						// Remove
+		N 						// None
 	}
 	
 	private static enum Arm
 	{
-		A_P, 						// Picking up
-		A_D, 						// Dropping off
-		A_L, 						// Loading
-		A_U, 						// Unloading
-		A_S 						// Stopped
+		P, 						// Picking up
+		D, 						// Dropping off
+		L, 						// Loading
+		U, 						// Unloading
+		S 						// Stopped
 	}
 	
 	private static enum Conveyor
 	{
-		C_L, 						// Loading
-		C_U, 						// Unloading
-		C_S							// Stopped
+		L, 						// Loading
+		U, 						// Unloading
+		S						// Stopped
 	}
 	
 	private static enum Lift
 	{
-		L_S, 						// Stopped
-		L_U, 						// Up
-		L_D 						// Down
+		S, 						// Stopped
+		U, 						// Up
+		D 						// Down
 	}
 	
 	public static enum Event
 	{
-		E_LRP,						// Lift reaches position
-		E_AS,						// Arm stops
-		E_CS, 						// Conveyor stops (Deprecated)
-		E_B3, 						// Load a tote and put it on the conveyor
-		E_B4 						// Unload a tote
+		LRP,					// Lift reaches position
+		AS,						// Arm stops
+		CS, 					// Conveyor stops (Deprecated)
+		B3, 					// Load a tote and put it on the conveyor
+		B4 						// Unload a tote
 	}
 	
 	private Mode mode;
@@ -56,10 +56,10 @@ public class StateMachine
 	
 	public StateMachine()
 	{
-		mode = Mode.M_N;
-		armState = Arm.A_S;
-		conveyorState = Conveyor.C_S;
-		liftState = Lift.L_S;
+		mode = Mode.N;
+		armState = Arm.S;
+		conveyorState = Conveyor.S;
+		liftState = Lift.S;
 		toteCount = 0;
 	}
 	
@@ -71,77 +71,10 @@ public class StateMachine
 	public String getStateCode()
 	{
 		String stateCode = "";
-		
-		switch(mode)
-		{
-		case M_A:
-			stateCode += "A";
-			break;
-		case M_R:
-			stateCode += "R";
-			break;
-		case M_N:
-			stateCode += "N";
-			break;
-		default:
-			stateCode += "X";
-			break;
-		}
-		
-		switch(armState)
-		{
-		case A_P:
-			stateCode += "P";
-			break;
-		case A_D:
-			stateCode += "D";
-			break;
-		case A_L:
-			stateCode += "L";
-			break;
-		case A_U:
-			stateCode += "U";
-			break;
-		case A_S:
-			stateCode += "S";
-			break;
-		default:
-			stateCode += "X";
-			break;
-		}
-		
-		switch(conveyorState)
-		{
-		case C_L:
-			stateCode += "L";
-			break;
-		case C_U:
-			stateCode += "U";
-			break;
-		case C_S:
-			stateCode += "S";
-			break;
-		default:
-			stateCode += "X";
-			break;
-		}
-		
-		switch(liftState)
-		{
-		case L_S:
-			stateCode += "S";
-			break;
-		case L_U:
-			stateCode += "U";
-			break;
-		case L_D:
-			stateCode += "D";
-			break;
-		default:
-			stateCode += "X";
-			break;
-		}
-		
+		stateCode += mode.name();
+		stateCode += armState.name();
+		stateCode += conveyorState.name();
+		stateCode += liftState.name();		
 		stateCode += toteCount;
 		
 		return stateCode;
@@ -151,98 +84,91 @@ public class StateMachine
 	{
 		switch(mode)
 		{
-		case M_A:
+		case A:
 			if(toteCount < 3)
 			{
-				if(event == Event.E_AS)
+				if(event == Event.AS)
 				{
-					if(armState == Arm.A_P)
+					if(armState == Arm.P)
 					{
-						armState = Arm.A_S;
-						liftState = Lift.L_U;
+						armState = Arm.S;
+						liftState = Lift.U;
 					}
-					else if(armState == Arm.A_L)
+					else if(armState == Arm.L)
 					{
-						armState = Arm.A_S;
-						conveyorState = Conveyor.C_S;
-						liftState = Lift.L_D;
+						armState = Arm.S;
+						conveyorState = Conveyor.S;
+						liftState = Lift.D;
 					}
 				}
-				else if(event == Event.E_LRP)
+				else if(event == Event.LRP)
 				{
-					if(liftState == Lift.L_U)
+					if(liftState == Lift.U)
 					{
-						armState = Arm.A_L;
-						conveyorState = Conveyor.C_L;
-						liftState = Lift.L_S;
+						armState = Arm.L;
+						conveyorState = Conveyor.L;
+						liftState = Lift.S;
 					}
-					else if(liftState == Lift.L_D)
+					else if(liftState == Lift.D)
 					{
 						// Everything is done at this point
-						mode = Mode.M_N;
-						liftState = Lift.L_S;
+						mode = Mode.N;
+						liftState = Lift.S;
 						increaseToteCount = true;
 					}
 				}
 			}
 			break;
 			
-			
-			
-			
-		case M_R:
-			if(event == Event.E_LRP)
+		case R:
+			if(event == Event.LRP)
 			{
-				if(liftState == Lift.L_U)
+				if(liftState == Lift.U)
 				{
-					armState = Arm.A_U;
-					conveyorState = Conveyor.C_U;
-					liftState = Lift.L_S;
+					armState = Arm.U;
+					conveyorState = Conveyor.U;
+					liftState = Lift.S;
 				}
-				else if(liftState == Lift.L_D)
+				else if(liftState == Lift.D)
 				{
-					armState = Arm.A_D;
-					conveyorState = Conveyor.C_S;
-					liftState = Lift.L_S;
+					armState = Arm.D;
+					conveyorState = Conveyor.S;
+					liftState = Lift.S;
 				}
 			}
-			else if(event == Event.E_AS)
+			else if(event == Event.AS)
 			{
-				if(armState == Arm.A_U)
+				if(armState == Arm.U)
 				{
-					armState = Arm.A_S;
-					conveyorState = Conveyor.C_S;
-					liftState = Lift.L_D;
+					armState = Arm.S;
+					conveyorState = Conveyor.S;
+					liftState = Lift.D;
 				}
-				else if(armState == Arm.A_D)
+				else if(armState == Arm.D)
 				{
-					mode = Mode.M_N;
-					armState = Arm.A_S;
+					mode = Mode.N;
+					armState = Arm.S;
 					// Assume that all totes are being removed as opposed to just one
 					toteCount = 0;
 				}
 			}
 			break;
 			
-			
-			
-			
-			
-		case M_N:
+		case N:
 			if(toteCount < 3)
 			{
-				if(event == Event.E_B3)
+				if(event == Event.B3)
 				{
-					mode = Mode.M_A;
-					armState = Arm.A_P;
+					mode = Mode.A;
+					armState = Arm.P;
 				}
 			}
-			if(event == Event.E_B4)
+			if(event == Event.B4)
 			{
 				if(toteCount > 0)
 				{
-					mode = Mode.M_R;
-					liftState = Lift.L_U;
+					mode = Mode.R;
+					liftState = Lift.U;
 				}
 			}
 			break;
