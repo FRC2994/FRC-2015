@@ -52,6 +52,7 @@ public class StateMachine
 	private Conveyor conveyorState;
 	private Lift liftState;
 	private int toteCount;
+	private boolean increaseToteCount = false;
 	
 	public StateMachine()
 	{
@@ -146,9 +147,7 @@ public class StateMachine
 		return stateCode;
 	}
 	
-	boolean increaseToteCount = false;
-	
-	public void CallEvent(Event event)
+	public void callEvent(Event event)
 	{
 		switch(mode)
 		{
@@ -238,7 +237,7 @@ public class StateMachine
 					armState = Arm.A_P;
 				}
 			}
-			if(event == Event.E_B4 && toteCount == 3)
+			if(event == Event.E_B4)
 			{
 				if(toteCount > 0)
 				{

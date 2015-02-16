@@ -76,20 +76,40 @@ public class Constants
 	public static final String ENCODER_PID_I = 					"ENCODER_PID_I";
 	public static final String ENCODER_PID_D = 					"ENCODER_PID_D";
 	public static final String ENCODER_PID_E = 					"ENCODER_PID_E";
-	
+
 	public static final String CALIBRATION_FILE_LOC = 			"CALIBRATION_FILE_LOC";
 	public static final String CALIBRATION_BUTTON = 			"CALIBRATION_BUTTON";
 	
 	//Compressor channel
 	public static final String COMPRESSOR_CHANNEL =             "COMPRESSOR_CHANNEL";
 	
+
 	//Double Solenoid Channels
 	public static final String SOLENOID_SHIFTER_CHANNEL1 =		"SOLENOID_SHIFTER_CHANNEL1";
 	public static final String SOLENOID_SHIFTER_CHANNEL2 =		"SOLENOID_SHIFTER_CHANNEL2";
+<<<<<<< HEAD
 	
 	//Conveyor
 	public static final String CONVEYOR_SPEED =					"CONVEYOR_SPEED";
 	public static final String CONVEYOR_TIME =					"CONVEYOR_TIME";
+=======
+
+
+
+	//Conveyor
+	public static final String CONVEYOR_SPEED = 				"CONVEYOR_SPEED";
+	public static final String CONVEYOR_TIME =					"CONVEYOR_TIME";
+	
+	//Gamepad Buttons
+	public static final String GAMEPAD_ARM_FORWARD =			"GAMEPAD_ARM_FORWARD";
+	public static final String GAMEPAD_ARM_REVERSE =			"GAMEPAD_ARM_REVERSE";
+	public static final String GAMEPAD_ARM_PICKUP = 			"GAMEPAD_ARM_PICKUP";
+	public static final String GAMEPAD_ARM_DROPOFF =			"GAMEPAD_ARM_DROPOFF";
+	public static final String GAMEPAD_ARM_LOAD    =			"GAMEPAD_ARM_LOAD";
+	public static final String GAMEPAD_ARM_UNLOAD  =			"GAMEPAD_ARM_UNLOAD";
+	public static final String GAMEPAD_ARM_STOP    =			"GAMEPAD_ARM_STOP";
+
+>>>>>>> origin/master
 	static
 	{
 		// PWM
@@ -163,12 +183,31 @@ public class Constants
 		defaults.put(COMPRESSOR_CHANNEL, "1");
 		
 		// Double Solenoid Channels
+<<<<<<< HEAD
 		defaults.put(SOLENOID_SHIFTER_CHANNEL1, "6");
 		defaults.put(SOLENOID_SHIFTER_CHANNEL2, "7");
+=======
+		defaults.put(SOLENOID_SHIFTER_CHANNEL1, "0");
+		defaults.put(SOLENOID_SHIFTER_CHANNEL2, "1");
+
+
+>>>>>>> origin/master
 		
 		//Conveyor
 		defaults.put(CONVEYOR_SPEED, "0.4");
 		defaults.put(CONVEYOR_TIME,"20");
+<<<<<<< HEAD
+=======
+
+		//Gamepad Buttons
+		defaults.put(GAMEPAD_ARM_FORWARD, "1");
+		defaults.put(GAMEPAD_ARM_REVERSE, "2");
+		defaults.put(GAMEPAD_ARM_PICKUP, "3");
+		defaults.put(GAMEPAD_ARM_DROPOFF, "4");
+		defaults.put(GAMEPAD_ARM_LOAD,"5");
+		defaults.put(GAMEPAD_ARM_UNLOAD, "6");
+		defaults.put(GAMEPAD_ARM_STOP, "7");
+>>>>>>> origin/master
 	}
 	
 	/**
