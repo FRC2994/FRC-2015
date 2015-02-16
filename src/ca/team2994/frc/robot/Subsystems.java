@@ -11,6 +11,7 @@ import com.google.common.io.Files;
 import ca.team2994.frc.autonomous.AutoHelper;
 import ca.team2994.frc.mechanism.Forklift;
 import ca.team2994.frc.mechanism.RobotArm;
+import ca.team2994.frc.mechanism.StateMachine;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -60,14 +61,16 @@ public class Subsystems {
 	
 	// Mechanisms
 	public static Forklift forklift;
-
-	//
+	
 	//Robot Arm
  	public static RobotArm robotArm;
  	
- 	//PIDs
+ 	// PIDs
  	public static SimPID gyroPID;
  	public static SimPID encoderPID;
+ 	
+ 	// State Machine
+ 	public static StateMachine stateMachine;
 
 	/**
 	 * Initialize all of the subsystems, assumes that the constants file has been read already
@@ -143,7 +146,9 @@ public class Subsystems {
 		
 		// Set low gear by default
 		robotDrive.setLowGear();
-
+		
+		// State Machine
+		stateMachine = new StateMachine();
 	}
 	
 	/**
