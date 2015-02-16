@@ -238,7 +238,7 @@ public class StateMachine
 					armState = Arm.A_P;
 				}
 			}
-			if(event == Event.E_B4 && toteCount == 3)
+			if(event == Event.E_B4)
 			{
 				if(toteCount > 0)
 				{
