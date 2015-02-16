@@ -56,12 +56,14 @@ public class Constants
 	
 	//Robot Arm
 	
-	public static final String ARM_FORWARD_SPEED =         "ARM_FORWARD_SPEED";
-	public static final String ARM_REVERSE_SPEED =           "ARM_REVERSE_SPEED";
-	public static final String ARM_PICKUP_SPEED =           "ARM_PICKUP_SPEED";
-	public static final String ARM_DROPOFF_SPEED =           "ARM_DROPOFF_SPEED";
-	public static final String ARM_LOAD_SPEED =              "ARM_LOAD_SPEED";
-	public static final String ARM_UNLOAD_SPEED =            "ARM_UNLOAD_SPEED";
+	public static final String ARM_FORWARD_SPEED =			"ARM_FORWARD_SPEED";
+	public static final String ARM_REVERSE_SPEED =			"ARM_REVERSE_SPEED";
+	public static final String ARM_PICKUP_SPEED =			"ARM_PICKUP_SPEED";
+	public static final String ARM_DROPOFF_SPEED =			"ARM_DROPOFF_SPEED";
+	public static final String ARM_LOAD_SPEED =				"ARM_LOAD_SPEED";
+	public static final String ARM_UNLOAD_SPEED =			"ARM_UNLOAD_SPEED";
+	public static final String ARM_DROPOFF_TIME =			"ARM_DROPOFF_TIME";
+	public static final String ARM_UNLOAD_TIME =			"ARM_UNLOAD_TIME";
 	
 	
 	//PID
@@ -75,16 +77,30 @@ public class Constants
 	public static final String ENCODER_PID_D = 					"ENCODER_PID_D";
 	public static final String ENCODER_PID_E = 					"ENCODER_PID_E";
 	
+<<<<<<< HEAD
+	public static final String CALIBRATION_FILE_LOC =			"CALIBRATION_FILE_LOC";
+	public static final String CALIBRATION_BUTTON = 			"CALIBRATION_BUTTON";
+	
+	//Compressor channel
+	public static final String COMPRESSOR_CHANNEL =				"COMPRESSOR_CHANNEL";
+=======
 	public static final String CALIBRATION_FILE_LOC = 			"CALIBRATION_FILE_LOC";
 	public static final String CALIBRATION_BUTTON = 			"CALIBRATION_BUTTON";
 	
 	//Compressor channel
 	public static final String COMPRESSOR_CHANNEL =             "COMPRESSOR_CHANNEL";
+>>>>>>> 551a3cde459e5844a9fd76800fea463c92632c30
 	
 	//Double Solenoid Channels
 	public static final String SOLENOID_SHIFTER_CHANNEL1 =		"SOLENOID_SHIFTER_CHANNEL1";
 	public static final String SOLENOID_SHIFTER_CHANNEL2 =		"SOLENOID_SHIFTER_CHANNEL2";
 	
+<<<<<<< HEAD
+	//Conveyor
+	public static final String CONVEYOR_SPEED = 				"CONVEYOR_SPEED";
+	public static final String CONVEYOR_TIME =					"CONVEYOR_TIME";
+=======
+>>>>>>> 551a3cde459e5844a9fd76800fea463c92632c30
 	static
 	{
 		// PWM
@@ -133,6 +149,9 @@ public class Constants
 		defaults.put(ARM_DROPOFF_SPEED, "0.4");
 		defaults.put(ARM_LOAD_SPEED, "0.3");
 		defaults.put(ARM_UNLOAD_SPEED, "0.3");
+		defaults.put(ARM_DROPOFF_TIME, "50");
+		defaults.put(ARM_UNLOAD_TIME, "50");
+		
 		// Other
 		defaults.put(BLING_ENABLED, "0");
 		
@@ -157,6 +176,13 @@ public class Constants
 		// Double Solenoid Channels
 		defaults.put(SOLENOID_SHIFTER_CHANNEL1, "6");
 		defaults.put(SOLENOID_SHIFTER_CHANNEL2, "7");
+<<<<<<< HEAD
+		
+		//Conveyor
+		defaults.put(CONVEYOR_SPEED, "0.4");
+		defaults.put(CONVEYOR_TIME,"20");
+=======
+>>>>>>> 551a3cde459e5844a9fd76800fea463c92632c30
 	}
 	
 	/**
