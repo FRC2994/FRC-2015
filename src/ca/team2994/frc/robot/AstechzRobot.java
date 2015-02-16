@@ -32,8 +32,8 @@ public class AstechzRobot extends IterativeRobot {
     	Subsystems.leftDriveEncoder.reset();
     	Subsystems.rightDriveEncoder.reset();
     	
-    	Subsystems.driveJoystick.enableButton(6);
-    	Subsystems.driveJoystick.enableButton(7);
+    	Subsystems.driveJoystick.enableButton(Constants.getConstantAsInt(Constants.JOYSTICK_GEAR_HIGH));
+    	Subsystems.driveJoystick.enableButton(Constants.getConstantAsInt(Constants.JOYSTICK_GEAR_LOW));
     	Subsystems.driveJoystick.enableButton(8);
     	Subsystems.driveJoystick.enableButton(9);
     	Subsystems.driveJoystick.enableButton(10);
@@ -77,6 +77,8 @@ public class AstechzRobot extends IterativeRobot {
     	Subsystems.driveJoystick.update();
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
     	RobotArm.robotArm();
+    	GearShifter.gearShift();
+    	GearShifter.compressorEnable();
     }
     
     @Override

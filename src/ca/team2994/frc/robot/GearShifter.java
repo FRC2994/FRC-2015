@@ -2,18 +2,15 @@ package ca.team2994.frc.robot;
 
 public class GearShifter {
 	//controlls compressor and gear shifting with solenoid
-	private boolean highGear = false;
-	public boolean compressorStatus = false;
-	public boolean gearShiftStatus = false;
+	private static boolean highGear = false;
+	public static boolean compressorStatus = false;
+	public static boolean gearShiftStatus = false;
 	
-    public void gearShift() {
-    	if(Subsystems.driveJoystick.getEvent(11) == ButtonEntry.EVENT_CLOSED) {
-    		gearShiftStatus = true;
+    public static void gearShift() {
+    		if (Subsystems.gearShiftSolenoid == null) {
+			return;
+    	
     	}
-    	else if(Subsystems.driveJoystick.getEvent(10) == ButtonEntry.EVENT_CLOSED) {
-    		gearShiftStatus = false;
-    	}
-    	if(gearShiftStatus == true) {
     	if(Subsystems.driveJoystick.getEvent(Constants.getConstantAsInt(Constants.JOYSTICK_GEAR_HIGH)) == ButtonEntry.EVENT_CLOSED) {
     		Subsystems.robotDrive.setHighGear();
     		highGear = true;
@@ -21,15 +18,15 @@ public class GearShifter {
     		Subsystems.robotDrive.setLowGear();
     		highGear =  false;
     	}
-    	}
+    	
     }
     	
     
-    public void compressorEnable() {
-    if(Subsystems.driveJoystick.getEvent(9) == ButtonEntry.EVENT_CLOSED) {
+    public static void compressorEnable() {
+    if(Subsystems.driveJoystick.getEvent(Constants.getConstantAsInt(Constants.JOYSTICK_COMPRESSOR_ENABLE)) == ButtonEntry.EVENT_CLOSED) {
     	compressorStatus = true;
     }
-    else if(Subsystems.driveJoystick.getEvent(8) == ButtonEntry.EVENT_CLOSED) {
+    else if(Subsystems.driveJoystick.getEvent(Constants.getConstantAsInt(Constants.JOYSTICK_COMPRESSOR_DISABLE)) == ButtonEntry.EVENT_CLOSED) {
     	compressorStatus = false;
     }
     if(compressorStatus == true) {
