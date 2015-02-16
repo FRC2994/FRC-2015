@@ -3,6 +3,7 @@ package ca.team2994.frc.robot;
 import ca.team2994.frc.autonomous.AutoMode;
 import ca.team2994.frc.autonomous.CalibrationManager;
 import ca.team2994.frc.autonomous.modes.TestAutoMode;
+import ca.team2994.frc.mechanism.RobotArm;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -15,10 +16,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class AstechzRobot extends IterativeRobot {
 	
-<<<<<<< HEAD
 	static boolean Gear = false;
-=======
->>>>>>> origin/master
 	int counter = 0;
 	CalibrationManager calibration;
 	AutoMode currentAutoMode;
@@ -75,13 +73,10 @@ public class AstechzRobot extends IterativeRobot {
 //    	smartdash.showMotors();
     	Subsystems.driveJoystick.update();
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
-<<<<<<< HEAD
     	robotArm();
 	gearShift();
 		smartdash.compDash();
-=======
     	RobotArm.robotArm();
->>>>>>> origin/master
     }
     
     @Override
@@ -105,7 +100,6 @@ public class AstechzRobot extends IterativeRobot {
     @Override
     public void disabledInit() {
 	}
-<<<<<<< HEAD
     
     
     public void robotArm() {
@@ -146,6 +140,4 @@ public class AstechzRobot extends IterativeRobot {
     		Gear =  false;
     	}
     }
-=======
->>>>>>> origin/master
 }
