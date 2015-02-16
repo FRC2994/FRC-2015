@@ -100,6 +100,10 @@ public class Constants
 	public static final String GAMEPAD_ARM_LOAD    =			"GAMEPAD_ARM_LOAD";
 	public static final String GAMEPAD_ARM_UNLOAD  =			"GAMEPAD_ARM_UNLOAD";
 	public static final String GAMEPAD_ARM_STOP    =			"GAMEPAD_ARM_STOP";
+	
+	//Joystick Buttons
+	public static final String JOYSTICK_GEAR_HIGH  =			"JOYSTICK_GEAR_HIGH";
+	public static final String JOYSTICK_GEAR_LOW   =			"JOYSTICK_GEAR_LOW";
 
 
 	static {
@@ -148,8 +152,8 @@ public class Constants
 		defaults.put(ARM_DROPOFF_SPEED, "0.4");
 		defaults.put(ARM_LOAD_SPEED, "0.3");
 		defaults.put(ARM_UNLOAD_SPEED, "0.3");
-		defaults.put(ARM_DROPOFF_TIME, "50");
-		defaults.put(ARM_UNLOAD_TIME, "50");
+		defaults.put(ARM_DROPOFF_TIME, "0");
+		defaults.put(ARM_UNLOAD_TIME, "0");
 		
 		// Other
 		defaults.put(BLING_ENABLED, "0");
@@ -187,6 +191,10 @@ public class Constants
 		defaults.put(GAMEPAD_ARM_LOAD,"5");
 		defaults.put(GAMEPAD_ARM_UNLOAD, "6");
 		defaults.put(GAMEPAD_ARM_STOP, "7");
+		
+		//Joystick Buttons
+		defaults.put(JOYSTICK_GEAR_HIGH, "6");
+		defaults.put(JOYSTICK_GEAR_LOW, "7");
 	}
 	
 	/**
