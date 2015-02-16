@@ -23,17 +23,16 @@ public class DriveTurn implements AutoCommand {
 		// right away (we know the gyro angle is zero from the above
 		// reset).
 		Subsystems.gyroPID.calcPID(0);
-		
+		System.out.println("DriveTurn Init:" + angle);
 	}
 	
 	@Override
 	public boolean tick() {
 		if (!Subsystems.gyroPID.isDone()) {
-			System.out.println("gyro.getAngle() = " + Subsystems.gyroSensor.getAngle());
 			double driveVal = Subsystems.gyroPID.calcPID(-Subsystems.gyroSensor.getAngle());
 			// TODO: Read this from the constants file as "gyroPIDMax"
 			double limitVal = SimLib.limitValue(driveVal, 0.25);
-			System.out.println("limitVal = " + limitVal);
+			System.out.println("gyro.getAngle() = " + Subsystems.gyroSensor.getAngle()+",limitVal = " + limitVal);
 			Subsystems.robotDrive.setLeftRightMotorOutputs(limitVal, -limitVal);
 			return true;
 		}
@@ -43,6 +42,7 @@ public class DriveTurn implements AutoCommand {
 
 	@Override
 	public void cleanup() {
+		System.out.println("DriveTurn Cleanup");
 		Subsystems.robotDrive.drive(0.0, 0.0);
 	}
 	

@@ -1,6 +1,7 @@
 package ca.team2994.frc.robot;
 
 import ca.team2994.frc.autonomous.AutoMode;
+import ca.team2994.frc.autonomous.CalibrationManager;
 import ca.team2994.frc.autonomous.modes.TestAutoMode;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -15,7 +16,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class AstechzRobot extends IterativeRobot {
 	
 	int counter = 0;
-	
+	CalibrationManager calibration;
 	AutoMode currentAutoMode;
 	
 	SmartDash smartdash;
@@ -71,9 +72,15 @@ public class AstechzRobot extends IterativeRobot {
 	public void teleopPeriodic() {
 //    	smartdash.showMotors();
     	Subsystems.driveJoystick.update();
-    	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, true);
+    	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
     	robotArm();
-    	gearShift();
+//    	gearShift();
+    }
+    
+    @Override
+	public void testInit() {
+    	calibration = new CalibrationManager();
+    	calibration.calibrateInit();    	
     }
     
     /**
@@ -81,6 +88,7 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void testPeriodic() {
+    	calibration.calibrateTick();
     	LiveWindow.run();
     }
     

@@ -223,7 +223,7 @@ public class ERobotDrive implements MotorSafety {
 	 */
 	public void arcadeDrive(GenericHID stick, boolean squaredInputs) {
 		// simply call the full-featured ArcadeDrive with the appropriate values
-		arcadeDrive(stick.getY(), stick.getX(), squaredInputs);
+		arcadeDrive(-stick.getY(), -stick.getX(), squaredInputs);
 	}
 
 	/**
@@ -496,12 +496,12 @@ public class ERobotDrive implements MotorSafety {
 		}
 	}
 
-	public void setLowGear() {
+	public void setHighGear() {
 		Subsystems.gearShiftSolenoid.set(DoubleSolenoid.Value.kForward);
 		System.out.println("low gear selected");
 	}
 
-	public void setHighGear() {
+	public void setLowGear() {
 		Subsystems.gearShiftSolenoid.set(DoubleSolenoid.Value.kReverse);
 		System.out.println("high gear selected");
 	}

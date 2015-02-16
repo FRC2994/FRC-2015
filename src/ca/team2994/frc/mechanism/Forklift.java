@@ -24,7 +24,7 @@ public class Forklift
 	{
 		forkliftMotor = liftMotor;
 		forkliftEncoder = liftEncoder;
-		forkliftPID = new SimPID(0.0, 0.0, 0.0);
+		forkliftPID = new SimPID(0.006, 0.001, 0.001);
 		encoderLevels[0] = 300.0;
 		encoderLevels[1] = 600.0;
 		encoderLevels[2] = 900.0;
@@ -101,9 +101,9 @@ public class Forklift
 			levelIndex = 0;
 		}
 		
-		if(levelIndex > 4)
+		if(levelIndex > 3)
 		{
-			levelIndex = 4;
+			levelIndex = 3;
 		}
 	}
 	

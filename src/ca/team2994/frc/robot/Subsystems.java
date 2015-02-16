@@ -4,14 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import com.google.common.base.Charsets;
-import com.google.common.collect.Iterables;
-import com.google.common.io.Files;
-
 import ca.team2994.frc.autonomous.AutoHelper;
 import ca.team2994.frc.mechanism.Forklift;
 import ca.team2994.frc.mechanism.RobotArm;
 import ca.team2994.frc.mechanism.StateMachine;
+
+import com.google.common.base.Charsets;
+import com.google.common.collect.Iterables;
+import com.google.common.io.Files;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -91,8 +92,8 @@ public class Subsystems {
 		robotDrive = new ERobotDrive(leftFrontDrive, leftRearDrive, rightFrontDrive, rightRearDrive); 
 		
 		// Encoders
-		rightDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_B));
-		leftDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_LEFT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_LEFT_ENCODER_B));
+		rightDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_B), true);
+		leftDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_LEFT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_LEFT_ENCODER_B), true);
 		forkliftEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_FORKLIFT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_FORKLIFT_ENCODER_B));
 		
 		// USB
@@ -107,8 +108,9 @@ public class Subsystems {
 		compressor.setClosedLoopControl(true); // turn back on when compressor is ready
 		
 		//Solenoid - Gear shift
-		gearShiftSolenoid = new DoubleSolenoid(Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL1), 
-				Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL2));
+//		gearShiftSolenoid = new DoubleSolenoid(Constants.getConstantAsInt(Constants.COMPRESSOR_CHANNEL), 
+//				Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL1),
+//				Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL2));
 		
 		// Sensors
 		toteDetectionSensor = new DigitalInput(Constants.getConstantAsInt(Constants.DIO_TOTE_DETECT_SENSOR));
@@ -145,7 +147,7 @@ public class Subsystems {
 		robotArm = new RobotArm(leftArmMotor, rightArmMotor);
 		
 		// Set low gear by default
-		robotDrive.setLowGear();
+//		robotDrive.setLowGear();
 		
 		// State Machine
 		stateMachine = new StateMachine();
