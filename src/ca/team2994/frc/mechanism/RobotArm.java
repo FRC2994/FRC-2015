@@ -1,6 +1,5 @@
 package ca.team2994.frc.mechanism;
 
-import ca.team2994.frc.mechanism.StateMachine.Event;
 import ca.team2994.frc.robot.Constants;
 import ca.team2994.frc.robot.Motor;
 import ca.team2994.frc.robot.Subsystems;
@@ -62,7 +61,6 @@ public class RobotArm {
 		
 		// Whatever we were doing before.. we are no longer in any automatic mode
 		m_currentMode = MANUAL_MODE;
-		Subsystems.stateMachine.callEvent(Event.E_AS);
 	}
 
 	public void forward() {
