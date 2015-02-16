@@ -7,12 +7,12 @@ import ca.team2994.frc.robot.Subsystems;
 public class RobotArm {
 	
 	//Declare your speeds for different parts of the arm usage here
-double FORWARD_SPEED = Constants.getConstantAsDouble(Constants.ARM_FORWARD_SPEED);
-double REVERSE_SPEED = Constants.getConstantAsDouble(Constants.ARM_REVERSE_SPEED);
-double PICKUP_SPEED = Constants.getConstantAsDouble(Constants.ARM_PICKUP_SPEED);
-double DROPOFF_SPEED = Constants.getConstantAsDouble(Constants.ARM_DROPOFF_SPEED);
-double LOAD_SPEED = Constants.getConstantAsDouble(Constants.ARM_LOAD_SPEED);
-double UNLOAD_SPEED = Constants.getConstantAsDouble(Constants.ARM_UNLOAD_SPEED);
+	public double FORWARD_SPEED = Constants.getConstantAsDouble(Constants.ARM_FORWARD_SPEED);
+	public double REVERSE_SPEED = Constants.getConstantAsDouble(Constants.ARM_REVERSE_SPEED);
+	public double PICKUP_SPEED = Constants.getConstantAsDouble(Constants.ARM_PICKUP_SPEED);
+	public double DROPOFF_SPEED = Constants.getConstantAsDouble(Constants.ARM_DROPOFF_SPEED);
+	public double LOAD_SPEED = Constants.getConstantAsDouble(Constants.ARM_LOAD_SPEED);
+	public double UNLOAD_SPEED = Constants.getConstantAsDouble(Constants.ARM_UNLOAD_SPEED);
 	private Motor m_leftArmMotor;
 	private Motor m_rightArmMotor;
 
@@ -31,7 +31,6 @@ double UNLOAD_SPEED = Constants.getConstantAsDouble(Constants.ARM_UNLOAD_SPEED);
 		//Move forward manually
 		m_leftArmMotor.set(FORWARD_SPEED);
 		m_rightArmMotor.set(FORWARD_SPEED * -1);
-
 	}
 
 	public void reverse() {
@@ -41,9 +40,7 @@ double UNLOAD_SPEED = Constants.getConstantAsDouble(Constants.ARM_UNLOAD_SPEED);
 	}
 
 	public void pickup() {
-
 		// Use the sensor to know when to run motors when picking up totes
-
 		if (Subsystems.toteDetectionSensor.get() == false) {
 			m_leftArmMotor.set(PICKUP_SPEED);
 			m_rightArmMotor.set(PICKUP_SPEED * -1);
@@ -51,7 +48,6 @@ double UNLOAD_SPEED = Constants.getConstantAsDouble(Constants.ARM_UNLOAD_SPEED);
 		if (Subsystems.toteDetectionSensor.get()) {
 			stop();
 		}
-
 	}
 
 	public void dropoff() {
