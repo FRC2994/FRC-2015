@@ -18,7 +18,8 @@ public class CalibrationManager {
 	}
 	
 	public void calibrateTick() {
-		if(Subsystems.driveJoystick.getEvent(2) != ButtonEntry.EVENT_CLOSED) {
+		if(Subsystems.driveJoystick.getEvent(Constants.getConstantAsInt(Constants.JOYSTICK_CALIBRATE))
+				!= ButtonEntry.EVENT_CLOSED) {
     		Subsystems.driveJoystick.update();
     		Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
     	}

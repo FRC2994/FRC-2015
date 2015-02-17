@@ -104,8 +104,7 @@ public class Constants
 	//Joystick Buttons
 	public static final String JOYSTICK_GEAR_HIGH  =			"JOYSTICK_GEAR_HIGH";
 	public static final String JOYSTICK_GEAR_LOW   =			"JOYSTICK_GEAR_LOW";
-	public static final String JOYSTICK_COMPRESSOR_ENABLE =		"JOYSTICK_COMPRESSOR_ENABLE";
-	public static final String JOYSTICK_COMPRESSOR_DISABLE =	"JOYSTICK_COMPRESSOR_DISABLE";
+	public static final String JOYSTICK_CALIBRATE  =			"JOYSTICK_CALIBRATE";
 	
 	// Digital Inputs
 	public static final String NUM_AUTO_SELECT =				"NUM_INPUTS";
@@ -201,8 +200,6 @@ public class Constants
 		//Joystick Buttons
 		defaults.put(JOYSTICK_GEAR_HIGH, "6");
 		defaults.put(JOYSTICK_GEAR_LOW, "7");
-		defaults.put(JOYSTICK_COMPRESSOR_ENABLE, "8");
-		defaults.put(JOYSTICK_COMPRESSOR_DISABLE, "9");
 		
 		// Digital Inputs
 		// Allows for 8
@@ -250,7 +247,7 @@ public class Constants
 		} finally {
 			try {
 				if (in != null) {
-					in.close();	
+					in.close();
 				}
 			} catch (IOException e) {
 				System.out.println("Error: Unable to close properties file " + CONSTANTS_FILE_NAME);

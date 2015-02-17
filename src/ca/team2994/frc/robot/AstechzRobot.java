@@ -3,26 +3,14 @@ package ca.team2994.frc.robot;
 import ca.team2994.frc.autonomous.AutoMode;
 import ca.team2994.frc.autonomous.AutoModeSelector;
 import ca.team2994.frc.autonomous.CalibrationManager;
-import ca.team2994.frc.autonomous.modes.TestAutoMode;
-import ca.team2994.frc.mechanism.RobotArm;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
- */
 public class AstechzRobot extends IterativeRobot {
-	public int counter = 0; // Unused
 	public CalibrationManager calibration;
 	public AutoMode currentAutoMode;
 	public SmartDash smartdash;
 	private AutoModeSelector selector;
-	
-	private boolean gamepadManual = false;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -110,32 +98,4 @@ public class AstechzRobot extends IterativeRobot {
     @Override
     public void disabledInit() {
 	}
-    
-    
-    public void robotArm() {
-    	if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_STOP))) {
-    		Subsystems.robotArm.stop();
-    	}
-    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_FORWARD))) {
-    		Subsystems.robotArm.forward();
-    	}
-    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_REVERSE))) {
-    		Subsystems.robotArm.reverse();
-    	}
-    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_PICKUP))) {
-    		Subsystems.robotArm.pickup();
-    	}
-    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_DROPOFF))) {
-    		Subsystems.robotArm.dropoff();
-    	}
-    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_LOAD))) {
-    		Subsystems.robotArm.load();
-    	}
-    	else if(Subsystems.controlGamepad.getNumberedButton(Constants.getConstantAsInt(Constants.GAMEPAD_ARM_UNLOAD))) {
-    		Subsystems.robotArm.unload();
-    	}
-    	else {
-    		Subsystems.robotArm.stop();
-    	}
-    }
 }

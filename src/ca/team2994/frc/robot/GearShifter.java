@@ -7,9 +7,8 @@ public class GearShifter {
 		
 	}
     public void gearShift() {
-    		if (Subsystems.gearShiftSolenoid == null) {
-			return;
-    	
+    	if (Subsystems.gearShiftSolenoid == null) {
+    		return;
     	}
     	if(Subsystems.driveJoystick.getEvent(Constants.getConstantAsInt(Constants.JOYSTICK_GEAR_HIGH)) == ButtonEntry.EVENT_CLOSED) {
     		Subsystems.robotDrive.setHighGear();
@@ -18,9 +17,7 @@ public class GearShifter {
     		Subsystems.robotDrive.setLowGear();
     		highGear =  false;
     	}
-    	
     }
-    	
 
     public boolean isHighGear() {
     	return highGear;
