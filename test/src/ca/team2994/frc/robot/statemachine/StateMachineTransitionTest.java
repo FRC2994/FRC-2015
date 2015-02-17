@@ -1,11 +1,11 @@
-package ca.team2994.frc.robot;
+package ca.team2994.frc.robot.statemachine;
 
 import org.junit.Test;
 
 import ca.team2994.frc.mechanism.StateMachine;
 import ca.team2994.frc.mechanism.StateMachine.Event;
 
-public class StateMachineTest
+public class StateMachineTransitionTest
 {
 	public static StateMachine stateMachine;
 	
