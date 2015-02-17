@@ -11,6 +11,7 @@ public class AstechzRobot extends IterativeRobot {
 	public AutoMode currentAutoMode;
 	public SmartDash smartdash;
 	private AutoModeSelector selector;
+	private InputControl inputControl;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -24,17 +25,12 @@ public class AstechzRobot extends IterativeRobot {
     	Subsystems.leftDriveEncoder.reset();
     	Subsystems.rightDriveEncoder.reset();
     	
-    	Subsystems.driveJoystick.enableButton(Constants.getConstantAsInt(Constants.JOYSTICK_GEAR_HIGH));
-    	Subsystems.driveJoystick.enableButton(Constants.getConstantAsInt(Constants.JOYSTICK_GEAR_LOW));
-    	Subsystems.driveJoystick.enableButton(8);
-    	Subsystems.driveJoystick.enableButton(9);
-    	Subsystems.driveJoystick.enableButton(10);
-    	Subsystems.driveJoystick.enableButton(11);
     	smartdash = new SmartDash();
     	
     	selector = new AutoModeSelector();
     	
     	Subsystems.readEncoderValues();
+    	inputControl.init();
     }
     
     /**
@@ -69,11 +65,7 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void teleopPeriodic() {
-    	Subsystems.driveJoystick.update();
-    	Subsystems.controlGamepad.update();
-    	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
-
-    	Subsystems.gearShifter.gearShift();
+    	inputControl.update();
 		smartdash.compDash();
     }
     

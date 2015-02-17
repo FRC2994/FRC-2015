@@ -18,11 +18,11 @@ public class Forklift
 	private double encoderLevels[] = new double[4];
 	private int levelIndex = 0;
 	
-	public Forklift(Motor liftMotor, Encoder liftEncoder)
+	public Forklift(Motor liftMotor, Encoder liftEncoder, SimPID liftPID)
 	{
 		forkliftMotor = liftMotor;
 		forkliftEncoder = liftEncoder;
-		forkliftPID = new SimPID(0.006, 0.001, 0.001);
+		forkliftPID = liftPID;
 		encoderLevels[0] = 300.0;
 		encoderLevels[1] = 600.0;
 		encoderLevels[2] = 900.0;
@@ -47,7 +47,30 @@ public class Forklift
 		forkliftPID.setDesiredValue(encoderLevels[levelIndex]);
 	}
 	
-	public void pidLoop()
+	public void moveUp()
+	{
+		forkliftMotor.set(0.5);
+	}
+	
+	public void moveDown()
+	{
+		forkliftMotor.set(-0.5);
+	}
+	
+	public void manualLoop()
+	{
+		for(int i = 0; i < encoderLevels.length; i++)
+		{
+			// Check to see if the encoder is within 100 of any of the levels
+			if(forkliftEncoder.get() < encoderLevels[i] + 50 && forkliftEncoder.get() > encoderLevels[i] - 50)
+			{
+				// If it is then set the level to the current level
+				levelIndex = i;
+			}
+		}
+	}
+	
+	public void automaticLoop()
 	{
 		forkliftMotor.set(forkliftPID.calcPID(forkliftEncoder.get()));
 		
