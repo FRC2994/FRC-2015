@@ -6,66 +6,71 @@ import java.util.Properties;
 
 public class Constants
 {
-	private static final String CONSTANTS_FILE_NAME = "/home/lvuser/constants.properties";
+	private static final String CONSTANTS_FILE_NAME = 			"/home/lvuser/constants.properties";
 	
 	private static Properties defaults = new Properties();
 	private static Properties constants = new Properties();
 	
 	/* Property names */
 	// Motor Types
-	public static final String MOTOR_TYPE_DRIVE =		"MOTOR_TYPE_DRIVE";
-	public static final String MOTOR_TYPE_ARM =			"MOTOR_TYPE_ARM";
-	public static final String MOTOR_TYPE_FORKLIFT =	"MOTOR_TYPE_FORKLIFT";
-	public static final String MOTOR_TYPE_CONVEYOR =	"MOTOR_TYPE_CONVEYOR";
+	public static final String MOTOR_TYPE_DRIVE =				"MOTOR_TYPE_DRIVE";
+	public static final String MOTOR_TYPE_ARM =					"MOTOR_TYPE_ARM";
+	public static final String MOTOR_TYPE_FORKLIFT =			"MOTOR_TYPE_FORKLIFT";
+	public static final String MOTOR_TYPE_CONVEYOR =			"MOTOR_TYPE_CONVEYOR";
 	
 	// PWM
-	public static final String PWM_RIGHT_FRONT_DRIVE =	"PWM_RIGHT_FRONT_DRIVE";
-	public static final String PWM_RIGHT_REAR_DRIVE =	"PWM_RIGHT_REAR_DRIVE";
-	public static final String PWM_LEFT_FRONT_DRIVE = 	"PWM_LEFT_FRONT_DRIVE";
-	public static final String PWM_LEFT_REAR_DRIVE =	"PWM_LEFT_REAR_DRIVE";
+	public static final String PWM_RIGHT_FRONT_DRIVE =			"PWM_RIGHT_FRONT_DRIVE";
+	public static final String PWM_RIGHT_REAR_DRIVE =			"PWM_RIGHT_REAR_DRIVE";
+	public static final String PWM_LEFT_FRONT_DRIVE = 			"PWM_LEFT_FRONT_DRIVE";
+	public static final String PWM_LEFT_REAR_DRIVE =			"PWM_LEFT_REAR_DRIVE";
 	
-	public static final String PWM_RIGHT_ARM =			"PWM_RIGHT_ARM";
-	public static final String PWM_LEFT_ARM =			"PWM_LEFT_ARM";
-	public static final String PWM_FORKLIFT =			"PWM_FORKLIFT";
-	public static final String PWM_CONVEYOR =			"PWM_CONVEYOR";
+	public static final String PWM_RIGHT_ARM =					"PWM_RIGHT_ARM";
+	public static final String PWM_LEFT_ARM =					"PWM_LEFT_ARM";
+	public static final String PWM_FORKLIFT =					"PWM_FORKLIFT";
+	public static final String PWM_CONVEYOR =					"PWM_CONVEYOR";
 	
 	// DIO
-	public static final String DIO_RIGHT_ENCODER_A =	"DIO_RIGHT_ENCODER_A";
-	public static final String DIO_RIGHT_ENCODER_B =	"DIO_RIGHT_ENCODER_B";
-	public static final String DIO_LEFT_ENCODER_A =		"DIO_LEFT_ENCODER_A";
-	public static final String DIO_LEFT_ENCODER_B =		"DIO_LEFT_ENCODER_B";
+	public static final String DIO_RIGHT_ENCODER_A =			"DIO_RIGHT_ENCODER_A";
+	public static final String DIO_RIGHT_ENCODER_B =			"DIO_RIGHT_ENCODER_B";
+	public static final String DIO_LEFT_ENCODER_A =				"DIO_LEFT_ENCODER_A";
+	public static final String DIO_LEFT_ENCODER_B =				"DIO_LEFT_ENCODER_B";
 	
-	public static final String DIO_TOTE_DETECT_SENSOR =	"DIO_TOTE_DETECT_SENSOR";
-	public static final String DIO_FORKLIFT_ENCODER_A =	"DIO_FORKLIFT_ENCODER_A";
-	public static final String DIO_FORKLIFT_ENCODER_B =	"DIO_FORKLIFT_ENCODER_B";
+	public static final String DIO_TOTE_DETECT_SENSOR =			"DIO_TOTE_DETECT_SENSOR";
+	public static final String DIO_FORKLIFT_ENCODER_A =			"DIO_FORKLIFT_ENCODER_A";
+	public static final String DIO_FORKLIFT_ENCODER_B =			"DIO_FORKLIFT_ENCODER_B";
 	
 	// Analog IO
-	public static final String AIO_GYRO_SENSOR =		"AIO_GYRO_SENSOR";
+	public static final String AIO_GYRO_SENSOR =				"AIO_GYRO_SENSOR";
 
 	// USB
-	public static final String USB_DRIVE_STICK =		"USB_RIGHT_STICK";
-	public static final String USB_CONTROL_GAMEPAD =	"USB_CONTROL_GAMEPAD";
+	public static final String USB_DRIVE_STICK =				"USB_RIGHT_STICK";
+	public static final String USB_CONTROL_GAMEPAD =			"USB_CONTROL_GAMEPAD";
 	
 	// Solenoids
-	public static final String PCM_SHIFTER_A = 			"PCM_SHIFTER_A";
-	public static final String PCM_SHIFTER_B = 			"PCM_SHIFTER_B";
+	public static final String PCM_SHIFTER_A = 					"PCM_SHIFTER_A";
+	public static final String PCM_SHIFTER_B = 					"PCM_SHIFTER_B";
 	
 	// Other
-	public static final String BLING_ENABLED =			"BLING_ENABLED";
+	public static final String BLING_ENABLED =					"BLING_ENABLED";
 	
 	//Robot Arm
 	
-	public static final String ARM_FORWARD_SPEED =			"ARM_FORWARD_SPEED";
-	public static final String ARM_REVERSE_SPEED =			"ARM_REVERSE_SPEED";
-	public static final String ARM_PICKUP_SPEED =			"ARM_PICKUP_SPEED";
-	public static final String ARM_DROPOFF_SPEED =			"ARM_DROPOFF_SPEED";
-	public static final String ARM_LOAD_SPEED =				"ARM_LOAD_SPEED";
-	public static final String ARM_UNLOAD_SPEED =			"ARM_UNLOAD_SPEED";
-	public static final String ARM_DROPOFF_TIME =			"ARM_DROPOFF_TIME";
-	public static final String ARM_UNLOAD_TIME =			"ARM_UNLOAD_TIME";
+	public static final String ARM_FORWARD_SPEED =				"ARM_FORWARD_SPEED";
+	public static final String ARM_REVERSE_SPEED =				"ARM_REVERSE_SPEED";
+	public static final String ARM_PICKUP_SPEED =				"ARM_PICKUP_SPEED";
+	public static final String ARM_DROPOFF_SPEED =				"ARM_DROPOFF_SPEED";
+	public static final String ARM_LOAD_SPEED =					"ARM_LOAD_SPEED";
+	public static final String ARM_UNLOAD_SPEED =				"ARM_UNLOAD_SPEED";
+	public static final String ARM_DROPOFF_TIME =				"ARM_DROPOFF_TIME";
+	public static final String ARM_UNLOAD_TIME =				"ARM_UNLOAD_TIME";
 	
 	
 	//PID
+	public static final String FORKLIFT_PID_P =					"FORKLIFT_PID_P";
+	public static final String FORKLIFT_PID_I =					"FORKLIFT_PID_I";
+	public static final String FORKLIFT_PID_D =					"FORKLIFT_PID_D";
+	public static final String FORKLIFT_PID_E =					"FORKLIFT_PID_E";
+	
 	public static final String GYRO_PID_P = 					"GYRO_PID_P";
 	public static final String GYRO_PID_I = 					"GYRO_PID_I";
 	public static final String GYRO_PID_D = 					"GYRO_PID_D";
@@ -96,17 +101,12 @@ public class Constants
 	public static final String[] ENCODER_LEVELS  =               {"LEVELS_1", "LEVELS_2", "LEVELS_3", "LEVEL_4"};
 	
 	//Gamepad Buttons
-	public static final String GAMEPAD_ARM_FORWARD =			"GAMEPAD_ARM_FORWARD";
-	public static final String GAMEPAD_ARM_REVERSE =			"GAMEPAD_ARM_REVERSE";
-	public static final String GAMEPAD_ARM_PICKUP = 			"GAMEPAD_ARM_PICKUP";
-	public static final String GAMEPAD_ARM_DROPOFF =			"GAMEPAD_ARM_DROPOFF";
-	public static final String GAMEPAD_ARM_LOAD    =			"GAMEPAD_ARM_LOAD";
-	public static final String GAMEPAD_ARM_UNLOAD  =			"GAMEPAD_ARM_UNLOAD";
-	public static final String GAMEPAD_ARM_STOP    =			"GAMEPAD_ARM_STOP";
+	public static final String GAMEPAD_TOGGLE_MODE =			"GAMEPAD_TOGGLE_MODE";
+	public static final String GAMEPAD_LOAD_TOTE =				"GAMEPAD_LOAD_TOTE";
+	public static final String GAMEPAD_UNLOAD_TOTE =			"GAMEPAD_UNLOAD_TOTE";
 	
 	//Joystick Buttons
-	public static final String JOYSTICK_GEAR_HIGH  =			"JOYSTICK_GEAR_HIGH";
-	public static final String JOYSTICK_GEAR_LOW   =			"JOYSTICK_GEAR_LOW";
+	public static final String JOYSTICK_HIGH_GEAR  =			"JOYSTICK_HIGH_GEAR";
 	public static final String JOYSTICK_CALIBRATE  =			"JOYSTICK_CALIBRATE";
 	
 	// Digital Inputs
@@ -167,6 +167,11 @@ public class Constants
 		defaults.put(BLING_ENABLED, "0");
 		
 		//PID
+		defaults.put(FORKLIFT_PID_P, "0.006");
+		defaults.put(FORKLIFT_PID_I, "0.001");
+		defaults.put(FORKLIFT_PID_D, "0.001");
+		defaults.put(FORKLIFT_PID_E, "1.0");
+		
 		defaults.put(GYRO_PID_P, "0.005");
 		defaults.put(GYRO_PID_I, "0.0");
 		defaults.put(GYRO_PID_D, "0.0");
@@ -192,17 +197,12 @@ public class Constants
 		defaults.put(CONVEYOR_TIME,"20");
 
 		//Gamepad Buttons
-		defaults.put(GAMEPAD_ARM_FORWARD, "1");
-		defaults.put(GAMEPAD_ARM_REVERSE, "2");
-		defaults.put(GAMEPAD_ARM_PICKUP, "3");
-		defaults.put(GAMEPAD_ARM_DROPOFF, "4");
-		defaults.put(GAMEPAD_ARM_LOAD,"5");
-		defaults.put(GAMEPAD_ARM_UNLOAD, "6");
-		defaults.put(GAMEPAD_ARM_STOP, "7");
+		defaults.put(GAMEPAD_TOGGLE_MODE, "10"); // Start
+		defaults.put(GAMEPAD_LOAD_TOTE, "2"); // A
+		defaults.put(GAMEPAD_UNLOAD_TOTE, "3"); // B
 		
 		//Joystick Buttons
-		defaults.put(JOYSTICK_GEAR_HIGH, "6");
-		defaults.put(JOYSTICK_GEAR_LOW, "7");
+		defaults.put(JOYSTICK_HIGH_GEAR, "7");
 		
 		// Digital Inputs
 		// Allows for 8

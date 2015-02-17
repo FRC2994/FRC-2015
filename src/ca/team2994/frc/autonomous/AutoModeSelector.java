@@ -15,8 +15,6 @@ public class AutoModeSelector {
 		modes.add(DoNothingMode.class);
 		modes.add(BasicRobotSetMode.class);
 	}
-
-	public AutoModeSelector() { }
 	
 	/**
 	 * Selects a mode using the give array of DigitalInputs.
@@ -43,6 +41,7 @@ public class AutoModeSelector {
 			power *= 2;
 		}
 		
+		// Do nothing mode
 		if (modeIndex < modes.size()) {
 			modeIndex = 0;
 		}

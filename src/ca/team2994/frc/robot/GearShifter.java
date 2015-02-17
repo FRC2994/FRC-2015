@@ -10,13 +10,13 @@ public class GearShifter {
     	if (Subsystems.gearShiftSolenoid == null) {
     		return;
     	}
-    	if(Subsystems.driveJoystick.getEvent(Constants.getConstantAsInt(Constants.JOYSTICK_GEAR_HIGH)) == ButtonEntry.EVENT_CLOSED) {
-    		Subsystems.robotDrive.setHighGear();
-    		highGear = true;
-    	} else if(Subsystems.driveJoystick.getEvent(Constants.getConstantAsInt(Constants.JOYSTICK_GEAR_LOW)) == ButtonEntry.EVENT_CLOSED) {
-    		Subsystems.robotDrive.setLowGear();
-    		highGear =  false;
-    	}
+//    	if(Subsystems.driveJoystick.getEvent(Constants.getConstantAsInt(Constants.JOYSTICK_GEAR_HIGH)) == ButtonEntry.EVENT_CLOSED) {
+//    		Subsystems.robotDrive.setHighGear();
+//    		highGear = true;
+//    	} else if(Subsystems.driveJoystick.getEvent(Constants.getConstantAsInt(Constants.JOYSTICK_GEAR_LOW)) == ButtonEntry.EVENT_CLOSED) {
+//    		Subsystems.robotDrive.setLowGear();
+//    		highGear =  false;
+//    	}
     }
 
     public boolean isHighGear() {
