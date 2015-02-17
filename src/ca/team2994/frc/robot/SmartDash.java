@@ -18,15 +18,9 @@ public class SmartDash{
 	 * The competition smart dashboard; displaying relevant information for users
 	 */
 	public void compDash() {
-//		Dash for Comp
-		SmartDashboard.putBoolean(" Tote_ready: ",Subsystems.toteDetectionSensor.get());
-		SmartDashboard.putNumber(" ForkLift_Level: ",Subsystems.forklift.getLevel());
-		SmartDashboard.putNumber(" Tote_Count: ", Subsystems.stateMachine.getToteCount());
-		if (Subsystems.gearShifter.isHighGear() == false){
-			SmartDashboard.putNumber(" Gear level: ",1);
-		} else {
-			SmartDashboard.putNumber(" Gear level: ",2);
-		}
+		SmartDashboard.putBoolean("Tote_ready: ", Subsystems.toteDetectionSensor.get());
+		SmartDashboard.putNumber("ForkLift_Level: ", Subsystems.forklift.getLevel());
+		SmartDashboard.putNumber("Tote_Count: ", Subsystems.stateMachine.getToteCount());
 		
 		//To inform the user if another tote may be added and the number of the next tote
 		String next;

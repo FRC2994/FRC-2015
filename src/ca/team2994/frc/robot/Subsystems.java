@@ -35,7 +35,6 @@ public class Subsystems {
 	
 	// Drive
 	public static ERobotDrive robotDrive;
-	public static GearShifter gearShifter;
 	
 	// Encoders
 	public static Encoder rightDriveEncoder;
@@ -90,7 +89,6 @@ public class Subsystems {
 		
 		// Drive
 		robotDrive = new ERobotDrive(leftFrontDrive, leftRearDrive, rightFrontDrive, rightRearDrive);
-		gearShifter = new GearShifter();
 		
 		// Encoders
 		rightDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_B), true);
