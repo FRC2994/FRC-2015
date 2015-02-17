@@ -97,6 +97,9 @@ public class Constants
 	public static final String CONVEYOR_SPEED =					"CONVEYOR_SPEED";
 	public static final String CONVEYOR_TIME =					"CONVEYOR_TIME";
 	
+	//Forklift levels
+	public static final String[] ENCODER_LEVELS  =               {"LEVELS_1", "LEVELS_2", "LEVELS_3", "LEVEL_4"};
+	
 	//Gamepad Buttons
 	public static final String GAMEPAD_TOGGLE_MODE =			"GAMEPAD_TOGGLE_MODE";
 	public static final String GAMEPAD_LOAD_TOTE =				"GAMEPAD_LOAD_TOTE";
@@ -206,6 +209,11 @@ public class Constants
 		defaults.put(NUM_AUTO_SELECT, "4");
 		defaults.put(FIRST_DIGITAL_SELECT, "0");
 		defaults.put(SECOND_DIGITAL_SELECT, "4");
+		
+		defaults.put(ENCODER_LEVELS[0], "300.0");
+		defaults.put(ENCODER_LEVELS[1], "600.0");
+		defaults.put(ENCODER_LEVELS[2], "900.0");
+		defaults.put(ENCODER_LEVELS[3], "1200.0");
 	}
 	
 	/**
@@ -242,8 +250,7 @@ public class Constants
 			in = new FileInputStream(CONSTANTS_FILE_NAME);			
 			defaultsFromFile.load(in);
 		} catch (IOException e) {
-			System.out.println("Error: Unable to load properties file " + CONSTANTS_FILE_NAME);
-			e.printStackTrace();
+			System.out.println("Warning: Unable to load properties file " + CONSTANTS_FILE_NAME);
 		} finally {
 			try {
 				if (in != null) {
