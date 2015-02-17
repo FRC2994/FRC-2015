@@ -12,41 +12,60 @@ public class StateMachine
 	
 	private static enum Mode
 	{
-		A, 						// Add
-		R, 						// Remove
-		N 						// None
+		/** Add */
+		A,
+		/** Remove */
+		R,
+		/** None */
+		N
 	}
 	
 	private static enum Arm
 	{
-		P, 						// Picking up
-		D, 						// Dropping off
-		L, 						// Loading
-		U, 						// Unloading
-		S 						// Stopped
+		/** Picking up */
+		P,
+		/** Dropping off */
+		D,
+		/** Loading */
+		L,
+		/** Unloading */
+		U,
+		/** Stopped */
+		S
 	}
 	
 	private static enum Conveyor
 	{
-		L, 						// Loading
-		U, 						// Unloading
-		S						// Stopped
+		/** Loading */
+		L,
+		/** Unloading */
+		U,
+		/** Stopped */
+		S
 	}
 	
 	private static enum Lift
 	{
-		S, 						// Stopped
-		U, 						// Up
-		D 						// Down
+		/** Stopped */
+		S,
+		/** Up */
+		U,
+		/** Down */
+		D
 	}
 	
 	public static enum Event
 	{
-		LRP,					// Lift reaches position
-		AS,						// Arm stops
-		CS, 					// Conveyor stops (Deprecated)
-		B3, 					// Load a tote and put it on the conveyor
-		B4 						// Unload a tote
+		/** Lift reaches position */
+		LRP,
+		/** Arm stops */
+		AS,
+		/** Conveyor stops */
+		CS,
+		/** Load a tote */
+		B3,
+		/** Unload a tote (all totes) */
+		B4
 	}
 	
 	private Mode mode;

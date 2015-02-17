@@ -57,15 +57,16 @@ public class Subsystems {
 	
 	// Bling
 	public static SerialPort blingPort;
-	
-	// Mechanisms
-	public static Conveyor conveyor;
-	public static Forklift forklift;
- 	public static RobotArm robotArm;
  	
  	// PIDs
+ 	public static SimPID forkliftPID;
  	public static SimPID gyroPID;
  	public static SimPID encoderPID;
+ 	
+ 	// Mechanisms
+ 	public static Conveyor conveyor;
+ 	public static Forklift forklift;
+  	public static RobotArm robotArm;
  	
  	// State Machine
  	public static StateMachine stateMachine;
@@ -112,9 +113,6 @@ public class Subsystems {
 		gearShiftSolenoid = new DoubleSolenoid(Constants.getConstantAsInt(Constants.COMPRESSOR_CHANNEL), 
 				Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL1),
 				Constants.getConstantAsInt(Constants.SOLENOID_SHIFTER_CHANNEL2));
-
-		
-
 		
 		// Sensors
 		toteDetectionSensor = new DigitalInput(Constants.getConstantAsInt(Constants.DIO_TOTE_DETECT_SENSOR));
@@ -126,12 +124,14 @@ public class Subsystems {
 			blingPort = new SerialPort(9600, Port.kMXP);
 		}
 		
-		// Mechanisms
-		conveyor = new Conveyor(conveyorMotor);
-		forklift = new Forklift(forkliftMotor, forkliftEncoder);
-		robotArm = new RobotArm(leftArmMotor, rightArmMotor);
-		
 		//PIDs
+		forkliftPID = new SimPID(
+				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_P),
+				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_I),
+				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_D),
+				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_E)
+		);
+		
 		gyroPID = new SimPID(
 				Constants.getConstantAsDouble(Constants.GYRO_PID_P),
 				Constants.getConstantAsDouble(Constants.GYRO_PID_I),
@@ -146,11 +146,16 @@ public class Subsystems {
 				Constants.getConstantAsDouble(Constants.ENCODER_PID_E)
 		);
 		
+		// Mechanisms
+		conveyor = new Conveyor(conveyorMotor);
+		forklift = new Forklift(forkliftMotor, forkliftEncoder, forkliftPID);
+		robotArm = new RobotArm(leftArmMotor, rightArmMotor);
+		
 		// Robot Arm
 		robotArm = new RobotArm(leftArmMotor, rightArmMotor);
 		
 		// Set low gear by default
-//		robotDrive.setLowGear();
+		robotDrive.setLowGear();
 		
 		// State Machine
 		stateMachine = new StateMachine();
