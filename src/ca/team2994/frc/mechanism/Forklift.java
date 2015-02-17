@@ -1,5 +1,6 @@
 package ca.team2994.frc.mechanism;
 
+import ca.team2994.frc.robot.Constants;
 import ca.team2994.frc.robot.Motor;
 import ca.team2994.frc.robot.SimPID;
 import edu.wpi.first.wpilibj.Encoder;
@@ -15,7 +16,7 @@ public class Forklift
 	private final Encoder forkliftEncoder;
 	private SimPID forkliftPID;
 	
-	private double encoderLevels[] = new double[4];
+	private double encoderLevels[];
 	private int levelIndex = 0;
 	
 	public Forklift(Motor liftMotor, Encoder liftEncoder)
@@ -23,10 +24,11 @@ public class Forklift
 		forkliftMotor = liftMotor;
 		forkliftEncoder = liftEncoder;
 		forkliftPID = new SimPID(0.006, 0.001, 0.001);
-		encoderLevels[0] = 300.0;
-		encoderLevels[1] = 600.0;
-		encoderLevels[2] = 900.0;
-		encoderLevels[3] = 1200.0;
+		
+		for(int i = 0; i < 4; i++){
+			encoderLevels[i] = Constants.getConstantAsDouble(Constants.ENCODER_LEVELS[i]);
+		}
+		
 		forkliftEncoder.reset();
 	}
 	

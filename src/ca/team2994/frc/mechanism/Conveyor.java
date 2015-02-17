@@ -6,7 +6,7 @@ public class Conveyor {
 	private Motor motor; 
 	
 	int time = Constants.getConstantAsInt(Constants.CONVEYOR_TIME);
-	double speed = Constants.getConstantAsInt(Constants.CONVEYOR_SPEED);
+	double speed = Constants.getConstantAsDouble(Constants.CONVEYOR_SPEED);
 	/**
 	 * Constructs the motor using values for the motor
 	 * 
