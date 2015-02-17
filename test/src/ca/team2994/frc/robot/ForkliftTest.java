@@ -97,7 +97,7 @@ public class ForkliftTest {
 		
 		Constants.readConstantPropertiesFromFile();
 
-		Forklift forklift = new Forklift(motor, encoder);
+		Forklift forklift = new Forklift(motor, encoder, new SimPID(0.006, 0.001, 0.001));
 		
 		forklift.up(2);
 		
