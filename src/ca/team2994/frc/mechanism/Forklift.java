@@ -50,11 +50,17 @@ public class Forklift
 	public void moveUp()
 	{
 		forkliftMotor.set(0.5);
+		
+		// DEBUG
+		System.out.println("DPAD UP Pressed");
 	}
 	
 	public void moveDown()
 	{
 		forkliftMotor.set(-0.5);
+		
+		// DEBUG
+		System.out.println("DPAD DOWN Pressed");
 	}
 	
 	public void manualLoop()
@@ -66,6 +72,9 @@ public class Forklift
 			{
 				// If it is then set the level to the current level
 				levelIndex = i;
+				
+				// DEBUG
+				System.out.println("Forklift moved to level: " + levelIndex);
 			}
 		}
 	}
@@ -87,10 +96,12 @@ public class Forklift
 		forkliftPID.setDesiredValue(encoderLevels[levelIndex]);
 		forkliftMotor.set(forkliftPID.calcPID(forkliftEncoder.get()));
 		
-		if(forkliftPID.isDone())
+		while(forkliftPID.isDone())
 		{
-			stop();
+			forkliftMotor.set(forkliftPID.calcPID(forkliftEncoder.get()));
 		}
+		
+		stop();
 	}
 	
 	public void down(int level)
@@ -98,17 +109,21 @@ public class Forklift
 		levelIndex = level;
 		capLiftLevel();
 		forkliftPID.setDesiredValue(encoderLevels[levelIndex]);
-		forkliftMotor.set(forkliftPID.calcPID(forkliftEncoder.get()));
 		
-		if(forkliftPID.isDone())
+		while(forkliftPID.isDone())
 		{
-			stop();
+			forkliftMotor.set(forkliftPID.calcPID(forkliftEncoder.get()));
 		}
+		
+		stop();
 	}
 	
 	public void stop()
 	{
 		forkliftMotor.set(0.0);
+		
+		// DEBUG
+		System.out.println("Forklift stopped");
 	}
 	
 	public int getLevel()
