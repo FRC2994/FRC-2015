@@ -14,7 +14,6 @@ import com.google.common.base.Charsets;
 import com.google.common.collect.Iterables;
 import com.google.common.io.Files;
 
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
@@ -70,6 +69,8 @@ public class Subsystems {
  	
  	// State Machine
  	public static StateMachine stateMachine;
+ 	
+ 	public static DigitalInput[] inputs;
 
 	/**
 	 * Initialize all of the subsystems, assumes that the constants file has been read already
@@ -153,6 +154,14 @@ public class Subsystems {
 		
 		// State Machine
 		stateMachine = new StateMachine();
+
+		inputs = new DigitalInput[Constants.getConstantAsInt(Constants.NUM_AUTO_SELECT)];
+
+		for (int i = Constants.getConstantAsInt(Constants.FIRST_DIGITAL_SELECT); 
+				i < Constants.getConstantAsInt(Constants.SECOND_DIGITAL_SELECT) + 1;
+				i ++) {
+			inputs[i] = new DigitalInput(i);
+		}
 	}
 	
 	/**

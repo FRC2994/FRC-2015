@@ -106,6 +106,11 @@ public class Constants
 	public static final String JOYSTICK_GEAR_LOW   =			"JOYSTICK_GEAR_LOW";
 	public static final String JOYSTICK_COMPRESSOR_ENABLE =		"JOYSTICK_COMPRESSOR_ENABLE";
 	public static final String JOYSTICK_COMPRESSOR_DISABLE =	"JOYSTICK_COMPRESSOR_DISABLE";
+	
+	// Digital Inputs
+	public static final String NUM_AUTO_SELECT =				"NUM_INPUTS";
+	public static final String FIRST_DIGITAL_SELECT = 			"FIRST_DIGITAL_SELECT";
+	public static final String SECOND_DIGITAL_SELECT = 			"SECOND_DIGITAL_SELECT";
 
 	static {
 		// PWM
@@ -198,6 +203,12 @@ public class Constants
 		defaults.put(JOYSTICK_GEAR_LOW, "7");
 		defaults.put(JOYSTICK_COMPRESSOR_ENABLE, "8");
 		defaults.put(JOYSTICK_COMPRESSOR_DISABLE, "9");
+		
+		// Digital Inputs
+		// Allows for 8
+		defaults.put(NUM_AUTO_SELECT, "4");
+		defaults.put(FIRST_DIGITAL_SELECT, "0");
+		defaults.put(SECOND_DIGITAL_SELECT, "4");
 	}
 	
 	/**

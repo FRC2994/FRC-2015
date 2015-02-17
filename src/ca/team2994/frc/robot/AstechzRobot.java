@@ -1,6 +1,7 @@
 package ca.team2994.frc.robot;
 
 import ca.team2994.frc.autonomous.AutoMode;
+import ca.team2994.frc.autonomous.AutoModeSelector;
 import ca.team2994.frc.autonomous.CalibrationManager;
 import ca.team2994.frc.autonomous.modes.TestAutoMode;
 import ca.team2994.frc.mechanism.RobotArm;
@@ -19,6 +20,7 @@ public class AstechzRobot extends IterativeRobot {
 	public CalibrationManager calibration;
 	public AutoMode currentAutoMode;
 	public SmartDash smartdash;
+	private AutoModeSelector selector;
 	
 	private boolean gamepadManual = false;
 	
@@ -42,7 +44,7 @@ public class AstechzRobot extends IterativeRobot {
     	Subsystems.driveJoystick.enableButton(11);
     	smartdash = new SmartDash();
     	
-    	currentAutoMode = new TestAutoMode();
+    	selector = new AutoModeSelector();
     	
     	Subsystems.readEncoderValues();
     }
@@ -52,6 +54,10 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void autonomousInit() {
+    	// Select an autonomous mode! :) Uses DIO array from Subsystems. See 
+    	// initialize for how it's initialized. See docs for selectMode to see
+    	// how they're used.
+    	currentAutoMode = selector.selectMode(Subsystems.inputs);
     	currentAutoMode.initialize();
     }
 
@@ -79,7 +85,7 @@ public class AstechzRobot extends IterativeRobot {
     	Subsystems.controlGamepad.update();
     	Subsystems.robotDrive.arcadeDrive(Subsystems.driveJoystick, false);
 
-    Subsystems.gearShifter.gearShift();
+    	Subsystems.gearShifter.gearShift();
 		smartdash.compDash();
     }
     
