@@ -5,6 +5,7 @@ import java.util.List;
 
 import ca.team2994.frc.autonomous.modes.BasicRobotSetMode;
 import ca.team2994.frc.autonomous.modes.DoNothingMode;
+import ca.team2994.frc.autonomous.modes.TestAutoMode;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 public class AutoModeSelector {
@@ -13,6 +14,7 @@ public class AutoModeSelector {
 	static {
 		//TODO: Add all autonomous modes here.
 		modes.add(DoNothingMode.class);
+		modes.add(TestAutoMode.class);
 		modes.add(BasicRobotSetMode.class);
 	}
 	
@@ -27,8 +29,17 @@ public class AutoModeSelector {
 	 * @return The AutoMode to use.
 	 */
 	public AutoMode selectMode(DigitalInput[] inputs) {
-		// Binary encoding with index 0 being the least significant.
+		try {
+			// Make a new instance of the value at the index from the binary!
+			return (AutoMode)(modes.get(encodeSwitches(inputs)).newInstance());
+		} catch (InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
 		
+		return null;
+	}
+	
+	public int encodeSwitches(DigitalInput[] inputs) {
 		// Keeps the power of 2
 		int power = 1;
 
@@ -40,20 +51,12 @@ public class AutoModeSelector {
 			}
 			power *= 2;
 		}
-		
+
 		// Do nothing mode
 		if (modeIndex < modes.size()) {
 			modeIndex = 0;
 		}
 		
-		// Check for out-of-bounds
-		try {
-			// Make a new instance of the value at the index from the binary!
-			return (AutoMode)(modes.get(modeIndex).newInstance());
-		} catch (InstantiationException | IllegalAccessException e) {
-			e.printStackTrace();
-		}
-		
-		return null;
+		return modeIndex;
 	}
 }

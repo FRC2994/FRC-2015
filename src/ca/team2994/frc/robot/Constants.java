@@ -140,8 +140,8 @@ public class Constants
 		defaults.put(DIO_LEFT_ENCODER_B, "6");
 		
 		defaults.put(DIO_TOTE_DETECT_SENSOR, "2");
-		defaults.put(DIO_FORKLIFT_ENCODER_A, "3");
-		defaults.put(DIO_FORKLIFT_ENCODER_B, "4");
+		defaults.put(DIO_FORKLIFT_ENCODER_A, "0");
+		defaults.put(DIO_FORKLIFT_ENCODER_B, "1");
 		
 		// Analog IO
 		defaults.put(AIO_GYRO_SENSOR, "0");
@@ -204,12 +204,13 @@ public class Constants
 		
 		//Joystick Buttons
 		defaults.put(JOYSTICK_HIGH_GEAR, "7");
+		defaults.put(JOYSTICK_CALIBRATE, "2");
 		
 		// Digital Inputs
 		// Allows for 8
-		defaults.put(NUM_AUTO_SELECT, "4");
-		defaults.put(FIRST_DIGITAL_SELECT, "0");
-		defaults.put(SECOND_DIGITAL_SELECT, "4");
+		defaults.put(NUM_AUTO_SELECT, "3");
+		defaults.put(FIRST_DIGITAL_SELECT, "3");
+		defaults.put(SECOND_DIGITAL_SELECT, "5");
 		
 		defaults.put(ENCODER_LEVELS[0], "300.0");
 		defaults.put(ENCODER_LEVELS[1], "600.0");
