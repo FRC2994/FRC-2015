@@ -90,12 +90,10 @@ public class Forklift
 		forkliftPID.setDesiredValue(encoderLevels[levelIndex]);
 		forkliftMotor.set(forkliftPID.calcPID(forkliftEncoder.get()));
 		
-		while(forkliftPID.isDone())
+		if(forkliftPID.isDone())
 		{
-			forkliftMotor.set(forkliftPID.calcPID(forkliftEncoder.get()));
+			stop();
 		}
-		
-		stop();
 	}
 	
 	public void down(int level)
@@ -103,13 +101,12 @@ public class Forklift
 		levelIndex = level;
 		capLiftLevel();
 		forkliftPID.setDesiredValue(encoderLevels[levelIndex]);
+		forkliftMotor.set(forkliftPID.calcPID(forkliftEncoder.get()));
 		
-		while(forkliftPID.isDone())
+		if(forkliftPID.isDone())
 		{
-			forkliftMotor.set(forkliftPID.calcPID(forkliftEncoder.get()));
+			stop();
 		}
-		
-		stop();
 	}
 	
 	public void stop()
