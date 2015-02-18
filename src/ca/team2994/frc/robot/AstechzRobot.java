@@ -3,6 +3,7 @@ package ca.team2994.frc.robot;
 import ca.team2994.frc.autonomous.AutoMode;
 import ca.team2994.frc.autonomous.AutoModeSelector;
 import ca.team2994.frc.autonomous.CalibrationManager;
+import ca.team2994.frc.autonomous.modes.TestAutoMode;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -43,8 +44,9 @@ public class AstechzRobot extends IterativeRobot {
     	// Select an autonomous mode! :) Uses DIO array from Subsystems. See 
     	// initialize for how it's initialized. See docs for selectMode to see
     	// how they're used.
-    	currentAutoMode = selector.selectMode(Subsystems.inputs);
+    	currentAutoMode = new TestAutoMode();
     	currentAutoMode.initialize();
+    	System.out.println(selector.encodeSwitches(Subsystems.inputs));
     }
 
     /**
@@ -60,6 +62,7 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void teleopInit(){
+    	System.out.println(selector.encodeSwitches(Subsystems.inputs));
     }
 
     /**
