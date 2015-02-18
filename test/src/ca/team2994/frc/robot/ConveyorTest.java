@@ -20,7 +20,7 @@ public class ConveyorTest {
 	
 	
 	@Test
-	public void conveyorMockTest() {
+	public void conveyorTest() {
 		new NonStrictExpectations() {{
 			motor.set(anyDouble);
 			result = new Delegate<Double>() {

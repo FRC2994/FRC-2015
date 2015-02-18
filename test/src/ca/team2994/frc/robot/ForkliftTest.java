@@ -30,7 +30,7 @@ public class ForkliftTest {
 	
 	
 	@Test
-	public void forkliftMockTest() {
+	public void forkliftTest() {
 		new NonStrictExpectations() {{
 			motor.set(anyDouble);
 			result = new Delegate<Double>() {
