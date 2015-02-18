@@ -90,10 +90,12 @@ public class AutonomousTest {
 			}
 		};
 		currentAutoMode.initialize();
+		
+		gyroPID.setMinDoneCycles(0);
 
     	while (!gyroPID.isDone()) {
     		currentAutoMode.tick();
-    		
+
         	angle += 60;
     	}
 	}
