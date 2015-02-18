@@ -10,9 +10,10 @@ import edu.wpi.first.wpilibj.Victor;
 
 public class Motor implements SpeedController 
 {
-	public SafePWM realMotor;
-	public CANJaguar canJaguar;
-	public CANTalon canTalon;
+	// These are package-private on purpose! The tests need to see them.
+	SafePWM realMotor;
+	CANJaguar canJaguar;
+	CANTalon canTalon;
 	
 	/**
 	 * 0 = PWM Talon

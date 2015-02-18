@@ -1,4 +1,4 @@
-package ca.team2994.frc.robot;
+package ca.team2994.frc.mechanism;
 
 import static org.junit.Assert.assertTrue;
 import mockit.Delegate;
@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import ca.team2994.frc.controls.Motor;
 import ca.team2994.frc.mechanism.Forklift;
+import ca.team2994.frc.robot.Subsystems;
 import ca.team2994.frc.utils.Constants;
 import edu.wpi.first.wpilibj.Encoder;
 
