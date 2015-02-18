@@ -74,11 +74,13 @@ public class Constants
 	public static final String GYRO_PID_I = 					"GYRO_PID_I";
 	public static final String GYRO_PID_D = 					"GYRO_PID_D";
 	public static final String GYRO_PID_E = 					"GYRO_PID_E";
+	public static final String GYRO_PID_MAX = 					"GYRO_PID_MAX";
 	
 	public static final String ENCODER_PID_P = 					"ENCODER_PID_P";
 	public static final String ENCODER_PID_I = 					"ENCODER_PID_I";
 	public static final String ENCODER_PID_D = 					"ENCODER_PID_D";
 	public static final String ENCODER_PID_E = 					"ENCODER_PID_E";
+	public static final String ENCODER_PID_MAX = 				"ENCODER_PID_MAX";
 	
 
 	public static final String CALIBRATION_FILE_LOC =			"CALIBRATION_FILE_LOC";
@@ -178,11 +180,13 @@ public class Constants
 		defaults.put(GYRO_PID_I, "0.0");
 		defaults.put(GYRO_PID_D, "0.0");
 		defaults.put(GYRO_PID_E, "1.0");
+		defaults.put(GYRO_PID_MAX, "0.4");
 		
 		defaults.put(ENCODER_PID_P, "2.16");
 		defaults.put(ENCODER_PID_I, "0.0");
 		defaults.put(ENCODER_PID_D, "0.0");
 		defaults.put(ENCODER_PID_E, "0.1");
+		defaults.put(ENCODER_PID_MAX, "0.4");
 
 		defaults.put(CALIBRATION_FILE_LOC, "/home/lvuser/calibration.txt");
 		defaults.put(CALIBRATION_BUTTON, "2");
@@ -220,6 +224,8 @@ public class Constants
 		
 		defaults.put(FORKLIFT_UP_SPEED, "-0.75");
 		defaults.put(FORKLIFT_DOWN_SPEED, "0.50");
+
+		constants.putAll(defaults);
 	}
 	
 	/**
@@ -268,7 +274,6 @@ public class Constants
 			}			
 		}
 		
-		constants.putAll(defaults);
 		constants.putAll(defaultsFromFile);
 	}
 }
