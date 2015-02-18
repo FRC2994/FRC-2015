@@ -19,6 +19,7 @@ public class SmartDash{
 	 */
 	public void compDash() {
 		SmartDashboard.putBoolean("Tote_ready: ", Subsystems.toteDetectionSensor.get());
+		SmartDashboard.putBoolean("Manual mode: ", InputControl.isManualMode);
 		SmartDashboard.putNumber("ForkLift_Level: ", Subsystems.forklift.getLevel());
 		SmartDashboard.putNumber("Tote_Count: ", Subsystems.stateMachine.getToteCount());
 		

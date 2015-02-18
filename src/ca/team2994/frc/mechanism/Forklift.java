@@ -16,7 +16,7 @@ public class Forklift
 	private final Encoder forkliftEncoder;
 	private SimPID forkliftPID;
 	
-	private double encoderLevels[];
+	private double encoderLevels[] = new double[4];
 	private int levelIndex = 0;
 	
 	public Forklift(Motor liftMotor, Encoder liftEncoder, SimPID liftPID)
@@ -52,18 +52,12 @@ public class Forklift
 	
 	public void moveUp()
 	{
-		forkliftMotor.set(0.5);
-		
-		// DEBUG
-		System.out.println("DPAD UP Pressed");
+		forkliftMotor.set(Constants.getConstantAsDouble(Constants.FORKLIFT_UP_SPEED));
 	}
 	
 	public void moveDown()
 	{
-		forkliftMotor.set(-0.5);
-		
-		// DEBUG
-		System.out.println("DPAD DOWN Pressed");
+		forkliftMotor.set(Constants.getConstantAsDouble(Constants.FORKLIFT_DOWN_SPEED));
 	}
 	
 	public void manualLoop()
@@ -75,9 +69,6 @@ public class Forklift
 			{
 				// If it is then set the level to the current level
 				levelIndex = i;
-				
-				// DEBUG
-				System.out.println("Forklift moved to level: " + levelIndex);
 			}
 		}
 	}
@@ -124,9 +115,6 @@ public class Forklift
 	public void stop()
 	{
 		forkliftMotor.set(0.0);
-		
-		// DEBUG
-		System.out.println("Forklift stopped");
 	}
 	
 	public int getLevel()

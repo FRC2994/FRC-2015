@@ -499,16 +499,14 @@ public void gearControl(boolean highGear) {
 		if (Subsystems.gearShiftSolenoid == null) {
 			return;
 		}
-		Subsystems.gearShiftSolenoid.set(DoubleSolenoid.Value.kForward);
-		System.out.println("low gear selected");
+		Subsystems.gearShiftSolenoid.set(DoubleSolenoid.Value.kReverse);
 	}
 
 	public void setLowGear() {
 		if (Subsystems.gearShiftSolenoid == null) {
 			return;
 		}
-		Subsystems.gearShiftSolenoid.set(DoubleSolenoid.Value.kReverse);
-		System.out.println("high gear selected");
+		Subsystems.gearShiftSolenoid.set(DoubleSolenoid.Value.kForward);
 	}
 
 	@Override

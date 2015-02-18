@@ -30,6 +30,8 @@ public class AstechzRobot extends IterativeRobot {
     	selector = new AutoModeSelector();
     	
     	Subsystems.readEncoderValues();
+    	
+    	inputControl = new InputControl();
     	inputControl.init();
     }
     

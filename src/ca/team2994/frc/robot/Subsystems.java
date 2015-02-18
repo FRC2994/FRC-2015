@@ -158,13 +158,13 @@ public class Subsystems {
 		// State Machine
 		stateMachine = new StateMachine();
 
-		inputs = new DigitalInput[Constants.getConstantAsInt(Constants.NUM_AUTO_SELECT)];
-
-		for (int i = Constants.getConstantAsInt(Constants.FIRST_DIGITAL_SELECT); 
-				i < Constants.getConstantAsInt(Constants.SECOND_DIGITAL_SELECT) + 1;
-				i ++) {
-			inputs[i] = new DigitalInput(i);
-		}
+//		inputs = new DigitalInput[Constants.getConstantAsInt(Constants.NUM_AUTO_SELECT)];
+//
+//		for (int i = Constants.getConstantAsInt(Constants.FIRST_DIGITAL_SELECT); 
+//				i < Constants.getConstantAsInt(Constants.SECOND_DIGITAL_SELECT) + 1;
+//				i ++) {
+//			inputs[i] = new DigitalInput(i);
+//		}
 	}
 	
 	/**
