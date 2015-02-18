@@ -2,6 +2,7 @@ package ca.team2994.frc.autonomous.commands;
 
 import ca.team2994.frc.autonomous.AutoCommand;
 import ca.team2994.frc.robot.Subsystems;
+import ca.team2994.frc.utils.Constants;
 import ca.team2994.frc.utils.SimLib;
 
 public class DriveStraight implements AutoCommand {
@@ -34,7 +35,7 @@ public class DriveStraight implements AutoCommand {
 		if (!Subsystems.encoderPID.isDone()) {
 			double driveVal = Subsystems.encoderPID.calcPID((Subsystems.leftDriveEncoder.getDistance() + Subsystems.rightDriveEncoder.getDistance()) / 2.0);
 			// TODO: Read this from the constants file as "encoderPIDMax"
-			double limitVal = SimLib.limitValue(driveVal, 0.25);
+			double limitVal = SimLib.limitValue(driveVal, Constants.getConstantAsDouble(Constants.ENCODER_PID_MAX));
 
 			Subsystems.robotDrive.setLeftRightMotorOutputs(limitVal, limitVal);
 			System.out.println("LEV:" + Subsystems.leftDriveEncoder.get() + ",REV:" + Subsystems.rightDriveEncoder.get()+

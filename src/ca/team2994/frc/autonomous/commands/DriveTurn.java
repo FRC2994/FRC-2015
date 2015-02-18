@@ -2,12 +2,12 @@ package ca.team2994.frc.autonomous.commands;
 
 import ca.team2994.frc.autonomous.AutoCommand;
 import ca.team2994.frc.robot.Subsystems;
+import ca.team2994.frc.utils.Constants;
 import ca.team2994.frc.utils.SimLib;
 
 public class DriveTurn implements AutoCommand {
 
 	private final int angle;
-	private static final double DRIVE_LIMIT_VALUE = 0.4; // must be < 1
 	
 	public DriveTurn(int angle) {
 		this.angle = angle;
@@ -32,8 +32,7 @@ public class DriveTurn implements AutoCommand {
 		if (!Subsystems.gyroPID.isDone()) {
 			// Angle needs to be positive
 			double driveVal = Subsystems.gyroPID.calcPID(Subsystems.gyroSensor.getAngle());
-			// TODO: Read this from the constants file as "gyroPIDMax"
-			double limitVal = SimLib.limitValue(driveVal, DRIVE_LIMIT_VALUE);
+			double limitVal = SimLib.limitValue(driveVal, Constants.getConstantAsDouble(Constants.GYRO_PID_MAX));
 			System.out.println("gyro.getAngle() = " + Subsystems.gyroSensor.getAngle()+",limitVal = " + limitVal);
 			Subsystems.robotDrive.setLeftRightMotorOutputs(limitVal, -limitVal);
 			return true;

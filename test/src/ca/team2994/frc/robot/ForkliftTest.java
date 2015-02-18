@@ -95,8 +95,6 @@ public class ForkliftTest {
 		}};
 	
 		encoder.reset();
-		
-		Constants.readConstantPropertiesFromFile();
 
 		// Initialize the PID.
 		Subsystems.initPID();
