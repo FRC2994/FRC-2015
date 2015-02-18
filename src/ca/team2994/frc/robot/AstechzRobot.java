@@ -45,9 +45,10 @@ public class AstechzRobot extends IterativeRobot {
     	// Select an autonomous mode! :) Uses DIO array from Subsystems. See 
     	// initialize for how it's initialized. See docs for selectMode to see
     	// how they're used.
+    	//TODO: Make this = selector.selectMode(Subsystems.inputs) when we're sure that it works
+    	// Currently we just initialize it to TestAutoMode.
     	currentAutoMode = new TestAutoMode();
     	currentAutoMode.initialize();
-    	System.out.println(selector.encodeSwitches(Subsystems.inputs));
     }
 
     /**
@@ -63,7 +64,6 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void teleopInit(){
-    	System.out.println(selector.encodeSwitches(Subsystems.inputs));
     }
 
     /**

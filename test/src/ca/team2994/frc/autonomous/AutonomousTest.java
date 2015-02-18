@@ -1,4 +1,4 @@
-package ca.team2994.frc.robot;
+package ca.team2994.frc.autonomous;
  
 import mockit.Deencapsulation;
 import mockit.Delegate;
@@ -14,7 +14,7 @@ import ca.team2994.frc.autonomous.commands.DriveTurn;
 import ca.team2994.frc.controls.ERobotDrive;
 import ca.team2994.frc.controls.Motor;
 import ca.team2994.frc.controls.SimGyro;
-import ca.team2994.frc.utils.Constants;
+import ca.team2994.frc.robot.Subsystems;
 import ca.team2994.frc.utils.SimPID;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;

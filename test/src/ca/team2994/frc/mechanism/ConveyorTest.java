@@ -1,4 +1,4 @@
-package ca.team2994.frc.robot;
+package ca.team2994.frc.mechanism;
 
 import static org.junit.Assert.*;
 import mockit.Delegate;

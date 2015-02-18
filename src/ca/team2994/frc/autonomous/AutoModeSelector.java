@@ -30,8 +30,17 @@ public class AutoModeSelector {
 	 */
 	public AutoMode selectMode(DigitalInput[] inputs) {
 		try {
+			boolean[] newInputs = new boolean[inputs.length];
+			
+			for (int i = 0; i < inputs.length; i++) {
+				// A 0 from the switch means that that switch is turned on.
+				newInputs[i] = !inputs[i].get();
+			}
+			
+			// TODO: encodeBools() works. Verified by test. So that means there's 
+			// something funny with the switches. Figure it out next time!
 			// Make a new instance of the value at the index from the binary!
-			return (AutoMode)(modes.get(encodeSwitches(inputs)).newInstance());
+			return (AutoMode)(modes.get(encodeBools(newInputs)).newInstance());
 		} catch (InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
@@ -39,14 +48,14 @@ public class AutoModeSelector {
 		return null;
 	}
 	
-	public int encodeSwitches(DigitalInput[] inputs) {
+	public int encodeBools(boolean[] inputs) {
 		// Keeps the power of 2
 		int power = 1;
 
 		// Keeps the index into the modes array.
 		int modeIndex = 0;
 		for (int i = 0; i < inputs.length; i++) {
-			if (!inputs[i].get()) {
+			if (inputs[i]) {
 				modeIndex += power; 
 			}
 			power *= 2;
