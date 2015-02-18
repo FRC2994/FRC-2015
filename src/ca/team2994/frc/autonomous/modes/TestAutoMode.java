@@ -3,10 +3,7 @@ package ca.team2994.frc.autonomous.modes;
 import ca.team2994.frc.autonomous.AutoBuilder;
 import ca.team2994.frc.autonomous.AutoCommand;
 import ca.team2994.frc.autonomous.AutoMode;
-import ca.team2994.frc.autonomous.commands.DriveStraight;
 import ca.team2994.frc.autonomous.commands.DriveStraightAndTurn;
-import ca.team2994.frc.autonomous.commands.DriveTurn;
-import ca.team2994.frc.autonomous.commands.Forklift;
 import ca.team2994.frc.autonomous.commands.GearShift;
 
 public class TestAutoMode extends AutoMode {

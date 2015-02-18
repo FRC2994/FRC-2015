@@ -7,7 +7,9 @@ import mockit.NonStrictExpectations;
 
 import org.junit.Test;
 
+import ca.team2994.frc.controls.Motor;
 import ca.team2994.frc.mechanism.Conveyor;
+import ca.team2994.frc.utils.Constants;
 
 public class ConveyorTest {
 	

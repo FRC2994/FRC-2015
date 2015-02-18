@@ -1,5 +1,6 @@
-package ca.team2994.frc.robot;
+package ca.team2994.frc.controls;
 
+import ca.team2994.frc.robot.Subsystems;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.GenericHID;

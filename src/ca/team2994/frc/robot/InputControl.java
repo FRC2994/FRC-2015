@@ -1,6 +1,9 @@
 package ca.team2994.frc.robot;
 
+import ca.team2994.frc.controls.ButtonEntry;
+import ca.team2994.frc.controls.EGamepad;
 import ca.team2994.frc.mechanism.StateMachine.Event;
+import ca.team2994.frc.utils.Constants;
 
 public class InputControl
 {
