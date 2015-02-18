@@ -1,4 +1,4 @@
-package ca.team2994.frc.robot;
+package ca.team2994.frc.controls;
 
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.CANTalon;
@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.Victor;
 
 public class Motor implements SpeedController 
 {
-	SafePWM realMotor;
-	CANJaguar canJaguar;
-	CANTalon canTalon;
+	public SafePWM realMotor;
+	public CANJaguar canJaguar;
+	public CANTalon canTalon;
 	
 	/**
 	 * 0 = PWM Talon

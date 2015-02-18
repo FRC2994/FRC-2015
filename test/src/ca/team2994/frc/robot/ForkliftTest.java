@@ -7,8 +7,9 @@ import mockit.NonStrictExpectations;
 
 import org.junit.Test;
 
+import ca.team2994.frc.controls.Motor;
 import ca.team2994.frc.mechanism.Forklift;
-import ca.team2994.frc.robot.Motor;
+import ca.team2994.frc.utils.Constants;
 import edu.wpi.first.wpilibj.Encoder;
 
 /**

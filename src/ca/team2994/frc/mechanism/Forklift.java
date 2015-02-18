@@ -1,8 +1,8 @@
 package ca.team2994.frc.mechanism;
 
-import ca.team2994.frc.robot.Constants;
-import ca.team2994.frc.robot.Motor;
-import ca.team2994.frc.robot.SimPID;
+import ca.team2994.frc.controls.Motor;
+import ca.team2994.frc.utils.Constants;
+import ca.team2994.frc.utils.SimPID;
 import edu.wpi.first.wpilibj.Encoder;
 
 /**

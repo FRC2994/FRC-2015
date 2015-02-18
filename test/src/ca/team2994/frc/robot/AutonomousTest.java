@@ -11,6 +11,10 @@ import ca.team2994.frc.autonomous.AutoBuilder;
 import ca.team2994.frc.autonomous.AutoCommand;
 import ca.team2994.frc.autonomous.AutoMode;
 import ca.team2994.frc.autonomous.commands.DriveTurn;
+import ca.team2994.frc.controls.ERobotDrive;
+import ca.team2994.frc.controls.Motor;
+import ca.team2994.frc.controls.SimGyro;
+import ca.team2994.frc.utils.SimPID;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
  

@@ -7,7 +7,9 @@ import mockit.NonStrictExpectations;
 
 import org.junit.Test;
 
+import ca.team2994.frc.controls.Motor;
 import ca.team2994.frc.mechanism.RobotArm;
+import ca.team2994.frc.utils.Constants;
 
 public class ArmsTest {
 	
@@ -92,7 +94,7 @@ public class ArmsTest {
 		Constants.readConstantPropertiesFromFile();
 
 		RobotArm arms = new RobotArm(leftArm, rightArm);
-		
+
 		arms.load();
 		 
 		assertTrue(rightArm.get() == - Constants.getConstantAsDouble(Constants.ARM_LOAD_SPEED));
