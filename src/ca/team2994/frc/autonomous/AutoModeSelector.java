@@ -35,7 +35,7 @@ public class AutoModeSelector {
 		// Keeps the index into the modes array.
 		int modeIndex = 0;
 		for (int i = 0; i < inputs.length; i++) {
-			if (inputs[i].get()) {
+			if (!inputs[i].get()) {
 				modeIndex += power; 
 			}
 			power *= 2;
