@@ -36,45 +36,56 @@ public class InputControl
 			isManualMode = !isManualMode;
 		}
 		
+		if (Subsystems.controlGamepad.getAxisCount() == 0)
+		{
+			isManualMode = true;
+		}
+		
 		if(isManualMode)
 		{
 			// TODO Do things manually, add the ability to do this in a bit
 			
-			if(Subsystems.controlGamepad.getDPadState(EGamepad.DPAD_DIRECTION_UP) == ButtonEntry.STATE_CLOSED)
+			if (Subsystems.controlGamepad.getAxisCount() != 0)
 			{
-				Subsystems.forklift.moveUp();
-			}
-			else if(Subsystems.controlGamepad.getDPadState(EGamepad.DPAD_DIRECTION_DOWN) == ButtonEntry.STATE_CLOSED)
-			{
-				Subsystems.forklift.moveDown();
-			}
-			else
-			{
-				Subsystems.forklift.stop();
+				if(Subsystems.controlGamepad.getDPadState(EGamepad.DPAD_DIRECTION_UP) == ButtonEntry.STATE_CLOSED)
+				{
+					Subsystems.forklift.moveUp();
+				}
+				else if(Subsystems.controlGamepad.getDPadState(EGamepad.DPAD_DIRECTION_DOWN) == ButtonEntry.STATE_CLOSED)
+				{
+					Subsystems.forklift.moveDown();
+				}
+				else
+				{
+					Subsystems.forklift.stop();
+				}
 			}
 			
 			Subsystems.forklift.manualLoop();
 		}
 		else // XXX VERY DANGEROUS WAY TO TEST STATE MACHINE
 		{
-			if(Subsystems.controlGamepad.getDPadEvent(EGamepad.DPAD_DIRECTION_UP) == ButtonEntry.EVENT_CLOSED)
+			if (Subsystems.controlGamepad.getAxisCount() != 0)
 			{
-				Subsystems.forklift.up(Subsystems.forklift.getLevel() + 1);
-			}
-			
-			if(Subsystems.controlGamepad.getDPadEvent(EGamepad.DPAD_DIRECTION_DOWN) == ButtonEntry.EVENT_CLOSED)
-			{
-				Subsystems.forklift.down(Subsystems.forklift.getLevel() - 1);
-			}
-			
-			if(Subsystems.controlGamepad.getEvent(Constants.getConstantAsInt(Constants.GAMEPAD_LOAD_TOTE)) == ButtonEntry.EVENT_CLOSED)
-			{
-				Subsystems.stateMachine.callEvent(Event.B3);
-			}
-			
-			if(Subsystems.controlGamepad.getEvent(Constants.getConstantAsInt(Constants.GAMEPAD_UNLOAD_TOTE)) == ButtonEntry.EVENT_CLOSED)
-			{
-				Subsystems.stateMachine.callEvent(Event.B4);
+				if(Subsystems.controlGamepad.getDPadEvent(EGamepad.DPAD_DIRECTION_UP) == ButtonEntry.EVENT_CLOSED)
+				{
+					Subsystems.forklift.up(Subsystems.forklift.getLevel() + 1);
+				}
+				
+				if(Subsystems.controlGamepad.getDPadEvent(EGamepad.DPAD_DIRECTION_DOWN) == ButtonEntry.EVENT_CLOSED)
+				{
+					Subsystems.forklift.down(Subsystems.forklift.getLevel() - 1);
+				}
+				
+				if(Subsystems.controlGamepad.getEvent(Constants.getConstantAsInt(Constants.GAMEPAD_LOAD_TOTE)) == ButtonEntry.EVENT_CLOSED)
+				{
+					Subsystems.stateMachine.callEvent(Event.B3);
+				}
+				
+				if(Subsystems.controlGamepad.getEvent(Constants.getConstantAsInt(Constants.GAMEPAD_UNLOAD_TOTE)) == ButtonEntry.EVENT_CLOSED)
+				{
+					Subsystems.stateMachine.callEvent(Event.B4);
+				}
 			}
 			
 			Subsystems.forklift.automaticLoop();
