@@ -20,6 +20,8 @@ public class ForkliftTest {
 	private Motor motor;
 	@Mocked
 	private Encoder encoder;
+	@Mocked
+	private SimPID pid;
 	
 	double motorValue;
 	double encoderValue;
@@ -95,9 +97,11 @@ public class ForkliftTest {
 	
 		encoder.reset();
 		
+		pid = new SimPID(0.006, 0.001, 0.001);
+		
 		Constants.readConstantPropertiesFromFile();
 
-		Forklift forklift = new Forklift(motor, encoder);
+		Forklift forklift = new Forklift(motor, encoder, pid);
 		
 		forklift.up(2);
 		
