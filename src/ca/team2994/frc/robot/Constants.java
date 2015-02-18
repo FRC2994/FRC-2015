@@ -97,8 +97,10 @@ public class Constants
 	public static final String CONVEYOR_SPEED =					"CONVEYOR_SPEED";
 	public static final String CONVEYOR_TIME =					"CONVEYOR_TIME";
 	
-	//Forklift levels
+	//Forklift
 	public static final String[] ENCODER_LEVELS  =               {"LEVELS_1", "LEVELS_2", "LEVELS_3", "LEVEL_4"};
+	public static final String FORKLIFT_UP_SPEED =				 "FORKLIFT_UP_SPEED";
+	public static final String FORKLIFT_DOWN_SPEED = 			 "FORKLIFT_DOWN_SPEED";
 	
 	//Gamepad Buttons
 	public static final String GAMEPAD_TOGGLE_MODE =			"GAMEPAD_TOGGLE_MODE";
@@ -118,18 +120,18 @@ public class Constants
 		// PWM
 		defaults.put(MOTOR_TYPE_DRIVE, "0");
 		defaults.put(MOTOR_TYPE_ARM, "0");
-		defaults.put(MOTOR_TYPE_FORKLIFT, "0");
+		defaults.put(MOTOR_TYPE_FORKLIFT, "2");
 		defaults.put(MOTOR_TYPE_CONVEYOR, "0");
 
 		// PWM
 		defaults.put(PWM_RIGHT_FRONT_DRIVE, "3");
 		defaults.put(PWM_RIGHT_REAR_DRIVE, "2");
-		defaults.put(PWM_LEFT_FRONT_DRIVE, "1");
-		defaults.put(PWM_LEFT_REAR_DRIVE, "0");
+		defaults.put(PWM_LEFT_FRONT_DRIVE, "9");
+		defaults.put(PWM_LEFT_REAR_DRIVE, "8");
 		
 		defaults.put(PWM_RIGHT_ARM, "4");
 		defaults.put(PWM_LEFT_ARM, "5");
-		defaults.put(PWM_FORKLIFT, "6");
+		defaults.put(PWM_FORKLIFT, "11"); // CAN
 		defaults.put(PWM_CONVEYOR, "7");
 		
 		// DIO
@@ -214,6 +216,9 @@ public class Constants
 		defaults.put(ENCODER_LEVELS[1], "600.0");
 		defaults.put(ENCODER_LEVELS[2], "900.0");
 		defaults.put(ENCODER_LEVELS[3], "1200.0");
+		
+		defaults.put(FORKLIFT_UP_SPEED, "-0.75");
+		defaults.put(FORKLIFT_DOWN_SPEED, "0.50");
 	}
 	
 	/**

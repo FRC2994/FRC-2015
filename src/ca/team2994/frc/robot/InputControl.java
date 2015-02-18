@@ -4,7 +4,7 @@ import ca.team2994.frc.mechanism.StateMachine.Event;
 
 public class InputControl
 {
-	private boolean isManualMode = false;
+	public static boolean isManualMode = true;
 	
 	public void init()
 	{
@@ -20,11 +20,11 @@ public class InputControl
 		Subsystems.driveJoystick.update();
 		Subsystems.controlGamepad.update();
 		
-		if(Subsystems.driveJoystick.getEvent(Constants.getConstantAsInt(Constants.JOYSTICK_HIGH_GEAR)) == ButtonEntry.EVENT_CLOSED)
+		if(Subsystems.driveJoystick.getState(Constants.getConstantAsInt(Constants.JOYSTICK_HIGH_GEAR)) == ButtonEntry.STATE_CLOSED)
 		{
     		Subsystems.robotDrive.setHighGear();
 		}
-		else if(Subsystems.driveJoystick.getEvent(Constants.getConstantAsInt(Constants.JOYSTICK_HIGH_GEAR)) != ButtonEntry.EVENT_ERR)
+		else if(Subsystems.driveJoystick.getEvent(Constants.getConstantAsInt(Constants.JOYSTICK_HIGH_GEAR)) != ButtonEntry.STATE_ERR)
 		{
 			Subsystems.robotDrive.setLowGear();
 		}
@@ -40,14 +40,17 @@ public class InputControl
 		{
 			// TODO Do things manually, add the ability to do this in a bit
 			
-			if(Subsystems.controlGamepad.getDPadEvent(EGamepad.DPAD_DIRECTION_UP) == ButtonEntry.EVENT_CLOSED)
+			if(Subsystems.controlGamepad.getDPadState(EGamepad.DPAD_DIRECTION_UP) == ButtonEntry.STATE_CLOSED)
 			{
 				Subsystems.forklift.moveUp();
 			}
-			
-			if(Subsystems.controlGamepad.getDPadEvent(EGamepad.DPAD_DIRECTION_DOWN) == ButtonEntry.EVENT_CLOSED)
+			else if(Subsystems.controlGamepad.getDPadState(EGamepad.DPAD_DIRECTION_DOWN) == ButtonEntry.STATE_CLOSED)
 			{
 				Subsystems.forklift.moveDown();
+			}
+			else
+			{
+				Subsystems.forklift.stop();
 			}
 			
 			Subsystems.forklift.manualLoop();
@@ -73,6 +76,8 @@ public class InputControl
 			{
 				Subsystems.stateMachine.callEvent(Event.B4);
 			}
+			
+			Subsystems.forklift.automaticLoop();
 		}
 	}
 	
