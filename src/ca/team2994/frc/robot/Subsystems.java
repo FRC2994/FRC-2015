@@ -122,27 +122,7 @@ public class Subsystems {
 			blingPort = new SerialPort(9600, Port.kMXP);
 		}
 		
-		//PIDs
-		forkliftPID = new SimPID(
-				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_P),
-				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_I),
-				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_D),
-				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_E)
-		);
-		
-		gyroPID = new SimPID(
-				Constants.getConstantAsDouble(Constants.GYRO_PID_P),
-				Constants.getConstantAsDouble(Constants.GYRO_PID_I),
-				Constants.getConstantAsDouble(Constants.GYRO_PID_D),
-				Constants.getConstantAsDouble(Constants.GYRO_PID_E)
-		);
-		
-		encoderPID = new SimPID(
-				Constants.getConstantAsDouble(Constants.ENCODER_PID_P),
-				Constants.getConstantAsDouble(Constants.ENCODER_PID_I),
-				Constants.getConstantAsDouble(Constants.ENCODER_PID_D),
-				Constants.getConstantAsDouble(Constants.ENCODER_PID_E)
-		);
+		initPID();
 		
 		// Mechanisms
 		conveyor = new Conveyor(conveyorMotor);
@@ -165,6 +145,33 @@ public class Subsystems {
 				i ++) {
 			inputs[i-Constants.getConstantAsInt(Constants.FIRST_DIGITAL_SELECT)] = new DigitalInput(i);
 		}
+	}
+	
+	/**
+	 * Public for testing purposes. Initializes the PID controllers.
+	 */
+	public static void initPID() {
+		//PIDs
+		forkliftPID = new SimPID(
+				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_P),
+				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_I),
+				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_D),
+				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_E)
+				);
+
+		gyroPID = new SimPID(
+				Constants.getConstantAsDouble(Constants.GYRO_PID_P),
+				Constants.getConstantAsDouble(Constants.GYRO_PID_I),
+				Constants.getConstantAsDouble(Constants.GYRO_PID_D),
+				Constants.getConstantAsDouble(Constants.GYRO_PID_E)
+				);
+
+		encoderPID = new SimPID(
+				Constants.getConstantAsDouble(Constants.ENCODER_PID_P),
+				Constants.getConstantAsDouble(Constants.ENCODER_PID_I),
+				Constants.getConstantAsDouble(Constants.ENCODER_PID_D),
+				Constants.getConstantAsDouble(Constants.ENCODER_PID_E)
+				);
 	}
 	
 	/**
