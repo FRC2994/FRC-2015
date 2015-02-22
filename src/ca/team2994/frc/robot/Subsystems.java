@@ -5,10 +5,17 @@ import java.io.IOException;
 import java.util.List;
 
 import ca.team2994.frc.autonomous.AutoHelper;
+import ca.team2994.frc.controls.EGamepad;
+import ca.team2994.frc.controls.EJoystick;
+import ca.team2994.frc.controls.ERobotDrive;
+import ca.team2994.frc.controls.Motor;
+import ca.team2994.frc.controls.SimGyro;
 import ca.team2994.frc.mechanism.Conveyor;
 import ca.team2994.frc.mechanism.Forklift;
 import ca.team2994.frc.mechanism.RobotArm;
 import ca.team2994.frc.mechanism.StateMachine;
+import ca.team2994.frc.utils.Constants;
+import ca.team2994.frc.utils.SimPID;
 
 import com.google.common.base.Charsets;
 import com.google.common.collect.Iterables;
@@ -122,27 +129,7 @@ public class Subsystems {
 			blingPort = new SerialPort(9600, Port.kMXP);
 		}
 		
-		//PIDs
-		forkliftPID = new SimPID(
-				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_P),
-				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_I),
-				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_D),
-				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_E)
-		);
-		
-		gyroPID = new SimPID(
-				Constants.getConstantAsDouble(Constants.GYRO_PID_P),
-				Constants.getConstantAsDouble(Constants.GYRO_PID_I),
-				Constants.getConstantAsDouble(Constants.GYRO_PID_D),
-				Constants.getConstantAsDouble(Constants.GYRO_PID_E)
-		);
-		
-		encoderPID = new SimPID(
-				Constants.getConstantAsDouble(Constants.ENCODER_PID_P),
-				Constants.getConstantAsDouble(Constants.ENCODER_PID_I),
-				Constants.getConstantAsDouble(Constants.ENCODER_PID_D),
-				Constants.getConstantAsDouble(Constants.ENCODER_PID_E)
-		);
+		initPID();
 		
 		// Mechanisms
 		conveyor = new Conveyor(conveyorMotor);
@@ -158,13 +145,40 @@ public class Subsystems {
 		// State Machine
 		stateMachine = new StateMachine();
 
-//		inputs = new DigitalInput[Constants.getConstantAsInt(Constants.NUM_AUTO_SELECT)];
-//
-//		for (int i = Constants.getConstantAsInt(Constants.FIRST_DIGITAL_SELECT); 
-//				i < Constants.getConstantAsInt(Constants.SECOND_DIGITAL_SELECT) + 1;
-//				i ++) {
-//			inputs[i] = new DigitalInput(i);
-//		}
+		inputs = new DigitalInput[Constants.getConstantAsInt(Constants.NUM_AUTO_SELECT)];
+
+		for (int i = Constants.getConstantAsInt(Constants.FIRST_DIGITAL_SELECT); 
+				i < Constants.getConstantAsInt(Constants.SECOND_DIGITAL_SELECT) + 1;
+				i ++) {
+			inputs[i-Constants.getConstantAsInt(Constants.FIRST_DIGITAL_SELECT)] = new DigitalInput(i);
+		}
+	}
+	
+	/**
+	 * Public for testing purposes. Initializes the PID controllers.
+	 */
+	public static void initPID() {
+		//PIDs
+		forkliftPID = new SimPID(
+				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_P),
+				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_I),
+				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_D),
+				Constants.getConstantAsDouble(Constants.FORKLIFT_PID_E)
+				);
+
+		gyroPID = new SimPID(
+				Constants.getConstantAsDouble(Constants.GYRO_PID_P),
+				Constants.getConstantAsDouble(Constants.GYRO_PID_I),
+				Constants.getConstantAsDouble(Constants.GYRO_PID_D),
+				Constants.getConstantAsDouble(Constants.GYRO_PID_E)
+				);
+
+		encoderPID = new SimPID(
+				Constants.getConstantAsDouble(Constants.ENCODER_PID_P),
+				Constants.getConstantAsDouble(Constants.ENCODER_PID_I),
+				Constants.getConstantAsDouble(Constants.ENCODER_PID_D),
+				Constants.getConstantAsDouble(Constants.ENCODER_PID_E)
+				);
 	}
 	
 	/**

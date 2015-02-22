@@ -1,4 +1,5 @@
-package ca.team2994.frc.robot;
+package ca.team2994.frc.controls;
+
 
 //This class extends the Gamepad class to provide button event detection
 

@@ -1,4 +1,4 @@
-package ca.team2994.frc.robot;
+package ca.team2994.frc.mechanism;
 
 import static org.junit.Assert.assertTrue;
 import mockit.Delegate;
@@ -7,8 +7,10 @@ import mockit.NonStrictExpectations;
 
 import org.junit.Test;
 
+import ca.team2994.frc.controls.Motor;
 import ca.team2994.frc.mechanism.Forklift;
-import ca.team2994.frc.robot.Motor;
+import ca.team2994.frc.robot.Subsystems;
+import ca.team2994.frc.utils.Constants;
 import edu.wpi.first.wpilibj.Encoder;
 
 /**
@@ -20,17 +22,15 @@ public class ForkliftTest {
 	private Motor motor;
 	@Mocked
 	private Encoder encoder;
-	@Mocked
-	private SimPID pid;
 	
 	double motorValue;
-	double encoderValue;
+	int encoderValue;
 	double ForkliftValue;
 	int numb = 2;
 	
 	
 	@Test
-	public void forkliftMockTest() {
+	public void forkliftTest() {
 		new NonStrictExpectations() {{
 			motor.set(anyDouble);
 			result = new Delegate<Double>() {
@@ -72,9 +72,9 @@ public class ForkliftTest {
 				}
 			};
 			encoder.get();
-			result = new Delegate<Double>() {
+			result = new Delegate<Integer>() {
 				@SuppressWarnings("unused")
-				double get() {
+				int get() {
 					if(numb != 0) {
 						numb--;
 					}
@@ -92,25 +92,52 @@ public class ForkliftTest {
 					System.out.println("Disabled");
 				}
 				
-			};				
+			};
 		}};
 	
 		encoder.reset();
-		
-		pid = new SimPID(0.006, 0.001, 0.001);
-		
-		Constants.readConstantPropertiesFromFile();
 
-		Forklift forklift = new Forklift(motor, encoder, pid);
+		// Initialize the PID.
+		Subsystems.initPID();
+
+		Forklift forklift = new Forklift(motor, encoder, Subsystems.forkliftPID);
 		
 		forklift.up(2);
-		
-		assertTrue(encoder.get() == Constants.getConstantAsDouble(Constants.ENCODER_LEVELS[1]));
-		
+			
+		pidLoopForklift(forklift);
+
+		assertTrue(error(encoder.get(), Constants.getConstantAsDouble(Constants.ENCODER_LEVELS[2])) < Constants.getConstantAsDouble(Constants.FORKLIFT_PID_E));
+
 		forklift.down(1);
-		
-		assertTrue(encoder.get() == Constants.getConstantAsDouble(Constants.ENCODER_LEVELS[0]));
-		
+
+		pidLoopForklift(forklift);
+
+		assertTrue(error(encoder.get(), Constants.getConstantAsDouble(Constants.ENCODER_LEVELS[1])) < Constants.getConstantAsDouble(Constants.FORKLIFT_PID_E));
+
 		forklift.stop();
+	}
+	
+	/**
+	 * Simulates a PID loop one tick at a time
+	 * @param forklift The Forklift object being tested.
+	 */
+	private void pidLoopForklift(Forklift forklift) {
+		// Wait till it gets to it's level
+		while (!forklift.isLevelReached()) {
+			// The sign of motor.get() will be the direction we move the encoder
+			encoderValue += (motor.get()/(Math.abs(motor.get())));
+			forklift.automaticLoop();
 		}
+	}
+
+	/**
+	 * Returns the equivalent of |one-two|
+	 * 
+	 * @param one The number to be subtracted from
+	 * @param two The number to subtract
+	 * @return The absolute difference between the two numbers.
+	 */
+	private double error(double one, double two) {
+		return Math.abs(one - two);
+	}
 }

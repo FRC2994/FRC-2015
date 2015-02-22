@@ -1,4 +1,4 @@
-package ca.team2994.frc.robot;
+package ca.team2994.frc.utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -64,7 +64,6 @@ public class Constants
 	public static final String ARM_DROPOFF_TIME =				"ARM_DROPOFF_TIME";
 	public static final String ARM_UNLOAD_TIME =				"ARM_UNLOAD_TIME";
 	
-	
 	//PID
 	public static final String FORKLIFT_PID_P =					"FORKLIFT_PID_P";
 	public static final String FORKLIFT_PID_I =					"FORKLIFT_PID_I";
@@ -75,11 +74,13 @@ public class Constants
 	public static final String GYRO_PID_I = 					"GYRO_PID_I";
 	public static final String GYRO_PID_D = 					"GYRO_PID_D";
 	public static final String GYRO_PID_E = 					"GYRO_PID_E";
+	public static final String GYRO_PID_MAX = 					"GYRO_PID_MAX";
 	
 	public static final String ENCODER_PID_P = 					"ENCODER_PID_P";
 	public static final String ENCODER_PID_I = 					"ENCODER_PID_I";
 	public static final String ENCODER_PID_D = 					"ENCODER_PID_D";
 	public static final String ENCODER_PID_E = 					"ENCODER_PID_E";
+	public static final String ENCODER_PID_MAX = 				"ENCODER_PID_MAX";
 	
 
 	public static final String CALIBRATION_FILE_LOC =			"CALIBRATION_FILE_LOC";
@@ -141,8 +142,8 @@ public class Constants
 		defaults.put(DIO_LEFT_ENCODER_B, "6");
 		
 		defaults.put(DIO_TOTE_DETECT_SENSOR, "2");
-		defaults.put(DIO_FORKLIFT_ENCODER_A, "3");
-		defaults.put(DIO_FORKLIFT_ENCODER_B, "4");
+		defaults.put(DIO_FORKLIFT_ENCODER_A, "0");
+		defaults.put(DIO_FORKLIFT_ENCODER_B, "1");
 		
 		// Analog IO
 		defaults.put(AIO_GYRO_SENSOR, "0");
@@ -172,17 +173,20 @@ public class Constants
 		defaults.put(FORKLIFT_PID_P, "0.006");
 		defaults.put(FORKLIFT_PID_I, "0.001");
 		defaults.put(FORKLIFT_PID_D, "0.001");
-		defaults.put(FORKLIFT_PID_E, "1.0");
+		// The forklift PID works at encoder-value-scale so we don't need as much accuracy.
+		defaults.put(FORKLIFT_PID_E, "10");
 		
 		defaults.put(GYRO_PID_P, "0.005");
 		defaults.put(GYRO_PID_I, "0.0");
 		defaults.put(GYRO_PID_D, "0.0");
 		defaults.put(GYRO_PID_E, "1.0");
+		defaults.put(GYRO_PID_MAX, "0.4");
 		
 		defaults.put(ENCODER_PID_P, "2.16");
 		defaults.put(ENCODER_PID_I, "0.0");
 		defaults.put(ENCODER_PID_D, "0.0");
 		defaults.put(ENCODER_PID_E, "0.1");
+		defaults.put(ENCODER_PID_MAX, "0.4");
 
 		defaults.put(CALIBRATION_FILE_LOC, "/home/lvuser/calibration.txt");
 		defaults.put(CALIBRATION_BUTTON, "2");
@@ -205,12 +209,13 @@ public class Constants
 		
 		//Joystick Buttons
 		defaults.put(JOYSTICK_HIGH_GEAR, "7");
+		defaults.put(JOYSTICK_CALIBRATE, "2");
 		
 		// Digital Inputs
 		// Allows for 8
-		defaults.put(NUM_AUTO_SELECT, "4");
-		defaults.put(FIRST_DIGITAL_SELECT, "0");
-		defaults.put(SECOND_DIGITAL_SELECT, "4");
+		defaults.put(NUM_AUTO_SELECT, "3");
+		defaults.put(FIRST_DIGITAL_SELECT, "3");
+		defaults.put(SECOND_DIGITAL_SELECT, "5");
 		
 		defaults.put(ENCODER_LEVELS[0], "300.0");
 		defaults.put(ENCODER_LEVELS[1], "600.0");
@@ -219,6 +224,8 @@ public class Constants
 		
 		defaults.put(FORKLIFT_UP_SPEED, "-0.75");
 		defaults.put(FORKLIFT_DOWN_SPEED, "0.50");
+
+		constants.putAll(defaults);
 	}
 	
 	/**
@@ -267,7 +274,6 @@ public class Constants
 			}			
 		}
 		
-		constants.putAll(defaults);
 		constants.putAll(defaultsFromFile);
 	}
 }

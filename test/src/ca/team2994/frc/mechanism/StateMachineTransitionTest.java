@@ -1,4 +1,4 @@
-package ca.team2994.frc.robot.statemachine;
+package ca.team2994.frc.mechanism;
 
 import org.junit.Test;
 

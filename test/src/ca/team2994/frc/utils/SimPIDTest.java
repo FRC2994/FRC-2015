@@ -1,8 +1,10 @@
-package ca.team2994.frc.robot;
+package ca.team2994.frc.utils;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+
+import ca.team2994.frc.utils.SimPID;
 
 public class SimPIDTest {
 	@Test

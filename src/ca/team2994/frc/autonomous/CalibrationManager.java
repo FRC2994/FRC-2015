@@ -2,9 +2,9 @@ package ca.team2994.frc.autonomous;
 
 import java.io.File;
 
-import ca.team2994.frc.robot.ButtonEntry;
-import ca.team2994.frc.robot.Constants;
+import ca.team2994.frc.controls.ButtonEntry;
 import ca.team2994.frc.robot.Subsystems;
+import ca.team2994.frc.utils.Constants;
 
 public class CalibrationManager {
 	

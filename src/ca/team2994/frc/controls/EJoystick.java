@@ -1,4 +1,4 @@
-package ca.team2994.frc.robot;
+package ca.team2994.frc.controls;
 
 import edu.wpi.first.wpilibj.Joystick;
 

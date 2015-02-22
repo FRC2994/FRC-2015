@@ -1,10 +1,11 @@
-package ca.team2994.frc.robot;
+package ca.team2994.frc.controls;
 
 import static org.junit.Assert.assertTrue;
 import mockit.Mocked;
 
 import org.junit.Test;
 
+import ca.team2994.frc.controls.Motor;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Jaguar;
@@ -21,6 +22,7 @@ public class MotorTest {
 		
 	@Test
 	public void motorTypeTest() {
+		//TODO: Rewrite this test so that the Motor class doesn't have to have these members public.
 		Motor motor = new Motor(0, 0);
 		assertTrue("Wrong class:" + motor.realMotor.getChannel() + ", expecting Talon", motor.realMotor instanceof Talon);
 		motor = new Motor(0, 1);

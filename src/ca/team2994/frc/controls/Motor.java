@@ -1,4 +1,4 @@
-package ca.team2994.frc.robot;
+package ca.team2994.frc.controls;
 
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.CANTalon;
@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Victor;
 
 public class Motor implements SpeedController 
 {
+	// These are package-private on purpose! The tests need to see them.
 	SafePWM realMotor;
 	CANJaguar canJaguar;
 	CANTalon canTalon;

@@ -1,8 +1,8 @@
 package ca.team2994.frc.autonomous.commands;
 
 import ca.team2994.frc.autonomous.AutoCommand;
-import ca.team2994.frc.robot.SimLib;
 import ca.team2994.frc.robot.Subsystems;
+import ca.team2994.frc.utils.SimLib;
 
 public class DriveStraightAndTurn implements AutoCommand {
 

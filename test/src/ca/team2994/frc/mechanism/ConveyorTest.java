@@ -1,4 +1,4 @@
-package ca.team2994.frc.robot;
+package ca.team2994.frc.mechanism;
 
 import static org.junit.Assert.*;
 import mockit.Delegate;
@@ -7,7 +7,9 @@ import mockit.NonStrictExpectations;
 
 import org.junit.Test;
 
+import ca.team2994.frc.controls.Motor;
 import ca.team2994.frc.mechanism.Conveyor;
+import ca.team2994.frc.utils.Constants;
 
 public class ConveyorTest {
 	
@@ -20,7 +22,7 @@ public class ConveyorTest {
 	
 	
 	@Test
-	public void conveyorMockTest() {
+	public void conveyorTest() {
 		new NonStrictExpectations() {{
 			motor.set(anyDouble);
 			result = new Delegate<Double>() {
