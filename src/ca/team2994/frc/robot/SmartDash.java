@@ -7,7 +7,9 @@ public class SmartDash{
 	/**For testing everything
 	 * For testing use only, displays the motor's speed and rotation for all the available motors 
 	 */
+	
 	public void showMotors() {
+		warning();
 		showDriveMotors();
 		showConveyorMotors();
 		showArmMotors();
@@ -18,6 +20,7 @@ public class SmartDash{
 	 * The competition smart dashboard; displaying relevant information for users
 	 */
 	public void compDash() {
+		warning();
 		SmartDashboard.putBoolean("Tote_ready: ", Subsystems.toteDetectionSensor.get());
 		SmartDashboard.putBoolean("Manual mode: ", InputControl.isManualMode);
 		SmartDashboard.putNumber("ForkLift_Level: ", Subsystems.forklift.getLevel());
@@ -89,10 +92,22 @@ public class SmartDash{
 	 * displays the showDriveMotors
 	 */
 	public void showDrive(){
+		warning();
+		
 		showDriveMotors();
 		
 		SmartDashboard.putString(" OTHER ", "DRIVE INFO");
 		SmartDashboard.putNumber(" Left_Drive_Direction: ", Subsystems.leftDriveEncoder.getDistance());
 		SmartDashboard.putNumber(" Right_Drive_Direction: ", Subsystems.rightDriveEncoder.getDistance());
 	}
+	
+	/**Displays the warning message
+	 * "Do not minamize this window"
+	 */
+	public void warning()
+	{
+		SmartDashboard.putString("Do not minamize ", "this window");
+	}
+	
+	
 }
