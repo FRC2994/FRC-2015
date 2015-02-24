@@ -35,12 +35,16 @@ public class AutoModeSelector {
 			for (int i = 0; i < inputs.length; i++) {
 				// A 0 from the switch means that that switch is turned on.
 				newInputs[i] = !inputs[i].get();
+				System.out.println("Input " + i + " = " + newInputs[i]);
 			}
-			
 			// TODO: encodeBools() works. Verified by test. So that means there's 
 			// something funny with the switches. Figure it out next time!
 			// Make a new instance of the value at the index from the binary!
-			return (AutoMode)(modes.get(encodeBools(newInputs)).newInstance());
+			int encodeBool = encodeBools(newInputs);
+			if (encodeBool >= modes.size()) {
+				encodeBool = 0;
+			}
+			return (modes.get(encodeBool).newInstance());
 		} catch (InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
 		}

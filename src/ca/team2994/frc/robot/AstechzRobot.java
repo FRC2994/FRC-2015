@@ -3,7 +3,6 @@ package ca.team2994.frc.robot;
 import ca.team2994.frc.autonomous.AutoMode;
 import ca.team2994.frc.autonomous.AutoModeSelector;
 import ca.team2994.frc.autonomous.CalibrationManager;
-import ca.team2994.frc.autonomous.modes.TestAutoMode;
 import ca.team2994.frc.utils.Constants;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -47,7 +46,7 @@ public class AstechzRobot extends IterativeRobot {
     	// how they're used.
     	//TODO: Make this = selector.selectMode(Subsystems.inputs) when we're sure that it works
     	// Currently we just initialize it to TestAutoMode.
-    	currentAutoMode = new TestAutoMode();
+    	currentAutoMode = selector.selectMode(Subsystems.inputs); //new TestAutoMode();
     	currentAutoMode.initialize();
     }
 
@@ -56,7 +55,7 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void autonomousPeriodic() {
-    	currentAutoMode.tick();
+//    	currentAutoMode.tick();
     }
     
     /**

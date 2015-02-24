@@ -21,6 +21,8 @@ public abstract class AutoMode {
 	
 	public void initialize() {
 		commands = initializeCommands();
-		commands[0].initialize();
+		if ((commands != null) && (commands.length > 0)) {
+			commands[0].initialize();	
+		}
 	}
 }
