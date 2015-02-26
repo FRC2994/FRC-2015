@@ -2,6 +2,7 @@ package ca.team2994.frc.autonomous.commands;
 
 import ca.team2994.frc.autonomous.AutoCommand;
 import ca.team2994.frc.robot.Subsystems;
+import ca.team2994.frc.utils.Constants;
 import ca.team2994.frc.utils.SimLib;
 
 public class DriveStraightAndTurn implements AutoCommand {
@@ -10,7 +11,6 @@ public class DriveStraightAndTurn implements AutoCommand {
 	private final double y;
 	
 	private boolean stage2 = false;
-	private static final double DRIVE_LIMIT_VALUE = 0.4; // must be < 1
 	
 	public DriveStraightAndTurn(double x, double y) {
 		this.x = x;
@@ -59,7 +59,7 @@ public class DriveStraightAndTurn implements AutoCommand {
 			System.out.println("gyro.getAngle() = " + Subsystems.gyroSensor.getAngle());
 			double driveVal = Subsystems.gyroPID.calcPID(Subsystems.gyroSensor.getAngle());
 			// TODO: Read this from the constants file as "gyroPIDMax"
-			double limitVal = SimLib.limitValue(driveVal, DRIVE_LIMIT_VALUE);
+			double limitVal = SimLib.limitValue(driveVal, Constants.getConstantAsDouble(Constants.GYRO_PID_MAX));
 			System.out.println("limitVal = " + limitVal);
 			Subsystems.robotDrive.setLeftRightMotorOutputs(limitVal, -limitVal);
 			//stage2 = true;
@@ -75,7 +75,7 @@ public class DriveStraightAndTurn implements AutoCommand {
 					.calcPID((Subsystems.leftDriveEncoder.getDistance() + Subsystems.rightDriveEncoder
 							.getDistance()) / 2.0);
 			// TODO: Read this from the constants file as "encoderPIDMax"
-			double limitVal = SimLib.limitValue(driveVal, 0.25);
+			double limitVal = SimLib.limitValue(driveVal, Constants.getConstantAsDouble(Constants.ENCODER_PID_MAX));
 
 			Subsystems.robotDrive.setLeftRightMotorOutputs(limitVal, limitVal);
 			return true;

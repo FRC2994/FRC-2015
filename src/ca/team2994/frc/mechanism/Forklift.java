@@ -111,9 +111,7 @@ public class Forklift
 	
 	public void stop()
 	{
-		// -0.15 to hold one tote
-		// -0.3 holds two totes but keeps going up if no totes are there
-		forkliftMotor.set(-0.15);
+		forkliftMotor.set(Constants.getConstantAsDouble(Constants.FORKLIFT_NATURAL_COUNTER_SPEED));
 	}
 	
 	public void disable()
