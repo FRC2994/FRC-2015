@@ -176,14 +176,20 @@ public class Constants
 		// The forklift PID works at encoder-value-scale so we don't need as much accuracy.
 		defaults.put(FORKLIFT_PID_E, "10");
 		
-		defaults.put(GYRO_PID_P, "0.005");
-		defaults.put(GYRO_PID_I, "0.0");
-		defaults.put(GYRO_PID_D, "0.0");
-		defaults.put(GYRO_PID_E, "1.0");
+//		defaults.put(GYRO_PID_P, "0.01");
+//		defaults.put(GYRO_PID_I, "0.0");
+//		defaults.put(GYRO_PID_D, "0.0");
+//		defaults.put(GYRO_PID_E, "1.0");
+//		defaults.put(GYRO_PID_MAX, "0.4");
+
+		defaults.put(GYRO_PID_P, "0.05");
+		defaults.put(GYRO_PID_I, "0.01");
+		defaults.put(GYRO_PID_D, "0.01");
+		defaults.put(GYRO_PID_E, "5.0");
 		defaults.put(GYRO_PID_MAX, "0.4");
-		
-		defaults.put(ENCODER_PID_P, "2.16");
-		defaults.put(ENCODER_PID_I, "0.0");
+
+		defaults.put(ENCODER_PID_P, "2.16"); //2.16
+		defaults.put(ENCODER_PID_I, "0.0"); //0.0
 		defaults.put(ENCODER_PID_D, "0.0");
 		defaults.put(ENCODER_PID_E, "0.1");
 		defaults.put(ENCODER_PID_MAX, "0.4");
@@ -236,7 +242,11 @@ public class Constants
 	public static String getConstant(String name) {
 		return constants.getProperty(name);
 	}
-	
+
+	public static void setConstant(String name, String value) {
+		constants.setProperty(name, value);
+	}
+
 	/**
 	 * Returns constant as an int
 	 * @param constant name

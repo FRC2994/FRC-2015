@@ -55,7 +55,7 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void autonomousPeriodic() {
-//    	currentAutoMode.tick();
+    	currentAutoMode.tick();
     }
     
     /**

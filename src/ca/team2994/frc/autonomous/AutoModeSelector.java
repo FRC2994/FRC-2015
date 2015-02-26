@@ -13,8 +13,11 @@ public class AutoModeSelector {
 	
 	static {
 		//TODO: Add all autonomous modes here.
+		// 000
 		modes.add(DoNothingMode.class);
+		// 001
 		modes.add(TestAutoMode.class);
+		// 010
 		modes.add(BasicRobotSetMode.class);
 	}
 	
@@ -41,9 +44,11 @@ public class AutoModeSelector {
 			// something funny with the switches. Figure it out next time!
 			// Make a new instance of the value at the index from the binary!
 			int encodeBool = encodeBools(newInputs);
+			
 			if (encodeBool >= modes.size()) {
 				encodeBool = 0;
 			}
+			
 			return (modes.get(encodeBool).newInstance());
 		} catch (InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
@@ -63,11 +68,6 @@ public class AutoModeSelector {
 				modeIndex += power; 
 			}
 			power *= 2;
-		}
-
-		// Do nothing mode
-		if (modeIndex < modes.size()) {
-			modeIndex = 0;
 		}
 		
 		return modeIndex;
