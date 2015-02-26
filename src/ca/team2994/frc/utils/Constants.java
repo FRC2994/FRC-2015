@@ -102,6 +102,7 @@ public class Constants
 	public static final String[] ENCODER_LEVELS  =               {"LEVELS_1", "LEVELS_2", "LEVELS_3", "LEVEL_4"};
 	public static final String FORKLIFT_UP_SPEED =				 "FORKLIFT_UP_SPEED";
 	public static final String FORKLIFT_DOWN_SPEED = 			 "FORKLIFT_DOWN_SPEED";
+	public static final String FORKLIFT_NATURAL_COUNTER_SPEED =	 "FORKLIFT_NATURAL_COUNTER_SPEED";
 	
 	//Gamepad Buttons
 	public static final String GAMEPAD_TOGGLE_MODE =			"GAMEPAD_TOGGLE_MODE";
@@ -230,6 +231,9 @@ public class Constants
 		
 		defaults.put(FORKLIFT_UP_SPEED, "-0.75");
 		defaults.put(FORKLIFT_DOWN_SPEED, "0.50");
+		// -0.15 to hold one tote
+		// -0.3 holds two totes but keeps going up if no totes are there
+		defaults.put(FORKLIFT_NATURAL_COUNTER_SPEED, "-0.15");
 
 		constants.putAll(defaults);
 	}
