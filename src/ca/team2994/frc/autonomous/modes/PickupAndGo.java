@@ -5,6 +5,7 @@ import ca.team2994.frc.autonomous.AutoCommand;
 import ca.team2994.frc.autonomous.AutoMode;
 import ca.team2994.frc.autonomous.commands.DriveStraight;
 import ca.team2994.frc.autonomous.commands.DriveTurn;
+import ca.team2994.frc.autonomous.commands.ForkliftDrop;
 import ca.team2994.frc.autonomous.commands.GearShift;
 import ca.team2994.frc.autonomous.commands.SimpleForklift;
 
@@ -31,6 +32,9 @@ public class PickupAndGo extends AutoMode {
 		// Drive forward into the zone.
 		builder.add(new DriveStraight(STRAIGHT_DISTANCE));
 
+		//Drop tote
+		builder.add(new ForkliftDrop());
+		
 		return builder.toArray();
 	}
 }
