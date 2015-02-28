@@ -21,6 +21,9 @@ public class SmartDash{
 	 */
 	public void compDash() {
 		warning();
+		
+		motivational();
+		
 		SmartDashboard.putBoolean("Tote_ready: ", Subsystems.toteDetectionSensor.get());
 		SmartDashboard.putBoolean("Manual mode: ", InputControl.isManualMode);
 		SmartDashboard.putNumber("ForkLift_Level: ", Subsystems.forklift.getLevel());
@@ -45,7 +48,7 @@ public class SmartDash{
 	 * Displays the drive frames motor PWM and encoder ticks in the Smart Dashboard
 	 */
 	public void showDriveMotors(){
-		SmartDashboard.putString(" DRIVE ", "MOTORS ");
+		SmartDashboard.putString(" DRIVE MOTORS", " ");
 		SmartDashboard.putNumber(" Left_Front_Motor_PWM: ", Subsystems.leftFrontDrive.get());	
 		SmartDashboard.putNumber(" Left_Rear_Motor_PWM: ", Subsystems.leftRearDrive.get());	
 		SmartDashboard.putNumber(" Right_Front_Motor_PWM: ", Subsystems.rightFrontDrive.get());	
@@ -58,7 +61,7 @@ public class SmartDash{
 	 * Displays the Conveyor motor PWM within Smart Dashboard
 	 */
 	public void showConveyorMotors(){
-		SmartDashboard.putString(" CONVEYOR ", "BELT ");
+		SmartDashboard.putString(" CONVEYOR BELT", " ");
 		SmartDashboard.putNumber(" Conveyor_PWM: ", Subsystems.conveyorMotor.get());		
 	}
 	
@@ -66,7 +69,7 @@ public class SmartDash{
 	 * Displays the PWM of the Arm motors within Smart Dashboard
 	 */
 	public void showArmMotors(){
-		SmartDashboard.putString(" ARM ", "MOTORS ");
+		SmartDashboard.putString(" ARM MOTORS", " ");
 		SmartDashboard.putNumber(" Right_Arm_PWM: ", Subsystems.rightArmMotor.get());
 		SmartDashboard.putNumber(" Left_Arm_PWM: ", Subsystems.leftArmMotor.get());
 	}
@@ -75,17 +78,17 @@ public class SmartDash{
 	 * Displays the PWM, ticks and rate of the Forklift motor	
 	 */
 	public void showForkliftMotors(){
-		SmartDashboard.putString(" FORKLIFT ", "MOTORS ");
+		SmartDashboard.putString(" FORKLIFT MOTORS", " ");
 		SmartDashboard.putNumber(" Forklift_PWM: ", Subsystems.forkliftMotor.get());
 		SmartDashboard.putNumber(" Forklift_Ticks: ", Subsystems.forkliftEncoder.get());
 		SmartDashboard.putNumber(" Forklift_Rate: ", Subsystems.forkliftEncoder.getRate());
 	}
 	
 	/**For the comp dashboard
-	 * Belive in yourself like I belive in you
+	 * Believe in yourself like I believe in you
 	 */
 	public void motivational(){
-		SmartDashboard.putString(" You can do it! ", " Belive!!");
+		SmartDashboard.putString(" You can do it! ", " Believe!!");
 	}
 	
 	/**Shows all necessary information related to the drive 
@@ -96,17 +99,17 @@ public class SmartDash{
 		
 		showDriveMotors();
 		
-		SmartDashboard.putString(" OTHER ", "DRIVE INFO");
+		SmartDashboard.putString(" OTHER DRIVE INFO", " ");
 		SmartDashboard.putNumber(" Left_Drive_Direction: ", Subsystems.leftDriveEncoder.getDistance());
 		SmartDashboard.putNumber(" Right_Drive_Direction: ", Subsystems.rightDriveEncoder.getDistance());
 	}
 	
 	/**Displays the warning message
-	 * "Do not minamize this window"
+	 * "Do not minimize this window"
 	 */
 	public void warning()
 	{
-		SmartDashboard.putString("Do not minamize ", "this window");
+		SmartDashboard.putString("Do not minimize this window", " ");
 	}
 	
 	

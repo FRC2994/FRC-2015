@@ -71,7 +71,10 @@ public class AstechzRobot extends IterativeRobot {
     @Override
 	public void teleopPeriodic() {
     	inputControl.update();
+    	
 		smartdash.compDash();
+		//For testing in teleop or for competition 
+//		smartdash.showMotors();
     }
     
     @Override
