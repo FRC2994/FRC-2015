@@ -6,6 +6,7 @@ import java.util.List;
 import ca.team2994.frc.autonomous.modes.BasicRobotSetMode;
 import ca.team2994.frc.autonomous.modes.DriveToAutoZone;
 import ca.team2994.frc.autonomous.modes.PickupAndGo;
+import ca.team2994.frc.autonomous.modes.SmashCanMoveTote;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 public class AutoModeSelector {
@@ -20,6 +21,8 @@ public class AutoModeSelector {
 		modes.add(DriveToAutoZone.class);
 		// 010
 		modes.add(PickupAndGo.class);
+		//011
+		modes.add(SmashCanMoveTote.class);
 
 	}
 	
