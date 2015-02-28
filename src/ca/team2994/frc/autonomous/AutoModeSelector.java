@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ca.team2994.frc.autonomous.modes.BasicRobotSetMode;
-import ca.team2994.frc.autonomous.modes.DoNothingMode;
-import ca.team2994.frc.autonomous.modes.TestAutoMode;
+import ca.team2994.frc.autonomous.modes.DriveToAutoZone;
+import ca.team2994.frc.autonomous.modes.PickupAndGo;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 public class AutoModeSelector {
@@ -13,12 +13,14 @@ public class AutoModeSelector {
 	
 	static {
 		//TODO: Add all autonomous modes here.
+		
 		// 000
-		modes.add(DoNothingMode.class);
-		// 001
-		modes.add(TestAutoMode.class);
-		// 010
 		modes.add(BasicRobotSetMode.class);
+		// 001
+		modes.add(DriveToAutoZone.class);
+		// 010
+		modes.add(PickupAndGo.class);
+
 	}
 	
 	/**
