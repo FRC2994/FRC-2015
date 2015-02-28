@@ -18,6 +18,7 @@ public class Forklift
 	
 	private double encoderLevels[] = new double[4];
 	private int levelIndex = 0;
+	private int totesHeld = 0;
 	
 	public Forklift(Motor liftMotor, Encoder liftEncoder, SimPID liftPID)
 	{
@@ -31,6 +32,21 @@ public class Forklift
 		}
 
 		forkliftEncoder.reset();
+	}
+	
+	public void increaseTotesHeld()
+	{
+		totesHeld++;
+	}
+	
+	public void decreaseTotesHeld()
+	{
+		totesHeld--;
+	}
+	
+	public int getTotesHeld()
+	{
+		return totesHeld;
 	}
 	
 	public void levelUp()
@@ -111,7 +127,7 @@ public class Forklift
 	
 	public void stop()
 	{
-		forkliftMotor.set(Constants.getConstantAsDouble(Constants.FORKLIFT_NATURAL_COUNTER_SPEED));
+		forkliftMotor.set(Constants.getConstantAsDouble(Constants.FORKLIFT_TOTE_HOLD_SPEED) * totesHeld);
 	}
 	
 	public void disable()
