@@ -109,6 +109,9 @@ public class Constants
 	public static final String GAMEPAD_LOAD_TOTE =				"GAMEPAD_LOAD_TOTE";
 	public static final String GAMEPAD_UNLOAD_TOTE =			"GAMEPAD_UNLOAD_TOTE";
 	
+	public static final String GAMEPAD_INCREMENT_HELD_TOTES =	"GAMEPAD_INCREMENT_HELD_TOTES";
+	public static final String GAMEPAD_DECREMENT_HELD_TOTES =	"GAMEPAD_DECREMENT_HELD_TOTES";
+	
 	//Joystick Buttons
 	public static final String JOYSTICK_HIGH_GEAR  =			"JOYSTICK_HIGH_GEAR";
 	public static final String JOYSTICK_CALIBRATE  =			"JOYSTICK_CALIBRATE";
@@ -213,6 +216,8 @@ public class Constants
 		defaults.put(GAMEPAD_TOGGLE_MODE, "10"); // Start
 		defaults.put(GAMEPAD_LOAD_TOTE, "2"); // A
 		defaults.put(GAMEPAD_UNLOAD_TOTE, "3"); // B
+		defaults.put(GAMEPAD_INCREMENT_HELD_TOTES, "6"); // R1
+		defaults.put(GAMEPAD_DECREMENT_HELD_TOTES, "8"); // R2
 		
 		//Joystick Buttons
 		defaults.put(JOYSTICK_HIGH_GEAR, "7");
