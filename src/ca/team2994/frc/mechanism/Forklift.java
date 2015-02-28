@@ -111,7 +111,7 @@ public class Forklift
 	
 	public void stop()
 	{
-		forkliftMotor.set(Constants.getConstantAsDouble(Constants.FORKLIFT_NATURAL_COUNTER_SPEED));
+		forkliftMotor.set(Constants.getConstantAsDouble(Constants.FORKLIFT_TOTE_HOLD_SPEED));
 	}
 	
 	public void disable()
