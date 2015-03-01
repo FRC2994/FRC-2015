@@ -192,11 +192,11 @@ public class Constants
 		defaults.put(GYRO_PID_E, "5.0");
 		defaults.put(GYRO_PID_MAX, "0.4");
 
-		defaults.put(ENCODER_PID_P, "2.16"); //2.16
-		defaults.put(ENCODER_PID_I, "0.0"); //0.0
+		defaults.put(ENCODER_PID_P, "0.5"); //2.16 (Ryan and Jacks value)
+		defaults.put(ENCODER_PID_I, "0.0"); 
 		defaults.put(ENCODER_PID_D, "0.0");
 		defaults.put(ENCODER_PID_E, "0.1");
-		defaults.put(ENCODER_PID_MAX, "0.4");
+		defaults.put(ENCODER_PID_MAX, "0.3"); // 0.4 (Ryan and Jacks value) Too much jerk
 
 		defaults.put(CALIBRATION_FILE_LOC, "/home/lvuser/calibration.txt");
 		defaults.put(CALIBRATION_BUTTON, "2");
