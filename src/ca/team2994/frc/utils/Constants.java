@@ -104,6 +104,13 @@ public class Constants
 	public static final String FORKLIFT_DOWN_SPEED = 			"FORKLIFT_DOWN_SPEED";
 	public static final String FORKLIFT_TOTE_HOLD_SPEED =		"FORKLIFT_TOTE_HOLD_SPEED";
 	
+	public static final String FORKLIFT_MIN_LEVEL =				"FORKLIFT_MIN_LEVEL";
+	public static final String FORKLIFT_MAX_LEVEL =				"FORKLIFT_MAX_LEVEL";
+	public static final String FORKLIFT_MIN_POSITION =			"FORKLIFT_MIN_POSITION";
+	public static final String FORKLIFT_MAX_POSITION =			"FORKLIFT_MAX_POSITION";
+	public static final String FORKLIFT_POSITION_INCREMENT =	"FORKLIFT_POSITION_INCREMENT";
+	public static final String FORKLIFT_POSITION_DECREMENT =	"FORKLIFT_POSITION_DECREMENT";
+	
 	//Gamepad Buttons
 	public static final String GAMEPAD_TOGGLE_MODE =			"GAMEPAD_TOGGLE_MODE";
 	public static final String GAMEPAD_LOAD_TOTE =				"GAMEPAD_LOAD_TOTE";
@@ -238,8 +245,14 @@ public class Constants
 		defaults.put(FORKLIFT_DOWN_SPEED, "0.50");
 		// -0.15 to hold one tote
 		// -0.3 holds two totes but keeps going up if no totes are there
-		defaults.put(FORKLIFT_TOTE_HOLD_SPEED, "-0.15");
-
+		defaults.put(FORKLIFT_TOTE_HOLD_SPEED, "0.15");
+		defaults.put(FORKLIFT_MIN_LEVEL, "0");
+		defaults.put(FORKLIFT_MAX_LEVEL, "3");
+		defaults.put(FORKLIFT_MIN_POSITION, "-1200.0");
+		defaults.put(FORKLIFT_MAX_POSITION, "0.0");
+		defaults.put(FORKLIFT_POSITION_INCREMENT, "-8.0");
+		defaults.put(FORKLIFT_POSITION_DECREMENT, "8.0");
+		
 		constants.putAll(defaults);
 	}
 	

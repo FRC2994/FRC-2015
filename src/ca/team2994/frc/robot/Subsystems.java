@@ -206,9 +206,9 @@ public class Subsystems {
 			leftDriveEncoder.setDistancePerPulse(encoderADistancePerPulse);
 			rightDriveEncoder.setDistancePerPulse(encoderBDistancePerPulse);
 		} catch (IOException e) {
-			e.printStackTrace();
-			leftDriveEncoder.setDistancePerPulse(1);
-			rightDriveEncoder.setDistancePerPulse(1);
+			System.out.println("Calibration file read error!");
+			leftDriveEncoder.setDistancePerPulse(encoderADistancePerPulseOverride);
+			rightDriveEncoder.setDistancePerPulse(encoderBDistancePerPulseOverride);
 		}
 	}
 }

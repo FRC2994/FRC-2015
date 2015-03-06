@@ -25,7 +25,7 @@ public class DriveToAutoZone extends AutoMode {
 		//builder.add(new SimpleForklift(SIMPLE_FORKLIFT_COUNTER));
 		
 		// Drive forward into the zone.
-		builder.add(new DriveStraight(STRAIGHT_DISTANCE));
+		builder.add(new DriveStraight(STRAIGHT_DISTANCE * 1.2));
 		
 		// Disable Forklift
 //		builder.add(new ForkliftDrop());
