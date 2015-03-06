@@ -47,8 +47,15 @@ public class AstechzRobot extends IterativeRobot {
     	// how they're used.
     	//TODO: Make this = selector.selectMode(Subsystems.inputs) when we're sure that it works
     	// Currently we just initialize it to TestAutoMode.
-    	currentAutoMode = selector.selectMode(Subsystems.inputs); //new TestAutoMode();
-    	currentAutoMode.initialize();
+//    	currentAutoMode = selector.selectMode(Subsystems.inputs); //new TestAutoMode(); TODO FIX DIPSWITCH ISSUE
+//    	currentAutoMode.initialize();
+    	Subsystems.leftDriveEncoder.reset();
+    	Subsystems.rightDriveEncoder.reset();
+    	
+    	for(int i = 0; i < 15; ++i) {
+    		Subsystems.forklift.moveUp();
+    		Subsystems.forklift.manualLoop();
+    	}
     }
 
     /**
@@ -56,7 +63,14 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void autonomousPeriodic() {
-    	currentAutoMode.tick();
+//    	currentAutoMode.tick();
+    	System.out.println(Subsystems.leftDriveEncoder.get());
+    	
+    	if(Subsystems.leftDriveEncoder.get() < 1050) {	// 1500 = 9 and a half feet
+    		Subsystems.robotDrive.drive(0.2, 0.0);
+    	} else {
+    		Subsystems.robotDrive.drive(0.0, 0.0);
+    	}
     }
     
     /**
