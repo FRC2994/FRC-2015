@@ -60,6 +60,10 @@ public class InputControl
 				{
 					Subsystems.forklift.moveDown();
 				}
+//				else
+//				{
+//					Subsystems.forklift.stop();
+//				}
 				
 				// TODO Test this
 				if(Subsystems.controlGamepad.getEvent(Constants.getConstantAsInt(Constants.GAMEPAD_INCREMENT_HELD_TOTES)) == ButtonEntry.EVENT_CLOSED)

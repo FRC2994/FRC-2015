@@ -15,9 +15,9 @@ public class Forklift
 	private final Motor forkliftMotor;
 	private final Encoder forkliftEncoder;
 	private SimPID forkliftPID;
-	private double currentPosition = 0.0;
+	private double currentPosition;
 	
-	private double encoderLevels[] = new double[Constants.getConstantAsInt(Constants.FORKLIFT_MAX_LEVEL + 1)];
+	private double encoderLevels[] = new double[Constants.getConstantAsInt(Constants.FORKLIFT_MAX_LEVEL) + 1];
 	private int levelIndex = 0;
 	private int totesHeld = 0;
 	
@@ -33,6 +33,7 @@ public class Forklift
 		}
 
 		forkliftEncoder.reset();
+		currentPosition = forkliftEncoder.get();
 	}
 	
 	public void increaseTotesHeld()
@@ -69,12 +70,14 @@ public class Forklift
 	
 	public void moveUp()
 	{
-		currentPosition += Constants.getConstantAsInt(Constants.FORKLIFT_POSITION_INCREMENT);
+		currentPosition += Constants.getConstantAsDouble(Constants.FORKLIFT_POSITION_INCREMENT);
+//		forkliftMotor.set(Constants.getConstantAsDouble(Constants.FORKLIFT_UP_SPEED));
 	}
 	
 	public void moveDown()
 	{
-		currentPosition += Constants.getConstantAsInt(Constants.FORKLIFT_POSITION_DECREMENT);
+		currentPosition += Constants.getConstantAsDouble(Constants.FORKLIFT_POSITION_DECREMENT);
+//		forkliftMotor.set(Constants.getConstantAsDouble(Constants.FORKLIFT_DOWN_SPEED));
 	}
 	
 	public void manualLoop()
@@ -90,6 +93,7 @@ public class Forklift
 		capLiftPosition();
 		forkliftPID.setDesiredValue(currentPosition);
 		forkliftMotor.set(forkliftPID.calcPID(forkliftEncoder.get()));
+		System.out.println("Pos: " + currentPosition + " Val: " + forkliftEncoder.get());
 	}
 	
 	public void automaticLoop()
@@ -130,7 +134,8 @@ public class Forklift
 	
 	public void stop()
 	{
-		forkliftMotor.set(0.0);
+//		forkliftMotor.set(0.0);
+		forkliftMotor.set(Constants.getConstantAsDouble(Constants.FORKLIFT_TOTE_HOLD_SPEED));
 	}
 	
 	public void disable()

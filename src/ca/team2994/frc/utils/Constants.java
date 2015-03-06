@@ -245,13 +245,13 @@ public class Constants
 		defaults.put(FORKLIFT_DOWN_SPEED, "0.50");
 		// -0.15 to hold one tote
 		// -0.3 holds two totes but keeps going up if no totes are there
-		defaults.put(FORKLIFT_TOTE_HOLD_SPEED, "-0.15");
+		defaults.put(FORKLIFT_TOTE_HOLD_SPEED, "0.15");
 		defaults.put(FORKLIFT_MIN_LEVEL, "0");
 		defaults.put(FORKLIFT_MAX_LEVEL, "3");
-		defaults.put(FORKLIFT_MIN_POSITION, "0.0");
-		defaults.put(FORKLIFT_MAX_POSITION, "2500");
-		defaults.put(FORKLIFT_POSITION_INCREMENT, "10");
-		defaults.put(FORKLIFT_POSITION_DECREMENT, "10");
+		defaults.put(FORKLIFT_MIN_POSITION, "-1200.0");
+		defaults.put(FORKLIFT_MAX_POSITION, "0.0");
+		defaults.put(FORKLIFT_POSITION_INCREMENT, "-8.0");
+		defaults.put(FORKLIFT_POSITION_DECREMENT, "8.0");
 		
 		constants.putAll(defaults);
 	}
