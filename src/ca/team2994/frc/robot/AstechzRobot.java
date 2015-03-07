@@ -3,6 +3,7 @@ package ca.team2994.frc.robot;
 import ca.team2994.frc.autonomous.AutoMode;
 import ca.team2994.frc.autonomous.AutoModeSelector;
 import ca.team2994.frc.autonomous.CalibrationManager;
+import ca.team2994.frc.autonomous.modes.DriveToAutoZoneOverPlatform;
 import ca.team2994.frc.utils.Constants;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -13,6 +14,8 @@ public class AstechzRobot extends IterativeRobot {
 	public SmartDash smartdash;
 	private AutoModeSelector selector;
 	private InputControl inputControl;
+	
+	private int forkliftCounter = 0;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -25,6 +28,7 @@ public class AstechzRobot extends IterativeRobot {
     	
     	Subsystems.leftDriveEncoder.reset();
     	Subsystems.rightDriveEncoder.reset();
+    	Subsystems.forkliftEncoder.reset();
     	
     	smartdash = new SmartDash();
     	
@@ -47,15 +51,11 @@ public class AstechzRobot extends IterativeRobot {
     	// how they're used.
     	//TODO: Make this = selector.selectMode(Subsystems.inputs) when we're sure that it works
     	// Currently we just initialize it to TestAutoMode.
-//    	currentAutoMode = selector.selectMode(Subsystems.inputs); //new TestAutoMode(); TODO FIX DIPSWITCH ISSUE
+//    	currentAutoMode = new DriveToAutoZoneOverPlatform(); //new TestAutoMode(); TODO FIX DIPSWITCH ISSUE
 //    	currentAutoMode.initialize();
     	Subsystems.leftDriveEncoder.reset();
-    	Subsystems.rightDriveEncoder.reset();
-    	
-    	for(int i = 0; i < 15; ++i) {
-    		Subsystems.forklift.moveUp();
-    		Subsystems.forklift.manualLoop();
-    	}
+    	Subsystems.rightDriveEncoder.reset();    	
+    	forkliftCounter = 0;
     }
 
     /**
@@ -64,20 +64,27 @@ public class AstechzRobot extends IterativeRobot {
     @Override
 	public void autonomousPeriodic() {
 //    	currentAutoMode.tick();
-    	System.out.println(Subsystems.leftDriveEncoder.get());
     	
-    	if(Subsystems.leftDriveEncoder.get() < 1050) {	// 1500 = 9 and a half feet
+    	if(forkliftCounter < 50) {
+    		Subsystems.forklift.moveUp();
+    		forkliftCounter++;
+    	}
+    	
+    	if(Subsystems.leftDriveEncoder.get() < 1550) {	// 1500 = 9 and a half feet
     		Subsystems.robotDrive.drive(0.2, 0.0);
     	} else {
     		Subsystems.robotDrive.drive(0.0, 0.0);
     	}
+    	
+    	Subsystems.forklift.manualLoop();
     }
     
     /**
      * This function is called once each time the robot enters tele-operated mode
      */
     @Override
-	public void teleopInit(){
+	public void teleopInit() {
+    	Subsystems.forklift.syncPositionWithEncoder();
     }
 
     /**
@@ -95,7 +102,8 @@ public class AstechzRobot extends IterativeRobot {
     @Override
 	public void testInit() {
     	calibration = new CalibrationManager();
-    	calibration.calibrateInit();    	
+    	calibration.calibrateInit();   
+    	Subsystems.forkliftEncoder.reset();
     }
     
     /**
