@@ -25,13 +25,12 @@ public class Forklift
 	{
 		forkliftMotor = liftMotor;
 		forkliftEncoder = liftEncoder;
-
 		forkliftPID = liftPID;
 		
 		for(int i = 0; i < 4; i++){
 			encoderLevels[i] = Constants.getConstantAsDouble(Constants.ENCODER_LEVELS[i]);
 		}
-
+		
 		forkliftEncoder.reset();
 		currentPosition = forkliftEncoder.get();
 	}
@@ -68,6 +67,11 @@ public class Forklift
 		forkliftPID.setDesiredValue(encoderLevels[levelIndex]);
 	}
 	
+	public void syncPositionWithEncoder()
+	{
+		currentPosition = forkliftEncoder.get();
+	}
+	
 	public void moveUp()
 	{
 		currentPosition += Constants.getConstantAsDouble(Constants.FORKLIFT_POSITION_INCREMENT);
@@ -82,18 +86,17 @@ public class Forklift
 	
 	public void manualLoop()
 	{
-		for(int i = 0; i < encoderLevels.length; i++)
-		{
-			if(forkliftEncoder.get() < encoderLevels[i] + 50 && forkliftEncoder.get() > encoderLevels[i] - 50)
-			{
-				levelIndex = i;
-			}
-		}
+//		for(int i = 0; i < encoderLevels.length; i++)
+//		{
+//			if(forkliftEncoder.get() < encoderLevels[i] + 50 && forkliftEncoder.get() > encoderLevels[i] - 50)
+//			{
+//				levelIndex = i;
+//			}
+//		}
 		
 		capLiftPosition();
 		forkliftPID.setDesiredValue(currentPosition);
 		forkliftMotor.set(forkliftPID.calcPID(forkliftEncoder.get()));
-		System.out.println("Pos: " + currentPosition + " Val: " + forkliftEncoder.get());
 	}
 	
 	public void automaticLoop()
