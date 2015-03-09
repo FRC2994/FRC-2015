@@ -9,19 +9,26 @@ import ca.team2994.frc.autonomous.commands.GearShift;
 public class DriveToAutoZone extends AutoMode {
 	
 	//TODO: Test this on practice field. These are bogus values.
-	private static final double STRAIGHT_DISTANCE = 4;
+	private static final double STRAIGHT_DISTANCE = 9.5;
+//	private static final int SIMPLE_FORKLIFT_COUNTER = 50;
 
 	@Override
 	protected AutoCommand[] initializeCommands() {
-		// This assumes that we start in the staging zone parallel to the closest scoring platform
+		// Alignment: Back of Robot with Staging Zone 
 		AutoBuilder builder = new AutoBuilder();
 
 		// Shift to low gear
 		builder.add(new GearShift(false));
 		
-		// Drive forward into the zone.
-		builder.add(new DriveStraight(STRAIGHT_DISTANCE));
+		// Lift Forklift Up enough to get it off the ground
+		// == Don't need this with new mods done to the forklift
+		//builder.add(new SimpleForklift(SIMPLE_FORKLIFT_COUNTER));
 		
+		// Drive forward into the zone.
+		builder.add(new DriveStraight(STRAIGHT_DISTANCE * 1.2));
+		
+		// Disable Forklift
+//		builder.add(new ForkliftDrop());
 		
 		return builder.toArray();
 	}

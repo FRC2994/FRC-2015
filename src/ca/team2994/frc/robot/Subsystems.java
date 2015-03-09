@@ -185,22 +185,30 @@ public class Subsystems {
 	 * Read in the encoder values from the autonomous config file. TODO:
 	 * Integrate this with Georges' Constants class.
 	 */
-	public static void readEncoderValues() {
+	public static void readEncoderValues(double encoderADistancePerPulseOverride, double encoderBDistancePerPulseOverride) {
+		double encoderADistancePerPulse = encoderADistancePerPulseOverride;
+		double encoderBDistancePerPulse = encoderBDistancePerPulseOverride;
+		
 		try {
 			List<String> guavaResult = Files.readLines(new File(Constants.getConstant(Constants.CALIBRATION_FILE_LOC)), Charsets.UTF_8);
 			Iterable<String> guavaResultFiltered = Iterables.filter(guavaResult, AutoHelper.SKIP_COMMENTS);
 
 			String[] s = Iterables.toArray(AutoHelper.SPLITTER.split(guavaResultFiltered.iterator().next()), String.class);
 
-			double encoderAConst = Double.parseDouble(s[0]);
-			double encoderBConst = Double.parseDouble(s[1]);
+			if (encoderADistancePerPulse == 0) {
+				encoderADistancePerPulse = Double.parseDouble(s[0]);
+			}
+			if (encoderBDistancePerPulse == 0) {
+				encoderBDistancePerPulse = Double.parseDouble(s[1]);
+			} 
 
-			leftDriveEncoder.setDistancePerPulse(encoderAConst);
-			rightDriveEncoder.setDistancePerPulse(encoderBConst);
+			System.out.println("EncoderADistancePerPulse:" + encoderADistancePerPulse + ", EncoderBDistancePerPulse:" + encoderBDistancePerPulse);
+			leftDriveEncoder.setDistancePerPulse(encoderADistancePerPulse);
+			rightDriveEncoder.setDistancePerPulse(encoderBDistancePerPulse);
 		} catch (IOException e) {
-			e.printStackTrace();
-			leftDriveEncoder.setDistancePerPulse(1);
-			rightDriveEncoder.setDistancePerPulse(1);
+			System.out.println("Calibration file read error!");
+			leftDriveEncoder.setDistancePerPulse(encoderADistancePerPulseOverride);
+			rightDriveEncoder.setDistancePerPulse(encoderBDistancePerPulseOverride);
 		}
 	}
 }

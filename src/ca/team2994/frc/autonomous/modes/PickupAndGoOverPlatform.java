@@ -9,13 +9,13 @@ import ca.team2994.frc.autonomous.commands.ForkliftDrop;
 import ca.team2994.frc.autonomous.commands.GearShift;
 import ca.team2994.frc.autonomous.commands.SimpleForklift;
 
-public class PickupAndGo extends AutoMode {
+public class PickupAndGoOverPlatform extends AutoMode {
 
 	// TODO: Test this on practice field. These are bogus values.
 	private static final int TURN_ANGLE = 90;
 	private static final double STRAIGHT_DISTANCE = 8.5;
 	private static final double OUT_OF_THE_WAY_DISTANCE = 1;
-	private static final int TIME = 50;
+	private static final int TIME = 100;
 
 	@Override
 	protected AutoCommand[] initializeCommands() {

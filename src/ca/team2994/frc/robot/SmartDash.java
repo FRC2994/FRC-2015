@@ -24,6 +24,7 @@ public class SmartDash{
 		
 		motivational();
 		
+		SmartDashboard.getNumber("Tote_Held: ", Subsystems.forklift.getTotesHeld());
 		SmartDashboard.putBoolean("Tote_ready: ", Subsystems.toteDetectionSensor.get());
 		SmartDashboard.putBoolean("Manual mode: ", InputControl.isManualMode);
 		SmartDashboard.putNumber("ForkLift_Level: ", Subsystems.forklift.getLevel());

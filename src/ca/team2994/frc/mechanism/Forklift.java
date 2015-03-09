@@ -15,22 +15,39 @@ public class Forklift
 	private final Motor forkliftMotor;
 	private final Encoder forkliftEncoder;
 	private SimPID forkliftPID;
+	private double currentPosition;
 	
-	private double encoderLevels[] = new double[4];
+	private double encoderLevels[] = new double[Constants.getConstantAsInt(Constants.FORKLIFT_MAX_LEVEL) + 1];
 	private int levelIndex = 0;
+	private int totesHeld = 0;
 	
 	public Forklift(Motor liftMotor, Encoder liftEncoder, SimPID liftPID)
 	{
 		forkliftMotor = liftMotor;
 		forkliftEncoder = liftEncoder;
-
 		forkliftPID = liftPID;
 		
 		for(int i = 0; i < 4; i++){
 			encoderLevels[i] = Constants.getConstantAsDouble(Constants.ENCODER_LEVELS[i]);
 		}
-
+		
 		forkliftEncoder.reset();
+		currentPosition = forkliftEncoder.get();
+	}
+	
+	public void increaseTotesHeld()
+	{
+		totesHeld++;
+	}
+	
+	public void decreaseTotesHeld()
+	{
+		totesHeld--;
+	}
+	
+	public int getTotesHeld()
+	{
+		return totesHeld;
 	}
 	
 	public void levelUp()
@@ -50,27 +67,36 @@ public class Forklift
 		forkliftPID.setDesiredValue(encoderLevels[levelIndex]);
 	}
 	
+	public void syncPositionWithEncoder()
+	{
+		currentPosition = forkliftEncoder.get();
+	}
+	
 	public void moveUp()
 	{
-		forkliftMotor.set(Constants.getConstantAsDouble(Constants.FORKLIFT_UP_SPEED));
+		currentPosition += Constants.getConstantAsDouble(Constants.FORKLIFT_POSITION_INCREMENT);
+//		forkliftMotor.set(Constants.getConstantAsDouble(Constants.FORKLIFT_UP_SPEED));
 	}
 	
 	public void moveDown()
 	{
-		forkliftMotor.set(Constants.getConstantAsDouble(Constants.FORKLIFT_DOWN_SPEED));
+		currentPosition += Constants.getConstantAsDouble(Constants.FORKLIFT_POSITION_DECREMENT);
+//		forkliftMotor.set(Constants.getConstantAsDouble(Constants.FORKLIFT_DOWN_SPEED));
 	}
 	
 	public void manualLoop()
 	{
-		for(int i = 0; i < encoderLevels.length; i++)
-		{
-			// Check to see if the encoder is within 100 of any of the levels
-			if(forkliftEncoder.get() < encoderLevels[i] + 50 && forkliftEncoder.get() > encoderLevels[i] - 50)
-			{
-				// If it is then set the level to the current level
-				levelIndex = i;
-			}
-		}
+//		for(int i = 0; i < encoderLevels.length; i++)
+//		{
+//			if(forkliftEncoder.get() < encoderLevels[i] + 50 && forkliftEncoder.get() > encoderLevels[i] - 50)
+//			{
+//				levelIndex = i;
+//			}
+//		}
+		
+		capLiftPosition();
+		forkliftPID.setDesiredValue(currentPosition);
+		forkliftMotor.set(forkliftPID.calcPID(forkliftEncoder.get()));
 	}
 	
 	public void automaticLoop()
@@ -111,7 +137,8 @@ public class Forklift
 	
 	public void stop()
 	{
-		forkliftMotor.set(Constants.getConstantAsDouble(Constants.FORKLIFT_NATURAL_COUNTER_SPEED));
+//		forkliftMotor.set(0.0);
+		forkliftMotor.set(Constants.getConstantAsDouble(Constants.FORKLIFT_TOTE_HOLD_SPEED));
 	}
 	
 	public void disable()
@@ -131,14 +158,27 @@ public class Forklift
 	
 	private void capLiftLevel()
 	{
-		if(levelIndex < 0)
+		if(levelIndex < Constants.getConstantAsInt(Constants.FORKLIFT_MIN_LEVEL))
 		{
-			levelIndex = 0;
+			levelIndex = Constants.getConstantAsInt(Constants.FORKLIFT_MIN_LEVEL);
 		}
 		
-		if(levelIndex > 3)
+		if(levelIndex > Constants.getConstantAsInt(Constants.FORKLIFT_MAX_LEVEL))
 		{
-			levelIndex = 3;
+			levelIndex = Constants.getConstantAsInt(Constants.FORKLIFT_MAX_LEVEL);
+		}
+	}
+	
+	private void capLiftPosition()
+	{
+		if(currentPosition < Constants.getConstantAsDouble(Constants.FORKLIFT_MIN_POSITION))
+		{
+			currentPosition = Constants.getConstantAsDouble(Constants.FORKLIFT_MIN_POSITION);
+		}
+		
+		if(currentPosition > Constants.getConstantAsDouble(Constants.FORKLIFT_MAX_POSITION))
+		{
+			currentPosition = Constants.getConstantAsDouble(Constants.FORKLIFT_MAX_POSITION);
 		}
 	}
 }

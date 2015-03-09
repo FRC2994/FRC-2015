@@ -99,15 +99,25 @@ public class Constants
 	public static final String CONVEYOR_TIME =					"CONVEYOR_TIME";
 	
 	//Forklift
-	public static final String[] ENCODER_LEVELS  =               {"LEVELS_1", "LEVELS_2", "LEVELS_3", "LEVEL_4"};
-	public static final String FORKLIFT_UP_SPEED =				 "FORKLIFT_UP_SPEED";
-	public static final String FORKLIFT_DOWN_SPEED = 			 "FORKLIFT_DOWN_SPEED";
-	public static final String FORKLIFT_NATURAL_COUNTER_SPEED =	 "FORKLIFT_NATURAL_COUNTER_SPEED";
+	public static final String[] ENCODER_LEVELS  =              {"LEVELS_1", "LEVELS_2", "LEVELS_3", "LEVEL_4"};
+	public static final String FORKLIFT_UP_SPEED =				"FORKLIFT_UP_SPEED";
+	public static final String FORKLIFT_DOWN_SPEED = 			"FORKLIFT_DOWN_SPEED";
+	public static final String FORKLIFT_TOTE_HOLD_SPEED =		"FORKLIFT_TOTE_HOLD_SPEED";
+	
+	public static final String FORKLIFT_MIN_LEVEL =				"FORKLIFT_MIN_LEVEL";
+	public static final String FORKLIFT_MAX_LEVEL =				"FORKLIFT_MAX_LEVEL";
+	public static final String FORKLIFT_MIN_POSITION =			"FORKLIFT_MIN_POSITION";
+	public static final String FORKLIFT_MAX_POSITION =			"FORKLIFT_MAX_POSITION";
+	public static final String FORKLIFT_POSITION_INCREMENT =	"FORKLIFT_POSITION_INCREMENT";
+	public static final String FORKLIFT_POSITION_DECREMENT =	"FORKLIFT_POSITION_DECREMENT";
 	
 	//Gamepad Buttons
 	public static final String GAMEPAD_TOGGLE_MODE =			"GAMEPAD_TOGGLE_MODE";
 	public static final String GAMEPAD_LOAD_TOTE =				"GAMEPAD_LOAD_TOTE";
 	public static final String GAMEPAD_UNLOAD_TOTE =			"GAMEPAD_UNLOAD_TOTE";
+	
+	public static final String GAMEPAD_INCREMENT_HELD_TOTES =	"GAMEPAD_INCREMENT_HELD_TOTES";
+	public static final String GAMEPAD_DECREMENT_HELD_TOTES =	"GAMEPAD_DECREMENT_HELD_TOTES";
 	
 	//Joystick Buttons
 	public static final String JOYSTICK_HIGH_GEAR  =			"JOYSTICK_HIGH_GEAR";
@@ -189,11 +199,11 @@ public class Constants
 		defaults.put(GYRO_PID_E, "5.0");
 		defaults.put(GYRO_PID_MAX, "0.4");
 
-		defaults.put(ENCODER_PID_P, "2.16"); //2.16
-		defaults.put(ENCODER_PID_I, "0.0"); //0.0
+		defaults.put(ENCODER_PID_P, "0.5"); //2.16 (Ryan and Jacks value)
+		defaults.put(ENCODER_PID_I, "0.0"); 
 		defaults.put(ENCODER_PID_D, "0.0");
 		defaults.put(ENCODER_PID_E, "0.1");
-		defaults.put(ENCODER_PID_MAX, "0.4");
+		defaults.put(ENCODER_PID_MAX, "0.3"); // 0.4 (Ryan and Jacks value) Too much jerk
 
 		defaults.put(CALIBRATION_FILE_LOC, "/home/lvuser/calibration.txt");
 		defaults.put(CALIBRATION_BUTTON, "2");
@@ -213,6 +223,8 @@ public class Constants
 		defaults.put(GAMEPAD_TOGGLE_MODE, "10"); // Start
 		defaults.put(GAMEPAD_LOAD_TOTE, "2"); // A
 		defaults.put(GAMEPAD_UNLOAD_TOTE, "3"); // B
+		defaults.put(GAMEPAD_INCREMENT_HELD_TOTES, "6"); // R1
+		defaults.put(GAMEPAD_DECREMENT_HELD_TOTES, "8"); // R2
 		
 		//Joystick Buttons
 		defaults.put(JOYSTICK_HIGH_GEAR, "7");
@@ -233,8 +245,14 @@ public class Constants
 		defaults.put(FORKLIFT_DOWN_SPEED, "0.50");
 		// -0.15 to hold one tote
 		// -0.3 holds two totes but keeps going up if no totes are there
-		defaults.put(FORKLIFT_NATURAL_COUNTER_SPEED, "-0.15");
-
+		defaults.put(FORKLIFT_TOTE_HOLD_SPEED, "0.15");
+		defaults.put(FORKLIFT_MIN_LEVEL, "0");
+		defaults.put(FORKLIFT_MAX_LEVEL, "3");
+		defaults.put(FORKLIFT_MIN_POSITION, "-1200.0");
+		defaults.put(FORKLIFT_MAX_POSITION, "0.0");
+		defaults.put(FORKLIFT_POSITION_INCREMENT, "-8.0");
+		defaults.put(FORKLIFT_POSITION_DECREMENT, "8.0");
+		
 		constants.putAll(defaults);
 	}
 	
