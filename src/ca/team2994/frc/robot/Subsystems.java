@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import ca.team2994.frc.autonomous.AutoHelper;
+import ca.team2994.frc.controls.EEncoder;
 import ca.team2994.frc.controls.EGamepad;
 import ca.team2994.frc.controls.EJoystick;
 import ca.team2994.frc.controls.ERobotDrive;
@@ -46,7 +47,7 @@ public class Subsystems {
 	// Encoders
 	public static Encoder rightDriveEncoder;
 	public static Encoder leftDriveEncoder;
-	public static Encoder forkliftEncoder;
+	public static EEncoder forkliftEncoder;
 	
 	// Sensor
 	public static DigitalInput toteDetectionSensor;
@@ -100,7 +101,7 @@ public class Subsystems {
 		// Encoders
 		rightDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_RIGHT_ENCODER_B), true);
 		leftDriveEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_LEFT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_LEFT_ENCODER_B), true);
-		forkliftEncoder = new Encoder(Constants.getConstantAsInt(Constants.DIO_FORKLIFT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_FORKLIFT_ENCODER_B));
+		forkliftEncoder = new EEncoder(Constants.getConstantAsInt(Constants.DIO_FORKLIFT_ENCODER_A), Constants.getConstantAsInt(Constants.DIO_FORKLIFT_ENCODER_B));
 		
 		// USB
 		driveJoystick = new EJoystick(Constants.getConstantAsInt(Constants.USB_DRIVE_STICK));
