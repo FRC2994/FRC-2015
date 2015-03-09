@@ -63,6 +63,7 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void teleopInit(){
+    	Subsystems.forkliftEncoder.reset();
     }
 
     /**
