@@ -137,9 +137,6 @@ public class Subsystems {
 		forklift = new Forklift(forkliftMotor, forkliftEncoder, forkliftPID);
 		robotArm = new RobotArm(leftArmMotor, rightArmMotor);
 		
-		// Robot Arm
-		robotArm = new RobotArm(leftArmMotor, rightArmMotor);
-		
 		// Set low gear by default
 		robotDrive.setLowGear();
 		

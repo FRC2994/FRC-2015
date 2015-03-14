@@ -16,8 +16,6 @@ public class InputControl
 		Subsystems.controlGamepad.enableButton(Constants.getConstantAsInt(Constants.GAMEPAD_TOGGLE_MODE));
 		Subsystems.controlGamepad.enableButton(Constants.getConstantAsInt(Constants.GAMEPAD_LOAD_TOTE));
 		Subsystems.controlGamepad.enableButton(Constants.getConstantAsInt(Constants.GAMEPAD_UNLOAD_TOTE));
-		Subsystems.controlGamepad.enableButton(Constants.getConstantAsInt(Constants.GAMEPAD_INCREMENT_HELD_TOTES));
-		Subsystems.controlGamepad.enableButton(Constants.getConstantAsInt(Constants.GAMEPAD_DECREMENT_HELD_TOTES));
 	}
 	
 	public void update()
@@ -60,20 +58,14 @@ public class InputControl
 				{
 					Subsystems.forklift.moveDown();
 				}
-//				else
-//				{
-//					Subsystems.forklift.stop();
-//				}
 				
-				// TODO Test this
-				if(Subsystems.controlGamepad.getEvent(Constants.getConstantAsInt(Constants.GAMEPAD_INCREMENT_HELD_TOTES)) == ButtonEntry.EVENT_CLOSED)
-				{
-					Subsystems.forklift.increaseTotesHeld();
-				}
 				
-				if(Subsystems.controlGamepad.getEvent(Constants.getConstantAsInt(Constants.GAMEPAD_DECREMENT_HELD_TOTES)) == ButtonEntry.EVENT_CLOSED)
-				{
-					Subsystems.forklift.decreaseTotesHeld();
+				if(Subsystems.controlGamepad.getState(Constants.getConstantAsInt(Constants.GAMEPAD_LOAD_TOTE)) == ButtonEntry.STATE_CLOSED) {
+					Subsystems.robotArm.forward();
+				} else if(Subsystems.controlGamepad.getState(Constants.getConstantAsInt(Constants.GAMEPAD_UNLOAD_TOTE)) == ButtonEntry.STATE_CLOSED) {
+					Subsystems.robotArm.reverse();
+				} else {
+					Subsystems.robotArm.stop();
 				}
 			}
 			
