@@ -147,10 +147,8 @@ public class Subsystems {
 
 		inputs = new DigitalInput[Constants.getConstantAsInt(Constants.NUM_AUTO_SELECT)];
 
-		for (int i = Constants.getConstantAsInt(Constants.FIRST_DIGITAL_SELECT); 
-				i < Constants.getConstantAsInt(Constants.SECOND_DIGITAL_SELECT) + 1;
-				i ++) {
-			inputs[i-Constants.getConstantAsInt(Constants.FIRST_DIGITAL_SELECT)] = new DigitalInput(i);
+		for(int i = 0; i < Constants.getConstantAsInt(Constants.NUM_AUTO_SELECT); ++i) {
+			inputs[i] = new DigitalInput(i + Constants.getConstantAsInt(Constants.FIRST_DIGITAL_SELECT));
 		}
 	}
 	

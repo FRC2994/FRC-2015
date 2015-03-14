@@ -15,7 +15,6 @@ public class SimpleForklift implements AutoCommand {
 	@Override
 	public void initialize() {
 //		Subsystems.forklift.setLevel(level);
-		
 	}
 
 	@Override
