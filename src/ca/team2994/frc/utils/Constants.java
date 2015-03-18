@@ -252,10 +252,10 @@ public class Constants
 		defaults.put(FORKLIFT_TOTE_HOLD_SPEED, "0.15");
 		defaults.put(FORKLIFT_MIN_LEVEL, "0");
 		defaults.put(FORKLIFT_MAX_LEVEL, "3");
-		defaults.put(FORKLIFT_MIN_POSITION, "-1180.0");
-		defaults.put(FORKLIFT_MAX_POSITION, "0.0");
-		defaults.put(FORKLIFT_POSITION_INCREMENT, "-8.0");
-		defaults.put(FORKLIFT_POSITION_DECREMENT, "8.0");
+		defaults.put(FORKLIFT_MIN_POSITION, "0.0");
+		defaults.put(FORKLIFT_MAX_POSITION, "1140.0");
+		defaults.put(FORKLIFT_POSITION_INCREMENT, "8.0");
+		defaults.put(FORKLIFT_POSITION_DECREMENT, "-8.0");
 		
 		constants.putAll(defaults);
 	}

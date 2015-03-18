@@ -59,7 +59,6 @@ public class InputControl
 					Subsystems.forklift.moveDown();
 				}
 				
-				
 				if(Subsystems.controlGamepad.getState(Constants.getConstantAsInt(Constants.GAMEPAD_LOAD_TOTE)) == ButtonEntry.STATE_CLOSED) {
 					Subsystems.robotArm.forward();
 				} else if(Subsystems.controlGamepad.getState(Constants.getConstantAsInt(Constants.GAMEPAD_UNLOAD_TOTE)) == ButtonEntry.STATE_CLOSED) {

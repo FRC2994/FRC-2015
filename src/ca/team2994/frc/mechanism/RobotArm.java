@@ -9,8 +9,8 @@ public class RobotArm {
 //	public double FORWARD_SPEED = Constants.getConstantAsDouble(Constants.ARM_FORWARD_SPEED);
 //	public double REVERSE_SPEED = Constants.getConstantAsDouble(Constants.ARM_REVERSE_SPEED);
 	
-	public double FORWARD_SPEED = 0.8;
-	public double REVERSE_SPEED = -0.8;
+	public double FORWARD_SPEED = 0.95;
+	public double REVERSE_SPEED = -0.95;
 	
 	public double PICKUP_SPEED = Constants.getConstantAsDouble(Constants.ARM_PICKUP_SPEED);
 	public double DROPOFF_SPEED = Constants.getConstantAsDouble(Constants.ARM_DROPOFF_SPEED);

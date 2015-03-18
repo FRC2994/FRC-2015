@@ -106,7 +106,7 @@ public class Forklift
 		
 		capLiftPosition();
 		forkliftPID.setDesiredValue(currentPosition);
-		forkliftMotor.set(-forkliftPID.calcPID(forkliftEncoder.get()));
+		forkliftMotor.set(forkliftPID.calcPID(forkliftEncoder.get()));
 	}
 	
 	public void automaticLoop()
