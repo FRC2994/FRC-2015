@@ -22,6 +22,7 @@ import com.google.common.base.Charsets;
 import com.google.common.collect.Iterables;
 import com.google.common.io.Files;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
@@ -64,6 +65,8 @@ public class Subsystems {
 	
 	// Bling
 	public static SerialPort blingPort;
+	
+	public static Compressor compressor;
  	
  	// PIDs
  	public static SimPID forkliftPID;
@@ -111,8 +114,7 @@ public class Subsystems {
 		powerPanel = new PowerDistributionPanel();
 		
 		//Compressor
-		//compressor = new Compressor(Constants.getConstantAsInt(Constants.COMPRESSOR_CHANNEL));
-		//compressor.setClosedLoopControl(false); // turn back on when compressor is ready
+		compressor = new Compressor();
 
 		
 		//Solenoid - Gear shift

@@ -14,6 +14,7 @@ public class InputControl
 		// Enable all buttons on the joystick and the gamepad here
 		Subsystems.driveJoystick.enableButton(Constants.getConstantAsInt(Constants.JOYSTICK_HIGH_GEAR));
 		Subsystems.controlGamepad.enableButton(Constants.getConstantAsInt(Constants.GAMEPAD_TOGGLE_MODE));
+		
 		Subsystems.controlGamepad.enableButton(Constants.getConstantAsInt(Constants.GAMEPAD_LOAD_TOTE));
 		Subsystems.controlGamepad.enableButton(Constants.getConstantAsInt(Constants.GAMEPAD_UNLOAD_TOTE));
 	}
@@ -27,7 +28,7 @@ public class InputControl
 		{
     		Subsystems.robotDrive.setHighGear();
 		}
-		else if(Subsystems.driveJoystick.getEvent(Constants.getConstantAsInt(Constants.JOYSTICK_HIGH_GEAR)) != ButtonEntry.STATE_ERR)
+		else if(Subsystems.driveJoystick.getState(Constants.getConstantAsInt(Constants.JOYSTICK_HIGH_GEAR)) != ButtonEntry.STATE_ERR)
 		{
 			Subsystems.robotDrive.setLowGear();
 		}

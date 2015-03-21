@@ -15,21 +15,26 @@ public class PIDForklift implements AutoCommand {
 	public void initialize() {
 		Subsystems.forklift.syncPositionWithEncoder();
 		Subsystems.forklift.setPosition(liftPosition);
+		System.out.println("PIDForklift init");
 	}
 	
 	@Override
 	public boolean tick() {
-		if(!Subsystems.forklift.isCompleted())
+		System.out.println("PIDForklift tick " + Subsystems.forkliftEncoder.get());
+		
+		if(Subsystems.forklift.isCompleted())
 		{
-			Subsystems.forklift.manualLoop();
-			return true;
+			return false;
 		}
 		
-		return false;
+		Subsystems.forklift.manualLoop();
+		
+		return true;
 	}
 	
 	@Override
 	public void cleanup() {
+		System.out.println("PIDForklift Cleanup");
 		// Do something here?
 //		Subsystems.forklift.syncPositionWithEncoder(); FIXME Might not be necessary
 	}
