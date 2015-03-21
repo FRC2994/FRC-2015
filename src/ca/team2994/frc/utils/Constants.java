@@ -116,9 +116,6 @@ public class Constants
 	public static final String GAMEPAD_LOAD_TOTE =				"GAMEPAD_LOAD_TOTE";
 	public static final String GAMEPAD_UNLOAD_TOTE =			"GAMEPAD_UNLOAD_TOTE";
 	
-	public static final String GAMEPAD_INCREMENT_HELD_TOTES =	"GAMEPAD_INCREMENT_HELD_TOTES";
-	public static final String GAMEPAD_DECREMENT_HELD_TOTES =	"GAMEPAD_DECREMENT_HELD_TOTES";
-	
 	//Joystick Buttons
 	public static final String JOYSTICK_HIGH_GEAR  =			"JOYSTICK_HIGH_GEAR";
 	public static final String JOYSTICK_CALIBRATE  =			"JOYSTICK_CALIBRATE";
@@ -127,6 +124,8 @@ public class Constants
 	public static final String NUM_AUTO_SELECT =				"NUM_INPUTS";
 	public static final String FIRST_DIGITAL_SELECT = 			"FIRST_DIGITAL_SELECT";
 	public static final String SECOND_DIGITAL_SELECT = 			"SECOND_DIGITAL_SELECT";
+	
+	public static final String BUTTON_COMPRESSOR_DISABLE = 		"BUTTON_COMPRESSOR_DISABLE";
 
 	static {
 		// PWM
@@ -221,10 +220,8 @@ public class Constants
 
 		//Gamepad Buttons
 		defaults.put(GAMEPAD_TOGGLE_MODE, "10"); // Start
-		defaults.put(GAMEPAD_LOAD_TOTE, "2"); // A
-		defaults.put(GAMEPAD_UNLOAD_TOTE, "3"); // B
-		defaults.put(GAMEPAD_INCREMENT_HELD_TOTES, "6"); // R1
-		defaults.put(GAMEPAD_DECREMENT_HELD_TOTES, "8"); // R2
+		defaults.put(GAMEPAD_LOAD_TOTE, "3"); // X
+		defaults.put(GAMEPAD_UNLOAD_TOTE, "4"); // Y
 		
 		//Joystick Buttons
 		defaults.put(JOYSTICK_HIGH_GEAR, "7");
@@ -248,10 +245,12 @@ public class Constants
 		defaults.put(FORKLIFT_TOTE_HOLD_SPEED, "0.15");
 		defaults.put(FORKLIFT_MIN_LEVEL, "0");
 		defaults.put(FORKLIFT_MAX_LEVEL, "3");
-		defaults.put(FORKLIFT_MIN_POSITION, "-1200.0");
-		defaults.put(FORKLIFT_MAX_POSITION, "0.0");
-		defaults.put(FORKLIFT_POSITION_INCREMENT, "-8.0");
-		defaults.put(FORKLIFT_POSITION_DECREMENT, "8.0");
+		defaults.put(FORKLIFT_MIN_POSITION, "0.0");
+		defaults.put(FORKLIFT_MAX_POSITION, "1140.0");
+		defaults.put(FORKLIFT_POSITION_INCREMENT, "8.0");
+		defaults.put(FORKLIFT_POSITION_DECREMENT, "-8.0");
+		
+		defaults.put(BUTTON_COMPRESSOR_DISABLE, "2");
 		
 		constants.putAll(defaults);
 	}

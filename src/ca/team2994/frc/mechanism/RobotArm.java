@@ -6,8 +6,12 @@ import ca.team2994.frc.utils.Constants;
 public class RobotArm {
 	
 	//Declare your speeds for different parts of the arm usage here
-	public double FORWARD_SPEED = Constants.getConstantAsDouble(Constants.ARM_FORWARD_SPEED);
-	public double REVERSE_SPEED = Constants.getConstantAsDouble(Constants.ARM_REVERSE_SPEED);
+//	public double FORWARD_SPEED = Constants.getConstantAsDouble(Constants.ARM_FORWARD_SPEED);
+//	public double REVERSE_SPEED = Constants.getConstantAsDouble(Constants.ARM_REVERSE_SPEED);
+	
+	public double FORWARD_SPEED = 0.95;
+	public double REVERSE_SPEED = -0.95;
+	
 	public double PICKUP_SPEED = Constants.getConstantAsDouble(Constants.ARM_PICKUP_SPEED);
 	public double DROPOFF_SPEED = Constants.getConstantAsDouble(Constants.ARM_DROPOFF_SPEED);
 	public double LOAD_SPEED = Constants.getConstantAsDouble(Constants.ARM_LOAD_SPEED);
@@ -34,12 +38,14 @@ public class RobotArm {
 	public void forward() {
 		//Move forward manually
 		m_leftArmMotor.set(FORWARD_SPEED);
-		m_rightArmMotor.set(FORWARD_SPEED * -1);
+//		m_rightArmMotor.set(FORWARD_SPEED * -1);
+		m_rightArmMotor.set(FORWARD_SPEED);
 	}
 
 	public void reverse() {
 		//Move in reverse manually
-		m_leftArmMotor.set(REVERSE_SPEED * -1);
+//		m_leftArmMotor.set(REVERSE_SPEED * -1);
+		m_leftArmMotor.set(REVERSE_SPEED);
 		m_rightArmMotor.set(REVERSE_SPEED);
 	}
 

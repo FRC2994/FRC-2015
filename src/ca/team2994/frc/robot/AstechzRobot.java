@@ -65,7 +65,6 @@ public class AstechzRobot extends IterativeRobot {
      */
     @Override
 	public void teleopInit() {
-    	Subsystems.forklift.syncPositionWithEncoder();
     }
 
     /**

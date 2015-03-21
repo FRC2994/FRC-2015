@@ -231,7 +231,7 @@ public class StateMachine
 	
 	public void update()
 	{
-		if(Subsystems.forklift.isLevelReached())
+		if(Subsystems.forklift.isCompleted())
 		{
 			callEvent(Event.LRP);
 		}

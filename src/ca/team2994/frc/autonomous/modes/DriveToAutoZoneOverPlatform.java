@@ -7,13 +7,15 @@ import ca.team2994.frc.autonomous.commands.DriveStraight;
 import ca.team2994.frc.autonomous.commands.DriveTurn;
 import ca.team2994.frc.autonomous.commands.ForkliftDrop;
 import ca.team2994.frc.autonomous.commands.GearShift;
+import ca.team2994.frc.autonomous.commands.PIDForklift;
 import ca.team2994.frc.autonomous.commands.SimpleForklift;
+import ca.team2994.frc.robot.Subsystems;
 
 public class DriveToAutoZoneOverPlatform extends AutoMode {
 	
 	//TODO: Test this on practice field. These are bogus values.
 	private static final double STRAIGHT_DISTANCE = 9.5;
-	private static final int SIMPLE_FORKLIFT_COUNTER = 300;
+	private static final int FORKLIFT_TICKS = 300;
 
 	@Override
 	protected AutoCommand[] initializeCommands() {
@@ -24,8 +26,9 @@ public class DriveToAutoZoneOverPlatform extends AutoMode {
 		builder.add(new GearShift(false));
 		
 		// Lift Forklift Up enough to get it off the ground
-		builder.add(new SimpleForklift(SIMPLE_FORKLIFT_COUNTER));
+		builder.add(new PIDForklift(FORKLIFT_TICKS));
 		
+		//Attempt to turn
 		builder.add(new DriveTurn(90));
 		
 		// Drive forward into the zone.

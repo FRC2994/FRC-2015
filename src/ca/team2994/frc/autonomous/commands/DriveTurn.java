@@ -18,12 +18,12 @@ public class DriveTurn implements AutoCommand {
 		Subsystems.gyroPID.setDesiredValue(angle);
 		Subsystems.gyroSensor.reset(0);
 		// Reset the gyro PID to a reasonable state.
-		Subsystems.gyroPID.resetErrorSum();
-		Subsystems.gyroPID.resetPreviousVal();
+//		Subsystems.gyroPID.resetErrorSum();
+//		Subsystems.gyroPID.resetPreviousVal();
 		// Used to make sure that the PID doesn't bail out as done
 		// right away (we know the gyro angle is zero from the above
 		// reset).
-		Subsystems.gyroPID.calcPID(0);
+//		Subsystems.gyroPID.calcPID(0);
 		System.out.println("DriveTurn Init:" + angle);
 	}
 	
