@@ -26,10 +26,10 @@ public class DriveToAutoZoneOverPlatform extends AutoMode {
 		builder.add(new GearShift(false));
 		
 		// Lift Forklift Up enough to get it off the ground
-		builder.add(new PIDForklift(FORKLIFT_TICKS));
+		//builder.add(new PIDForklift(FORKLIFT_TICKS));
 		
 		//Attempt to turn
-		builder.add(new DriveTurn(90));
+		builder.add(new DriveTurn(-90));
 		
 		// Drive forward into the zone.
 		builder.add(new DriveStraight(STRAIGHT_DISTANCE));

@@ -181,10 +181,10 @@ public class Constants
 		
 		//PID
 		defaults.put(FORKLIFT_PID_P, "0.006");
-		defaults.put(FORKLIFT_PID_I, "0.001");
+		defaults.put(FORKLIFT_PID_I, "0.002");
 		defaults.put(FORKLIFT_PID_D, "0.001");
 		// The forklift PID works at encoder-value-scale so we don't need as much accuracy.
-		defaults.put(FORKLIFT_PID_E, "10");
+		defaults.put(FORKLIFT_PID_E, "5");
 		
 //		defaults.put(GYRO_PID_P, "0.01");
 //		defaults.put(GYRO_PID_I, "0.0");

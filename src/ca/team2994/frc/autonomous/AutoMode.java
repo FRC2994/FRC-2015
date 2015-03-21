@@ -9,7 +9,7 @@ public abstract class AutoMode {
 		if (commandIdx < commands.length) {  //Still commands
 			if (!commands[commandIdx].tick()) { //This command is done
 				commands[commandIdx].cleanup(); // cleanup command
-				commandIdx ++; //increment index
+				commandIdx++; //increment index
 				if (commandIdx < commands.length) { // still commands after incrementation
 					commands[commandIdx].initialize(); // Init next command
 				}
@@ -21,7 +21,7 @@ public abstract class AutoMode {
 	
 	public void initialize() {
 		commands = initializeCommands();
-		if ((commands != null) && (commands.length > 0)) {
+		if (commands != null && commands.length > 0) {
 			commands[0].initialize();	
 		}
 	}

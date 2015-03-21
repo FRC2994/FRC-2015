@@ -15,7 +15,6 @@ public class PIDForklift implements AutoCommand {
 	public void initialize() {
 		Subsystems.forklift.syncPositionWithEncoder();
 		Subsystems.forklift.setPosition(liftPosition);
-		System.out.println("PIDForklift init");
 	}
 	
 	@Override
