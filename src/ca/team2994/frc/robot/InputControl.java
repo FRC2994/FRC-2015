@@ -12,9 +12,16 @@ public class InputControl
 	public void init()
 	{
 		// Enable all buttons on the joystick and the gamepad here
-		Subsystems.driveJoystick.enableButton(Constants.getConstantAsInt(Constants.JOYSTICK_HIGH_GEAR));
-		Subsystems.controlGamepad.enableButton(Constants.getConstantAsInt(Constants.GAMEPAD_TOGGLE_MODE));
+//		Subsystems.driveJoystick.enableButton(Constants.getConstantAsInt(Constants.JOYSTICK_HIGH_GEAR));
+		Subsystems.driveJoystick.enableButton(8);
 		
+		// TODO Remove this, it is only temporary
+		Subsystems.driveJoystick.enableButton(1);
+		Subsystems.driveJoystick.enableButton(2);
+		Subsystems.driveJoystick.enableButton(6);
+		Subsystems.driveJoystick.enableButton(7);
+		
+		Subsystems.controlGamepad.enableButton(Constants.getConstantAsInt(Constants.GAMEPAD_TOGGLE_MODE));
 		Subsystems.controlGamepad.enableButton(Constants.getConstantAsInt(Constants.GAMEPAD_LOAD_TOTE));
 		Subsystems.controlGamepad.enableButton(Constants.getConstantAsInt(Constants.GAMEPAD_UNLOAD_TOTE));
 	}
@@ -24,11 +31,20 @@ public class InputControl
 		Subsystems.driveJoystick.update();
 		Subsystems.controlGamepad.update();
 		
-		if(Subsystems.driveJoystick.getState(Constants.getConstantAsInt(Constants.JOYSTICK_HIGH_GEAR)) == ButtonEntry.STATE_CLOSED)
+//		if(Subsystems.driveJoystick.getState(Constants.getConstantAsInt(Constants.JOYSTICK_HIGH_GEAR)) == ButtonEntry.STATE_CLOSED)
+//		{
+//    		Subsystems.robotDrive.setHighGear();
+//		}
+//		else if(Subsystems.driveJoystick.getState(Constants.getConstantAsInt(Constants.JOYSTICK_HIGH_GEAR)) != ButtonEntry.STATE_ERR)
+//		{
+//			Subsystems.robotDrive.setLowGear();
+//		}
+		
+		if(Subsystems.driveJoystick.getState(8) == ButtonEntry.STATE_CLOSED)
 		{
     		Subsystems.robotDrive.setHighGear();
 		}
-		else if(Subsystems.driveJoystick.getState(Constants.getConstantAsInt(Constants.JOYSTICK_HIGH_GEAR)) != ButtonEntry.STATE_ERR)
+		else if(Subsystems.driveJoystick.getState(8) != ButtonEntry.STATE_ERR)
 		{
 			Subsystems.robotDrive.setLowGear();
 		}
@@ -51,18 +67,18 @@ public class InputControl
 			
 			if (Subsystems.controlGamepad.getAxisCount() != 0)
 			{
-				if(Subsystems.controlGamepad.getDPadState(EGamepad.DPAD_DIRECTION_UP) == ButtonEntry.STATE_CLOSED)
+				if(Subsystems.controlGamepad.getDPadState(EGamepad.DPAD_DIRECTION_UP) == ButtonEntry.STATE_CLOSED || Subsystems.driveJoystick.getState(6) == ButtonEntry.STATE_CLOSED)
 				{
 					Subsystems.forklift.moveUp();
 				}
-				else if(Subsystems.controlGamepad.getDPadState(EGamepad.DPAD_DIRECTION_DOWN) == ButtonEntry.STATE_CLOSED)
+				else if(Subsystems.controlGamepad.getDPadState(EGamepad.DPAD_DIRECTION_DOWN) == ButtonEntry.STATE_CLOSED || Subsystems.driveJoystick.getState(7) == ButtonEntry.STATE_CLOSED)
 				{
 					Subsystems.forklift.moveDown();
 				}
 				
-				if(Subsystems.controlGamepad.getState(Constants.getConstantAsInt(Constants.GAMEPAD_LOAD_TOTE)) == ButtonEntry.STATE_CLOSED) {
+				if(Subsystems.controlGamepad.getState(Constants.getConstantAsInt(Constants.GAMEPAD_LOAD_TOTE)) == ButtonEntry.STATE_CLOSED || Subsystems.driveJoystick.getState(1) == ButtonEntry.STATE_CLOSED) {
 					Subsystems.robotArm.forward();
-				} else if(Subsystems.controlGamepad.getState(Constants.getConstantAsInt(Constants.GAMEPAD_UNLOAD_TOTE)) == ButtonEntry.STATE_CLOSED) {
+				} else if(Subsystems.controlGamepad.getState(Constants.getConstantAsInt(Constants.GAMEPAD_UNLOAD_TOTE)) == ButtonEntry.STATE_CLOSED || Subsystems.driveJoystick.getState(2) == ButtonEntry.STATE_CLOSED) {
 					Subsystems.robotArm.reverse();
 				} else {
 					Subsystems.robotArm.stop();

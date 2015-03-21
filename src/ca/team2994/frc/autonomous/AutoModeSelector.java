@@ -75,6 +75,8 @@ public class AutoModeSelector {
 				encodeBool = 0;
 			}
 			
+			System.out.println("Selected mode is: " + modes.get(encodeBool).getName());
+			
 			return (modes.get(encodeBool).newInstance());
 		} catch (InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();

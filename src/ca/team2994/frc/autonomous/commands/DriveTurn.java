@@ -18,12 +18,12 @@ public class DriveTurn implements AutoCommand {
 		Subsystems.gyroPID.setDesiredValue(angle);
 		Subsystems.gyroSensor.reset(0);
 		// Reset the gyro PID to a reasonable state.
-//		Subsystems.gyroPID.resetErrorSum();
-//		Subsystems.gyroPID.resetPreviousVal();
+		Subsystems.gyroPID.resetErrorSum();
+		Subsystems.gyroPID.resetPreviousVal();
 		// Used to make sure that the PID doesn't bail out as done
 		// right away (we know the gyro angle is zero from the above
 		// reset).
-//		Subsystems.gyroPID.calcPID(0);
+		Subsystems.gyroPID.calcPID(0);
 		System.out.println("DriveTurn Init:" + angle);
 	}
 	
@@ -32,9 +32,12 @@ public class DriveTurn implements AutoCommand {
 		if (!Subsystems.gyroPID.isDone()) {
 			// Angle needs to be positive
 			double driveVal = Subsystems.gyroPID.calcPID(Subsystems.gyroSensor.getAngle());
-			double limitVal = SimLib.limitValue(driveVal, Constants.getConstantAsDouble(Constants.GYRO_PID_MAX));
+			//System.out.println(driveVal);
+//			double limitVal = SimLib.limitValue(driveVal, Constants.getConstantAsDouble(Constants.GYRO_PID_MAX));
+			double limitVal = SimLib.limitValue(driveVal, 0.9);
 			System.out.println("gyro.getAngle() = " + Subsystems.gyroSensor.getAngle()+",limitVal = " + limitVal);
 			Subsystems.robotDrive.setLeftRightMotorOutputs(limitVal, -limitVal);
+			System.out.println("Right: " + Subsystems.rightFrontDrive.get() + ", " + Subsystems.rightRearDrive.get() + " Left: " + Subsystems.leftFrontDrive.get() + ", " + Subsystems.leftRearDrive.get());
 			return true;
 		}
 		return false;
