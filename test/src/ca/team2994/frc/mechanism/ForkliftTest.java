@@ -123,7 +123,7 @@ public class ForkliftTest {
 	 */
 	private void pidLoopForklift(Forklift forklift) {
 		// Wait till it gets to it's level
-		while (!forklift.isLevelReached()) {
+		while (!forklift.isCompleted()) {
 			// The sign of motor.get() will be the direction we move the encoder
 			encoderValue += (motor.get()/(Math.abs(motor.get())));
 			forklift.automaticLoop();

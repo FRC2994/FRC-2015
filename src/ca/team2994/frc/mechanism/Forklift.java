@@ -4,6 +4,7 @@ import ca.team2994.frc.controls.Motor;
 import ca.team2994.frc.utils.Constants;
 import ca.team2994.frc.utils.SimPID;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  * 
@@ -65,6 +66,15 @@ public class Forklift
 		levelIndex = level;
 		capLiftLevel();
 		forkliftPID.setDesiredValue(encoderLevels[levelIndex]);
+	}
+	
+	/**
+	 * Only use this in autonomous
+	 * @param position The position to set the forklift to
+	 */
+	public void setPosition(double position)
+	{
+		currentPosition = position;
 	}
 	
 	public void syncPositionWithEncoder()
@@ -151,7 +161,7 @@ public class Forklift
 		return levelIndex;
 	}
 	
-	public boolean isLevelReached()
+	public boolean isCompleted()
 	{
 		return forkliftPID.isDone();
 	}
