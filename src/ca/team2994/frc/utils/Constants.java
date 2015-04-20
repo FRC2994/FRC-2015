@@ -202,7 +202,7 @@ public class Constants
 		defaults.put(ENCODER_PID_I, "0.0"); 
 		defaults.put(ENCODER_PID_D, "0.0");
 		defaults.put(ENCODER_PID_E, "0.1");
-		defaults.put(ENCODER_PID_MAX, "0.3"); // 0.4 (Ryan and Jacks value) Too much jerk
+		defaults.put(ENCODER_PID_MAX, "0.2"); // 0.4 (Ryan and Jacks value) Too much jerk
 
 		defaults.put(CALIBRATION_FILE_LOC, "/home/lvuser/calibration.txt");
 		defaults.put(CALIBRATION_BUTTON, "2");
@@ -245,8 +245,8 @@ public class Constants
 		defaults.put(FORKLIFT_TOTE_HOLD_SPEED, "0.15");
 		defaults.put(FORKLIFT_MIN_LEVEL, "0");
 		defaults.put(FORKLIFT_MAX_LEVEL, "3");
-		defaults.put(FORKLIFT_MIN_POSITION, "0.0");
-		defaults.put(FORKLIFT_MAX_POSITION, "1140.0");
+		defaults.put(FORKLIFT_MIN_POSITION, "0.0"); // Switch with max position on practice bot
+		defaults.put(FORKLIFT_MAX_POSITION, "890.0");
 		defaults.put(FORKLIFT_POSITION_INCREMENT, "8.0");
 		defaults.put(FORKLIFT_POSITION_DECREMENT, "-8.0");
 		

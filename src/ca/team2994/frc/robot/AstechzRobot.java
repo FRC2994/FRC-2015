@@ -82,7 +82,7 @@ public class AstechzRobot extends IterativeRobot {
     @Override
 	public void testInit() {
     	calibration = new CalibrationManager();
-    	calibration.calibrateInit();   
+    	calibration.calibrateInit();
     	Subsystems.forkliftEncoder.reset();
     }
     
