@@ -37,7 +37,7 @@ public class RobotArm {
 
 	public void forward() {
 		//Move forward manually
-		m_leftArmMotor.set(FORWARD_SPEED);
+		m_leftArmMotor.set(-FORWARD_SPEED);
 //		m_rightArmMotor.set(FORWARD_SPEED * -1);
 		m_rightArmMotor.set(FORWARD_SPEED);
 	}
@@ -45,7 +45,7 @@ public class RobotArm {
 	public void reverse() {
 		//Move in reverse manually
 //		m_leftArmMotor.set(REVERSE_SPEED * -1);
-		m_leftArmMotor.set(REVERSE_SPEED);
+		m_leftArmMotor.set(-REVERSE_SPEED);
 		m_rightArmMotor.set(REVERSE_SPEED);
 	}
 

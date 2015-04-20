@@ -9,7 +9,7 @@ import ca.team2994.frc.autonomous.commands.GearShift;
 public class DriveToAutoZone extends AutoMode {
 	
 	//TODO: Test this on practice field. These are bogus values.
-	private static final double STRAIGHT_DISTANCE = 10; // TODO Change this number!!!!!
+	private static final double STRAIGHT_DISTANCE = 9.45; // TODO Change this number!!!!!
 //	private static final int SIMPLE_FORKLIFT_COUNTER = 50;
 	
 	@Override
