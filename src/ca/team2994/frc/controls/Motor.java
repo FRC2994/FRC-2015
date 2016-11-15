@@ -14,7 +14,7 @@ public class Motor implements SpeedController
 	SafePWM realMotor;
 	CANJaguar canJaguar;
 	CANTalon canTalon;
-	
+
 	/**
 	 * 0 = PWM Talon
 	 * 1 = PWM Victor
@@ -23,17 +23,17 @@ public class Motor implements SpeedController
 	 * default = PWM Jaguar
 	 */
 	int motorType;
-	
-    /**
-     * Factory to return one of the different motor controllers: Talon, Jaguar and Victor.
-     * The exact type of motor controller is chosen based on the Constants.ROBOT_TYPE
-     *
-     * @param channel The PWM or CAN channel that the motor is attached to
-     */
+
+	/**
+	 * Factory to return one of the different motor controllers: Talon, Jaguar and Victor.
+	 * The exact type of motor controller is chosen based on the Constants.ROBOT_TYPE
+	 *
+	 * @param channel The PWM or CAN channel that the motor is attached to
+	 */
 	public Motor(int channel, int motorType)
 	{
 		this.motorType = motorType;
-		
+
 		if (motorType == 0) 
 		{
 			realMotor =  new Talon(channel);
@@ -56,11 +56,11 @@ public class Motor implements SpeedController
 		}
 	}
 
-    /**
-     * Write out the PID value as seen in the PIDOutput base object.
-     *
-     * @param output Write out the PWM value as was found in the PIDController
-     */
+	/**
+	 * Write out the PID value as seen in the PIDOutput base object.
+	 *
+	 * @param output Write out the PWM value as was found in the PIDController
+	 */
 	public void pidWrite(double result) 
 	{
 		if(motorType == 0)
@@ -180,7 +180,7 @@ public class Motor implements SpeedController
 			((Jaguar)realMotor).disable();
 		}
 	}
-	
+
 	public void setExpiration(double timeout) 
 	{
 		if(motorType != 2 && motorType != 3)
@@ -191,8 +191,71 @@ public class Motor implements SpeedController
 		{
 			canTalon.setExpiration(timeout);
 		}
- else {
+		else {
 			canJaguar.setExpiration(timeout);
+		}
+	}
+
+	@Override
+	public boolean getInverted() {
+		if(motorType == 0)
+		{
+			return ((Talon)realMotor).getInverted();
+		}
+		else if(motorType == 1)
+		{
+			return ((Victor)realMotor).getInverted();
+		}
+		else if(motorType == 2)
+		{
+			return canTalon.getInverted();
+		}
+		else if(motorType == 3)
+		{
+			return canJaguar.getInverted();
+		}
+		else
+		{
+			return ((Jaguar)realMotor).getInverted();
+		}
+	}
+
+	@Override
+	public void setInverted(boolean inverted) {
+		if(motorType == 0)
+		{
+			((Talon)realMotor).setInverted(inverted);
+		}
+		else if(motorType == 1)
+		{
+			((Victor)realMotor).setInverted(inverted);
+		}
+		else if(motorType == 2)
+		{
+			canTalon.setInverted(inverted);
+		}
+		else if(motorType == 3)
+		{
+			canJaguar.setInverted(inverted);
+		}
+		else
+		{
+			((Jaguar)realMotor).setInverted(inverted);
+		}
+	}
+
+	@Override
+	public void stopMotor() {
+		if(motorType != 2 && motorType != 3)
+		{
+			realMotor.stopMotor();
+		}
+		else if(motorType == 2)
+		{
+			canTalon.stopMotor();
+		}
+		else {
+			canJaguar.stopMotor();
 		}
 	}
 }

@@ -4,15 +4,14 @@
  */
 package ca.team2994.frc.controls;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.Gyro;
 
 /**
  *
  * @author Mike
  */
-public class SimGyro extends Gyro {
-    
+public class SimGyro extends AnalogGyro {
     private double resetAdjustment;
     private double initialAngle;
     
